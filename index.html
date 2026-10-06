@@ -299,7 +299,44 @@
 
     </section>
 
+<!-- IMAGE VIEWER -->
 
+<div id="image-viewer">
+
+    <div class="viewer-window">
+
+        <div class="window-bar">
+
+            <span>✦ IMAGE VIEWER</span>
+
+            <button
+                class="close-button"
+                onclick="closeImageViewer()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="viewer-content">
+
+            <img
+                id="viewer-image"
+                src=""
+                alt="Artwork preview">
+
+            <h2 id="viewer-title"></h2>
+
+            <button
+                class="back-button"
+                onclick="closeImageViewer()">
+                ← CLOSE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
     <script src="script.js"></script>
 
 </body>

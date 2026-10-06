@@ -1,17 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&display=swap');
 
+
+/* =========================================================
+   PUPPIPYRO COLOR PALETTE
+========================================================= */
+
 :root {
     --mint: #b8f3d0;
     --mint-dark: #72cfa2;
+
     --pink: #f6b6d8;
     --pink-dark: #d978aa;
+
     --lavender: #c9b8f5;
+
     --cream: #fff9ef;
     --white: #ffffff;
+
     --purple: #49345f;
     --purple-dark: #30213f;
+
     --shadow: rgba(73, 52, 95, 0.22);
 }
+
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -19,45 +34,91 @@
     padding: 0;
 }
 
+
 html,
 body {
     width: 100%;
     min-height: 100%;
 }
 
+
 body {
     font-family: 'Fredoka', sans-serif;
+
     background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.7) 0 3px, transparent 4px),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.65) 0 2px, transparent 3px),
-        linear-gradient(135deg, #b8f3d0 0%, #c9b8f5 48%, #f6b6d8 100%);
-    background-size: 170px 170px, 230px 230px, 100% 100%;
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,0.7) 0 3px,
+            transparent 4px
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255,255,255,0.65) 0 2px,
+            transparent 3px
+        ),
+        linear-gradient(
+            135deg,
+            #b8f3d0 0%,
+            #c9b8f5 48%,
+            #f6b6d8 100%
+        );
+
+    background-size:
+        170px 170px,
+        230px 230px,
+        100% 100%;
+
+    background-attachment: fixed;
+
     color: var(--purple);
+
     overflow: hidden;
 }
 
-/* =========================
-   SCREENS
-========================= */
+
+/* =========================================================
+   GLOBAL BUTTON BEHAVIOR
+========================================================= */
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
 
 .screen {
     position: fixed;
     inset: 0;
+
     display: none;
+
     align-items: center;
     justify-content: center;
-    padding: 25px;
+
+    padding: 20px;
+
+    overflow: hidden;
 }
+
 
 .screen.active {
     display: flex;
-    animation: screenIn 0.45s ease;
+
+    animation:
+        screenIn
+        0.4s
+        ease;
 }
 
+
 @keyframes screenIn {
+
     from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: scale(0.97);
     }
 
     to {
@@ -66,701 +127,1676 @@ body {
     }
 }
 
-/* =========================
+
+/* =========================================================
    COMPUTER WINDOW
-========================= */
+========================================================= */
 
 .computer-window {
-    width: min(900px, 94vw);
-    max-height: 88vh;
+    width: min(1100px, 94vw);
+
+    /*
+       Important:
+       The window can never become taller than the screen.
+       This fixes the old ENTER-button problem.
+    */
+    height: min(88vh, 820px);
+
     background: var(--cream);
+
     border: 4px solid var(--purple);
+
     border-radius: 26px;
+
     overflow: hidden;
+
     box-shadow:
         0 14px 0 rgba(73, 52, 95, 0.18),
         0 25px 50px rgba(48, 33, 63, 0.22);
+
+    display: flex;
+    flex-direction: column;
 }
+
+
+/* =========================================================
+   WINDOW BAR
+========================================================= */
 
 .window-bar {
+    flex: 0 0 55px;
+
     height: 55px;
+
     background: var(--pink);
+
     border-bottom: 4px solid var(--purple);
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     padding: 0 18px;
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 11px;
+
+    color: var(--purple);
+
+    user-select: none;
 }
 
-.window-buttons {
+
+/* =========================================================
+   WINDOW CONTROLS
+========================================================= */
+
+.window-controls {
     display: flex;
+
+    align-items: center;
+
     gap: 7px;
 }
 
-.window-buttons span,
+
+.window-controls button,
 .close-button {
     width: 28px;
     height: 28px;
+
     border: 3px solid var(--purple);
+
     border-radius: 8px;
+
     background: var(--cream);
+
     color: var(--purple);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-weight: bold;
-}
 
-/* =========================
-   HOME
-========================= */
-
-.home-content {
-    min-height: 600px;
-    padding: 55px 60px;
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    grid-template-rows: auto 1fr auto;
-    gap: 20px;
-    align-items: center;
-    text-align: center;
-}
-
-.welcome-text {
-    grid-column: 1 / -1;
-}
-
-.tiny-text {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    color: var(--pink-dark);
-}
-
-h1 {
-    font-size: clamp(38px, 6vw, 68px);
-    line-height: 1;
-    color: var(--purple);
-    margin-bottom: 15px;
-}
-
-.welcome-text h2 {
-    font-size: clamp(25px, 4vw, 40px);
-    color: var(--pink-dark);
-    margin-bottom: 12px;
-}
-
-.welcome-text p:not(.tiny-text) {
-    font-size: 18px;
-}
-
-.pyro-placeholder {
-    width: 230px;
-    height: 270px;
-    margin: auto;
-    background: var(--mint);
-    border: 4px solid var(--purple);
-    border-radius: 50% 50% 35% 35%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 8px 8px 0 var(--lavender);
-    transform: rotate(-2deg);
-}
-
-.alien-face {
-    display: flex;
-    gap: 30px;
-    font-size: 42px;
-    margin-bottom: 20px;
-}
-
-.pyro-placeholder p {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-}
-
-.enter-button {
-    grid-column: 1 / -1;
-    justify-self: center;
-    padding: 17px 45px;
-    border: 4px solid var(--purple);
-    border-radius: 18px;
-    background: var(--mint);
-    color: var(--purple);
-    font-family: 'Press Start 2P', monospace;
-    font-size: 13px;
     cursor: pointer;
-    box-shadow: 0 7px 0 var(--purple);
-    transition: 0.15s ease;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
 }
 
-.enter-button:hover {
-    transform: translateY(-3px) rotate(-1deg);
-    background: var(--pink);
-}
 
-.enter-button:active {
-    transform: translateY(5px);
-    box-shadow: 0 2px 0 var(--purple);
-}
-
-/* =========================
-   MAIN MENU
-========================= */
-
-.menu-content {
-    padding: 55px;
-    text-align: center;
-}
-
-.menu-header h1 {
-    font-size: clamp(28px, 5vw, 48px);
-}
-
-.menu-buttons {
-    width: min(600px, 100%);
-    margin: 35px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.menu-buttons button {
-    min-height: 75px;
-    border: 4px solid var(--purple);
-    border-radius: 18px;
-    background: var(--white);
-    color: var(--purple);
-    font-family: 'Fredoka', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 6px 0 var(--purple);
-    transition: 0.15s ease;
-}
-
-.menu-buttons button span {
-    color: var(--pink-dark);
-    margin-right: 7px;
-}
-
-.menu-buttons button:hover {
+.window-controls button:hover,
+.close-button:hover {
     background: var(--mint);
-    transform: translateY(-4px) rotate(1deg);
+
+    transform: translateY(-2px);
 }
 
-.menu-buttons button:active {
-    transform: translateY(4px);
-    box-shadow: 0 2px 0 var(--purple);
-}
-
-.menu-footer {
-    font-size: 13px;
-    opacity: 0.7;
-}
-
-/* =========================
-   CONTENT SECTIONS
-========================= */
-
-.section-content {
-    padding: 45px 55px;
-    max-height: calc(88vh - 55px);
-    overflow-y: auto;
-}
-
-.section-content h1 {
-    font-size: clamp(34px, 5vw, 55px);
-}
-
-.section-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 18px;
-}
-
-.info-box {
-    margin: 30px 0;
-    padding: 25px;
-    border: 3px dashed var(--purple);
-    border-radius: 18px;
-    background: rgba(184, 243, 208, 0.5);
-    text-align: center;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    line-height: 1.8;
-}
-
-.back-button {
-    border: 3px solid var(--purple);
-    border-radius: 12px;
-    background: var(--lavender);
-    color: var(--purple);
-    padding: 12px 22px;
-    font-family: 'Fredoka', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.15s;
-}
-
-.back-button:hover {
-    background: var(--pink);
-    transform: translateX(-3px);
-}
 
 .close-button {
-    cursor: pointer;
     font-size: 17px;
 }
 
-/* =========================
-   BODY SHEET GALLERY
-========================= */
 
-.gallery-placeholder {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 30px;
-    align-items: center;
-    margin: 25px 0 35px;
+/* =========================================================
+   HOME SCREEN
+========================================================= */
+
+.home-window {
+    height: min(88vh, 760px);
 }
 
-.gallery-image {
-    height: 350px;
-    border: 4px dashed var(--purple);
-    border-radius: 22px;
-    background: var(--mint);
+
+.home-content {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 35px 55px;
+
     display: flex;
+
+    flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     text-align: center;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    line-height: 1.8;
-    padding: 20px;
+
+    overflow: auto;
 }
 
-.gallery-info h2 {
-    font-size: 30px;
+
+/* =========================================================
+   SMALL PIXEL TEXT
+========================================================= */
+
+.tiny-text {
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    line-height: 1.7;
+
+    margin-bottom: 12px;
+
+    color: var(--pink-dark);
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+h1 {
+    font-size: clamp(38px, 6vw, 68px);
+
+    line-height: 1;
+
+    color: var(--purple);
+
+    margin-bottom: 15px;
+}
+
+
+h2 {
+    color: var(--purple);
+
+    line-height: 1.15;
+}
+
+
+/* =========================================================
+   HOME TITLE
+========================================================= */
+
+.site-title {
+    font-size: clamp(42px, 7vw, 76px);
+
+    margin-bottom: 12px;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        4px 4px 0 var(--lavender);
+}
+
+
+.home-heading {
+    font-size: clamp(24px, 4vw, 40px);
+
+    color: var(--pink-dark);
+
     margin-bottom: 12px;
 }
 
-.gallery-info button {
-    margin-top: 10px;
-    padding: 12px 20px;
-    border: 3px solid var(--purple);
-    border-radius: 12px;
-    background: var(--pink);
-    color: var(--purple);
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
+
+.home-description {
+    max-width: 600px;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
 }
 
-/* =========================
-   FLOATING DECORATIONS
-========================= */
+
+/* =========================================================
+   PYRO PLACEHOLDER
+========================================================= */
+
+.pyro-placeholder {
+    width: 190px;
+
+    height: 210px;
+
+    margin: 8px auto 22px;
+
+    background: var(--mint);
+
+    border: 4px solid var(--purple);
+
+    border-radius:
+        50% 50% 40% 40%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        8px 8px 0 var(--lavender);
+
+    transform: rotate(-2deg);
+
+    flex-shrink: 0;
+}
+
+
+.pyro-face {
+    position: relative;
+
+    width: 105px;
+
+    height: 95px;
+
+    margin-bottom: 14px;
+}
+
+
+.pyro-eye {
+    position: absolute;
+
+    top: 25px;
+
+    width: 30px;
+
+    height: 42px;
+
+    background: var(--pink);
+
+    border: 4px solid var(--purple);
+
+    border-radius: 50%;
+}
+
+
+.left-eye {
+    left: 10px;
+
+    transform: rotate(-8deg);
+}
+
+
+.right-eye {
+    right: 10px;
+
+    transform: rotate(8deg);
+}
+
+
+.pyro-placeholder p {
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ENTER BUTTON
+========================================================= */
+
+.enter-button {
+    padding: 15px 40px;
+
+    border: 4px solid var(--purple);
+
+    border-radius: 18px;
+
+    background: var(--mint);
+
+    color: var(--purple);
+
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 var(--purple);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+
+    flex-shrink: 0;
+}
+
+
+.enter-button:hover {
+    transform:
+        translateY(-3px)
+        rotate(-1deg);
+
+    background: var(--pink);
+}
+
+
+.enter-button:active {
+    transform: translateY(5px);
+
+    box-shadow:
+        0 2px 0 var(--purple);
+}
+
+
+/* =========================================================
+   MAIN MENU
+========================================================= */
+
+.menu-content {
+    padding: 40px 55px;
+
+    text-align: center;
+
+    overflow-y: auto;
+}
+
+
+.menu-content h1 {
+    font-size: clamp(32px, 5vw, 52px);
+}
+
+
+.section-intro {
+    max-width: 700px;
+
+    margin:
+        0 auto 28px;
+
+    text-align: center;
+
+    opacity: 0.8;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MENU GRID
+========================================================= */
+
+.menu-grid {
+    width: min(720px, 100%);
+
+    margin: 30px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.menu-button {
+    min-height: 78px;
+
+    border: 4px solid var(--purple);
+
+    border-radius: 18px;
+
+    background: var(--white);
+
+    color: var(--purple);
+
+    font-family: 'Fredoka', sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 var(--purple);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.menu-button span {
+    color: var(--pink-dark);
+
+    margin-right: 7px;
+}
+
+
+.menu-button:hover {
+    background: var(--mint);
+
+    transform:
+        translateY(-4px)
+        rotate(1deg);
+
+    box-shadow:
+        0 10px 0 var(--purple);
+}
+
+
+.menu-button:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 2px 0 var(--purple);
+}
+
+
+/* =========================================================
+   MENU FOOTER
+========================================================= */
+
+.menu-footer {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    margin-top: 25px;
+
+    font-size: 12px;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   SECTION CONTENT
+========================================================= */
+
+.section-content {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 40px 55px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        var(--pink-dark)
+        var(--cream);
+}
+
+
+.section-content::-webkit-scrollbar,
+.menu-content::-webkit-scrollbar,
+.home-content::-webkit-scrollbar,
+.viewer-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+.section-content::-webkit-scrollbar-track,
+.menu-content::-webkit-scrollbar-track,
+.home-content::-webkit-scrollbar-track,
+.viewer-content::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+
+.section-content::-webkit-scrollbar-thumb,
+.menu-content::-webkit-scrollbar-thumb,
+.home-content::-webkit-scrollbar-thumb,
+.viewer-content::-webkit-scrollbar-thumb {
+    background: var(--pink-dark);
+
+    border:
+        2px solid var(--cream);
+
+    border-radius: 20px;
+}
+
+
+.section-content > h1 {
+    text-align: center;
+
+    font-size: clamp(34px, 5vw, 58px);
+}
+
+
+.section-content > .tiny-text {
+    text-align: center;
+}
+
+
+.section-content p {
+    font-size: 17px;
+
+    line-height: 1.65;
+
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.info-card {
+    margin: 22px auto;
+
+    padding: 25px;
+
+    max-width: 850px;
+
+    border:
+        3px solid var(--purple);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        5px 5px 0 rgba(201, 184, 245, 0.8);
+}
+
+
+.info-card h2 {
+    font-size: 26px;
+
+    margin-bottom: 13px;
+
+    color: var(--pink-dark);
+}
+
+
+.info-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+.info-card ul,
+.info-card ol {
+    margin-left: 24px;
+
+    padding-left: 8px;
+}
+
+
+.info-card li {
+    margin-bottom: 9px;
+
+    line-height: 1.5;
+
+    font-size: 16px;
+}
+
+
+.info-card li::marker {
+    color: var(--pink-dark);
+}
+
+
+/* =========================================================
+   ABOUT ME LAYOUT
+========================================================= */
+
+.info-card:first-of-type {
+    overflow: hidden;
+}
+
+
+.placeholder-art-box {
+    width: 240px;
+
+    min-height: 260px;
+
+    margin:
+        0 auto 22px;
+
+    background: var(--mint);
+
+    border:
+        4px dashed var(--purple);
+
+    border-radius: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+
+.placeholder-art-box span {
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+
+.placeholder-art-box p {
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   PLACEHOLDER NOTES
+========================================================= */
+
+.placeholder-note {
+    padding: 13px 16px;
+
+    border:
+        2px dashed var(--pink-dark);
+
+    border-radius: 12px;
+
+    background:
+        rgba(246, 182, 216, 0.25);
+
+    text-align: center;
+
+    font-size: 14px !important;
+
+    font-family: 'Press Start 2P', monospace;
+}
+
+
+/* =========================================================
+   PAYMENT OPTIONS
+========================================================= */
+
+.payment-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.payment-option {
+    padding: 18px;
+
+    border:
+        3px solid var(--purple);
+
+    border-radius: 15px;
+
+    background: var(--mint);
+
+    text-align: center;
+
+    font-weight: 700;
+
+    font-size: 18px;
+}
+
+
+.payment-option span {
+    color: var(--pink-dark);
+
+    margin-right: 7px;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button {
+    display: block;
+
+    margin:
+        30px auto 5px;
+
+    border:
+        3px solid var(--purple);
+
+    border-radius: 12px;
+
+    background: var(--lavender);
+
+    color: var(--purple);
+
+    padding: 11px 22px;
+
+    font-family: 'Fredoka', sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.back-button:hover {
+    background: var(--pink);
+
+    transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   FLOATING SPACE DECORATIONS
+========================================================= */
 
 .space-decoration {
     position: fixed;
+
     pointer-events: none;
+
     z-index: -1;
+
     color: var(--white);
-    text-shadow: 0 0 10px rgba(255,255,255,0.7);
+
+    text-shadow:
+        0 0 10px
+        rgba(255,255,255,0.7);
 }
+
 
 .star {
     font-size: 35px;
-    animation: float 4s ease-in-out infinite;
+
+    animation:
+        float
+        4s
+        ease-in-out
+        infinite;
 }
+
 
 .star-1 {
     top: 12%;
     left: 8%;
 }
 
+
 .star-2 {
     top: 72%;
     right: 9%;
+
     animation-delay: 1s;
 }
+
 
 .star-3 {
     bottom: 12%;
     left: 18%;
+
     animation-delay: 2s;
 }
 
+
+/* =========================================================
+   PLANETS
+========================================================= */
+
 .planet {
-    font-size: 65px;
-    opacity: 0.35;
-    animation: float 6s ease-in-out infinite;
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background:
+        var(--lavender);
+
+    border:
+        3px solid
+        rgba(255,255,255,0.7);
+
+    opacity: 0.45;
+
+    animation:
+        float
+        6s
+        ease-in-out
+        infinite;
 }
+
+
+.planet::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+
+    height: 18px;
+
+    left: -14px;
+
+    top: 17px;
+
+    border:
+        3px solid
+        rgba(255,255,255,0.65);
+
+    border-radius: 50%;
+
+    transform: rotate(-15deg);
+}
+
 
 .planet-1 {
     top: 15%;
     right: 8%;
 }
 
+
 .planet-2 {
     bottom: 12%;
     right: 20%;
+
     animation-delay: 2s;
 }
 
+
+/* =========================================================
+   FLOAT ANIMATION
+========================================================= */
+
 @keyframes float {
+
     0%,
     100% {
-        transform: translateY(0) rotate(0deg);
+        transform:
+            translateY(0)
+            rotate(0deg);
     }
 
     50% {
-        transform: translateY(-15px) rotate(8deg);
+        transform:
+            translateY(-15px)
+            rotate(8deg);
     }
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media (max-width: 650px) {
-
-    .screen {
-        padding: 12px;
-    }
-
-    .computer-window {
-        width: 96vw;
-        max-height: 94vh;
-        border-width: 3px;
-        border-radius: 20px;
-    }
-
-    .window-bar {
-        height: 45px;
-        font-size: 8px;
-    }
-
-    .home-content {
-        min-height: 500px;
-        padding: 35px 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .pyro-placeholder {
-        width: 170px;
-        height: 200px;
-    }
-
-    .menu-content {
-        padding: 35px 20px;
-    }
-
-    .menu-buttons {
-        grid-template-columns: 1fr;
-    }
-
-    .section-content {
-        padding: 30px 20px;
-    }
-
-    .gallery-placeholder {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-image {
-        height: 250px;
-    }
-
-    .space-decoration {
-        display: none;
-    }
-}
-/* =========================
+/* =========================================================
    BODY SHEET DATABASE
-========================= */
-
-.section-intro {
-    text-align: center;
-    opacity: 0.8;
-    margin-bottom: 30px !important;
-}
+========================================================= */
 
 .body-sheet-gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 24px;
-    margin: 25px 0 35px;
+
+    margin:
+        25px 0 35px;
 }
+
 
 .gallery-card {
-    background: rgba(255, 255, 255, 0.75);
-    border: 4px solid var(--purple);
+    background:
+        rgba(255,255,255,0.75);
+
+    border:
+        4px solid var(--purple);
+
     border-radius: 22px;
+
     overflow: hidden;
-    box-shadow: 0 6px 0 var(--lavender);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    box-shadow:
+        0 6px 0 var(--lavender);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+
 .gallery-card:hover {
-    transform: translateY(-5px) rotate(-0.5deg);
-    box-shadow: 0 11px 0 var(--lavender);
+    transform:
+        translateY(-5px)
+        rotate(-0.5deg);
+
+    box-shadow:
+        0 11px 0 var(--lavender);
 }
+
 
 .gallery-image-button {
     display: block;
+
     width: 100%;
+
     height: 330px;
+
     padding: 12px;
+
     border: none;
+
     background: var(--mint);
+
     cursor: pointer;
+
     overflow: hidden;
 }
 
+
 .gallery-image-button img {
     width: 100%;
+
     height: 100%;
+
     object-fit: contain;
+
     display: block;
-    transition: transform 0.25s ease;
+
+    transition:
+        transform 0.25s ease;
 }
+
 
 .gallery-image-button:hover img {
     transform: scale(1.04);
 }
 
+
 .gallery-card-info {
-    padding: 18px 20px 20px;
+    padding:
+        18px 20px 20px;
+
     text-align: center;
 }
 
+
 .gallery-tier {
     margin-bottom: 5px !important;
+
     color: var(--pink-dark);
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 9px !important;
 }
 
+
 .gallery-card-info h2 {
     font-size: 25px;
+
     margin-bottom: 5px;
+
     text-transform: capitalize;
 }
 
+
 .gallery-price {
     font-size: 19px !important;
+
     font-weight: 600;
+
     margin-bottom: 12px !important;
 }
 
+
 .view-button {
-    padding: 10px 18px;
-    border: 3px solid var(--purple);
+    padding:
+        10px 18px;
+
+    border:
+        3px solid var(--purple);
+
     border-radius: 12px;
+
     background: var(--pink);
+
     color: var(--purple);
+
     font-family: 'Fredoka', sans-serif;
+
     font-size: 15px;
+
     font-weight: 600;
+
     cursor: pointer;
-    transition: 0.15s ease;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
 }
+
 
 .view-button:hover {
     background: var(--mint);
+
     transform: translateY(-2px);
 }
 
 
-/* =========================
-   LOADING / EMPTY GALLERY
-========================= */
+/* =========================================================
+   LOADING / EMPTY GALLERIES
+========================================================= */
 
 .loading-message,
 .empty-gallery {
     grid-column: 1 / -1;
-    padding: 45px 25px;
-    border: 3px dashed var(--purple);
+
+    padding:
+        45px 25px;
+
+    border:
+        3px dashed var(--purple);
+
     border-radius: 20px;
-    background: rgba(184, 243, 208, 0.4);
+
+    background:
+        rgba(184,243,208,0.4);
+
     text-align: center;
 }
 
+
 .loading-message {
     font-family: 'Press Start 2P', monospace;
+
     font-size: 10px;
+
     line-height: 2;
 }
 
+
 .loading-message span {
     display: block;
+
     font-size: 30px;
+
     margin-bottom: 12px;
-    animation: float 2s ease-in-out infinite;
+
+    animation:
+        float
+        2s
+        ease-in-out
+        infinite;
 }
+
 
 .empty-icon {
     font-size: 45px;
+
     margin-bottom: 10px;
 }
+
 
 .empty-gallery h2 {
     font-size: 27px;
+
     margin-bottom: 10px;
 }
 
+
 .empty-gallery p {
     max-width: 500px;
+
     margin: auto;
 }
 
 
-/* =========================
+/* =========================================================
    IMAGE VIEWER
-========================= */
+========================================================= */
 
 #image-viewer {
     position: fixed;
+
     inset: 0;
+
     z-index: 1000;
+
     display: none;
+
     align-items: center;
+
     justify-content: center;
-    padding: 25px;
-    background: rgba(48, 33, 63, 0.78);
+
+    padding: 20px;
+
+    background:
+        rgba(48,33,63,0.78);
+
     backdrop-filter: blur(8px);
 }
 
+
 #image-viewer.active {
     display: flex;
-    animation: screenIn 0.2s ease;
+
+    animation:
+        screenIn
+        0.2s
+        ease;
 }
 
+
 .viewer-window {
-    width: min(900px, 94vw);
+    width: min(950px, 94vw);
+
     max-height: 92vh;
+
     background: var(--cream);
-    border: 4px solid var(--purple);
+
+    border:
+        4px solid var(--purple);
+
     border-radius: 24px;
+
     overflow: hidden;
-    box-shadow: 0 15px 0 rgba(48, 33, 63, 0.3);
+
+    box-shadow:
+        0 15px 0
+        rgba(48,33,63,0.3);
+
+    display: flex;
+
+    flex-direction: column;
 }
+
 
 .viewer-content {
     padding: 25px;
+
     text-align: center;
-    max-height: calc(92vh - 55px);
+
+    max-height:
+        calc(92vh - 55px);
+
     overflow: auto;
 }
 
+
 .viewer-content img {
     max-width: 100%;
+
     max-height: 70vh;
+
     object-fit: contain;
-    border: 3px solid var(--purple);
+
+    border:
+        3px solid var(--purple);
+
     border-radius: 15px;
+
     background: var(--mint);
 }
 
+
 #viewer-title {
     margin-top: 15px;
+
+    margin-bottom: 5px;
+
     font-size: 22px;
 }
 
 
-/* =========================
-   MOBILE GALLERY
-========================= */
-
-@media (max-width: 700px) {
-
-    .body-sheet-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-image-button {
-        height: 300px;
-    }
-
-}
-/* =========================
+/* =========================================================
    ART ARCHIVE
-========================= */
+========================================================= */
 
 .art-gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 24px;
-    margin: 25px 0 35px;
+
+    margin:
+        25px 0 35px;
 }
 
+
 .art-card {
-    background: rgba(255, 255, 255, 0.75);
-    border: 4px solid var(--purple);
+    background:
+        rgba(255,255,255,0.75);
+
+    border:
+        4px solid var(--purple);
+
     border-radius: 22px;
+
     overflow: hidden;
-    box-shadow: 0 6px 0 var(--pink);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    box-shadow:
+        0 6px 0 var(--pink);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
     text-align: center;
 }
 
+
 .art-card:hover {
-    transform: translateY(-5px) rotate(0.5deg);
-    box-shadow: 0 11px 0 var(--pink);
+    transform:
+        translateY(-5px)
+        rotate(0.5deg);
+
+    box-shadow:
+        0 11px 0 var(--pink);
 }
+
 
 .art-image-button {
     display: block;
+
     width: 100%;
+
     height: 350px;
+
     padding: 12px;
+
     border: none;
+
     background: var(--lavender);
+
     cursor: pointer;
+
     overflow: hidden;
 }
 
+
 .art-image-button img {
     width: 100%;
+
     height: 100%;
+
     object-fit: contain;
+
     display: block;
-    transition: transform 0.25s ease;
+
+    transition:
+        transform 0.25s ease;
 }
+
 
 .art-image-button:hover img {
     transform: scale(1.04);
 }
 
+
 .art-card h2 {
-    padding: 15px 18px 20px;
+    padding:
+        15px 18px 20px;
+
     margin: 0;
+
     font-size: 22px;
+
     text-transform: capitalize;
 }
 
 
-/* =========================
-   ART MOBILE
-========================= */
+/* =========================================================
+   TABLET
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
 
-    .art-gallery {
-        grid-template-columns: 1fr;
+    .computer-window {
+        width: 94vw;
+
+        height: 90vh;
     }
+
+
+    .home-content {
+        padding:
+            30px 35px;
+    }
+
+
+    .section-content,
+    .menu-content {
+        padding:
+            35px;
+    }
+
+
+    .gallery-image-button {
+        height: 280px;
+    }
+
 
     .art-image-button {
         height: 300px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        overflow: hidden;
+    }
+
+
+    .screen {
+        padding: 10px;
+    }
+
+
+    .computer-window {
+        width: 96vw;
+
+        height: 94vh;
+
+        border-width: 3px;
+
+        border-radius: 20px;
+    }
+
+
+    .window-bar {
+        flex-basis: 45px;
+
+        height: 45px;
+
+        padding: 0 12px;
+
+        font-size: 8px;
+    }
+
+
+    .window-controls {
+        gap: 4px;
+    }
+
+
+    .window-controls button,
+    .close-button {
+        width: 24px;
+
+        height: 24px;
+
+        border-width: 2px;
+    }
+
+
+    /* HOME */
+
+    .home-content {
+        padding:
+            25px 18px;
+
+        justify-content: center;
+    }
+
+
+    .site-title {
+        font-size: clamp(34px, 11vw, 52px);
+    }
+
+
+    .home-heading {
+        font-size: 27px;
+    }
+
+
+    .home-description {
+        font-size: 15px;
+    }
+
+
+    .pyro-placeholder {
+        width: 145px;
+
+        height: 165px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .pyro-face {
+        transform: scale(0.75);
+    }
+
+
+    .enter-button {
+        padding:
+            13px 28px;
+
+        font-size: 9px;
+    }
+
+
+    /* MENU */
+
+    .menu-content {
+        padding:
+            28px 18px;
+    }
+
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin:
+            22px auto;
+    }
+
+
+    .menu-button {
+        min-height: 62px;
+
+        font-size: 17px;
+    }
+
+
+    .menu-footer {
+        font-size: 9px;
+
+        gap: 8px;
+    }
+
+
+    /* SECTIONS */
+
+    .section-content {
+        padding:
+            28px 18px;
+    }
+
+
+    .section-content > h1 {
+        font-size:
+            clamp(30px, 10vw, 45px);
+    }
+
+
+    .section-content p {
+        font-size: 15px;
+    }
+
+
+    .info-card {
+        padding: 19px;
+
+        margin:
+            18px auto;
+    }
+
+
+    .info-card h2 {
+        font-size: 22px;
+    }
+
+
+    .info-card li {
+        font-size: 14px;
+    }
+
+
+    .placeholder-art-box {
+        width: 190px;
+
+        min-height: 210px;
+    }
+
+
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* BODY SHEETS */
+
+    .body-sheet-gallery {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .gallery-image-button {
+        height: 300px;
+    }
+
+
+    /* ART */
+
+    .art-gallery {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .art-image-button {
+        height: 300px;
+    }
+
+
+    /* IMAGE VIEWER */
+
+    #image-viewer {
+        padding: 10px;
+    }
+
+
+    .viewer-content {
+        padding: 15px;
+    }
+
+
+    .viewer-content img {
+        max-height: 65vh;
+    }
+
+
+    /* DECORATIONS */
+
+    .space-decoration {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-height: 650px) and (min-width: 651px) {
+
+    .computer-window {
+        height: 94vh;
+    }
+
+
+    .home-content {
+        padding:
+            20px 40px;
+    }
+
+
+    .pyro-placeholder {
+        width: 150px;
+
+        height: 165px;
+
+        margin:
+            5px auto 12px;
+    }
+
+
+    .home-description {
+        margin-bottom: 10px;
+    }
+
+
+    .enter-button {
+        padding:
+            12px 32px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
     }
 
 }

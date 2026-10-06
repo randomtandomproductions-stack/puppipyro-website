@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuppiPyro ✦ Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating space decorations -->
+    <div class="space-decoration star star-1">✦</div>
+    <div class="space-decoration star star-2">✧</div>
+    <div class="space-decoration star star-3">★</div>
+    <div class="space-decoration planet planet-1">◉</div>
+    <div class="space-decoration planet planet-2">○</div>
+
+    <!-- HOME SCREEN -->
+    <main id="home-screen" class="screen active">
+
+        <div class="computer-window home-window">
+
+            <div class="window-bar">
+                <span>✦ PUPPIPYRO.EXE</span>
+
+                <div class="window-buttons">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+            </div>
+
+            <div class="home-content">
+
+                <div class="welcome-text">
+                    <p class="tiny-text">✦ SIGNAL RECEIVED ✦</p>
+
+                    <h1>PUPPIPYRO</h1>
+
+                    <h2>HI, HUMAN!</h2>
+
+                    <p>
+                        Welcome to my little corner of the internet.
+                    </p>
+
+                    <p>
+                        You've somehow landed on my planet.
+                    </p>
+                </div>
+
+                <div class="pyro-placeholder">
+                    <div class="alien-face">
+                        <span>◕</span>
+                        <span>◕</span>
+                    </div>
+                    <p>PYRO.EXE</p>
+                </div>
+
+                <button class="enter-button" onclick="enterSite()">
+                    ✦ ENTER ✦
+                </button>
+
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- MAIN MENU -->
+    <main id="menu-screen" class="screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ PUPPIPYRO.EXE</span>
+
+                <div class="window-buttons">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+            </div>
+
+            <div class="menu-content">
+
+                <div class="menu-header">
+                    <p class="tiny-text">WELCOME TO THE PLANET</p>
+                    <h1>WHAT ARE YOU LOOKING FOR?</h1>
+                </div>
+
+                <div class="menu-buttons">
+
+                    <button onclick="showSection('about')">
+                        <span>☄</span>
+                        ABOUT ME
+                    </button>
+
+                    <button onclick="showSection('body-sheets')">
+                        <span>✦</span>
+                        BODY SHEETS
+                    </button>
+
+                    <button onclick="showSection('tos')">
+                        <span>♡</span>
+                        TOS
+                    </button>
+
+                    <button onclick="showSection('payment')">
+                        <span>★</span>
+                        PAYMENT
+                    </button>
+
+                    <button onclick="showSection('extra')">
+                        <span>✧</span>
+                        EXTRA INFO
+                    </button>
+
+                </div>
+
+                <p class="menu-footer">
+                    made with alien technology + way too much caffeine
+                </p>
+
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ ABOUT PUPPI</span>
+                <button class="close-button" onclick="backToMenu()">×</button>
+            </div>
+
+            <div class="section-content">
+
+                <p class="tiny-text">FILE: ABOUT_ME.EXE</p>
+
+                <h1>ABOUT ME</h1>
+
+                <p>
+                    Hey! I'm PuppiPyro, a digital artist and professional
+                    space creature who somehow ended up making art on Earth.
+                </p>
+
+                <p>
+                    I make Gacha body sheets, character art, and other
+                    fun little things.
+                </p>
+
+                <div class="info-box">
+                    MORE INFO COMING SOON...
+                </div>
+
+                <button class="back-button" onclick="backToMenu()">
+                    ← BACK
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- BODY SHEETS -->
+    <section id="body-sheets" class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ BODY SHEET DATABASE</span>
+                <button class="close-button" onclick="backToMenu()">×</button>
+            </div>
+
+            <div class="section-content">
+
+                <p class="tiny-text">DATABASE: BODY_SHEETS</p>
+
+                <h1>BODY SHEETS</h1>
+
+                <div class="gallery-placeholder">
+
+                    <div class="gallery-image">
+                        <span>BODY SHEET<br>IMAGE<br>GOES HERE</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h2>YOUR BODY SHEET</h2>
+
+                        <p>
+                            Tier 1 • Simple
+                        </p>
+
+                        <p>
+                            $10
+                        </p>
+
+                        <p>
+                            More examples will be added here!
+                        </p>
+
+                        <button>
+                            VIEW DETAILS
+                        </button>
+                    </div>
+
+                </div>
+
+                <button class="back-button" onclick="backToMenu()">
+                    ← BACK
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- TOS -->
+    <section id="tos" class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ TERMS OF SERVICE</span>
+                <button class="close-button" onclick="backToMenu()">×</button>
+            </div>
+
+            <div class="section-content">
+
+                <p class="tiny-text">FILE: TOS.TXT</p>
+
+                <h1>TERMS OF SERVICE</h1>
+
+                <div class="info-box">
+                    TOS INFORMATION WILL GO HERE.
+                </div>
+
+                <button class="back-button" onclick="backToMenu()">
+                    ← BACK
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- PAYMENT -->
+    <section id="payment" class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ PAYMENT</span>
+                <button class="close-button" onclick="backToMenu()">×</button>
+            </div>
+
+            <div class="section-content">
+
+                <p class="tiny-text">FILE: PAYMENT.EXE</p>
+
+                <h1>PAYMENT</h1>
+
+                <div class="info-box">
+                    PAYMENT INFORMATION WILL GO HERE.
+                </div>
+
+                <button class="back-button" onclick="backToMenu()">
+                    ← BACK
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- EXTRA INFO -->
+    <section id="extra" class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+                <span>✦ EXTRA INFO</span>
+                <button class="close-button" onclick="backToMenu()">×</button>
+            </div>
+
+            <div class="section-content">
+
+                <p class="tiny-text">FILE: EXTRA_INFO.TXT</p>
+
+                <h1>EXTRA INFO</h1>
+
+                <div class="info-box">
+                    EXTRA INFORMATION WILL GO HERE.
+                </div>
+
+                <button class="back-button" onclick="backToMenu()">
+                    ← BACK
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

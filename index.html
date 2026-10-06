@@ -168,58 +168,46 @@
     </section>
 
 
-    <!-- BODY SHEETS -->
-    <section id="body-sheets" class="screen section-screen">
+<section id="body-sheets" class="screen section-screen">
 
-        <div class="computer-window">
+    <div class="computer-window">
 
-            <div class="window-bar">
-                <span>✦ BODY SHEET DATABASE</span>
-                <button class="close-button" onclick="backToMenu()">×</button>
-            </div>
+        <div class="window-bar">
+            <span>✦ BODY SHEET DATABASE</span>
 
-            <div class="section-content">
-
-                <p class="tiny-text">DATABASE: BODY_SHEETS</p>
-
-                <h1>BODY SHEETS</h1>
-
-                <div class="gallery-placeholder">
-
-                    <div class="gallery-image">
-                        <span>BODY SHEET<br>IMAGE<br>GOES HERE</span>
-                    </div>
-
-                    <div class="gallery-info">
-                        <h2>YOUR BODY SHEET</h2>
-
-                        <p>
-                            Tier 1 • Simple
-                        </p>
-
-                        <p>
-                            $10
-                        </p>
-
-                        <p>
-                            More examples will be added here!
-                        </p>
-
-                        <button>
-                            VIEW DETAILS
-                        </button>
-                    </div>
-
-                </div>
-
-                <button class="back-button" onclick="backToMenu()">
-                    ← BACK
-                </button>
-
-            </div>
+            <button class="close-button" onclick="backToMenu()">×</button>
         </div>
 
-    </section>
+        <div class="section-content">
+
+            <p class="tiny-text">DATABASE: BODY_SHEETS</p>
+
+            <h1>BODY SHEETS</h1>
+
+            <p class="section-intro">
+                Browse my available Gacha body sheets.
+                Click a sheet to inspect it!
+            </p>
+
+            <!-- The JavaScript will automatically fill this -->
+            <div id="body-sheet-gallery" class="body-sheet-gallery">
+
+                <div class="loading-message">
+                    <span>✦</span>
+                    SEARCHING THE ALIEN DATABASE...
+                </div>
+
+            </div>
+
+            <button class="back-button" onclick="backToMenu()">
+                ← BACK
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
     <!-- TOS -->

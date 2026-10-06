@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PuppiPyro ✦ Welcome</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Floating space decorations -->
+    <!-- =========================
+         FLOATING SPACE DECORATIONS
+    ========================== -->
+
     <div class="space-decoration star star-1">✦</div>
     <div class="space-decoration star star-2">✧</div>
     <div class="space-decoration star star-3">★</div>
+
     <div class="space-decoration planet planet-1">◉</div>
     <div class="space-decoration planet planet-2">○</div>
 
-    <!-- HOME SCREEN -->
+
+    <!-- =========================
+         HOME SCREEN
+    ========================== -->
+
     <main id="home-screen" class="screen active">
 
         <div class="computer-window home-window">
 
             <div class="window-bar">
+
                 <span>✦ PUPPIPYRO.EXE</span>
 
                 <div class="window-buttons">
@@ -29,12 +40,17 @@
                     <span>□</span>
                     <span>×</span>
                 </div>
+
             </div>
+
 
             <div class="home-content">
 
                 <div class="welcome-text">
-                    <p class="tiny-text">✦ SIGNAL RECEIVED ✦</p>
+
+                    <p class="tiny-text">
+                        ✦ SIGNAL RECEIVED ✦
+                    </p>
 
                     <h1>PUPPIPYRO</h1>
 
@@ -47,32 +63,47 @@
                     <p>
                         You've somehow landed on my planet.
                     </p>
+
                 </div>
 
+
                 <div class="pyro-placeholder">
+
                     <div class="alien-face">
                         <span>◕</span>
                         <span>◕</span>
                     </div>
+
                     <p>PYRO.EXE</p>
+
                 </div>
 
-                <button class="enter-button" onclick="enterSite()">
+
+                <button
+                    class="enter-button"
+                    onclick="enterSite()">
+
                     ✦ ENTER ✦
+
                 </button>
 
             </div>
+
         </div>
 
     </main>
 
 
-    <!-- MAIN MENU -->
+    <!-- =========================
+         MAIN MENU
+    ========================== -->
+
     <main id="menu-screen" class="screen">
 
         <div class="computer-window">
 
             <div class="window-bar">
+
                 <span>✦ PUPPIPYRO.EXE</span>
 
                 <div class="window-buttons">
@@ -80,14 +111,24 @@
                     <span>□</span>
                     <span>×</span>
                 </div>
+
             </div>
+
 
             <div class="menu-content">
 
                 <div class="menu-header">
-                    <p class="tiny-text">WELCOME TO THE PLANET</p>
-                    <h1>WHAT ARE YOU LOOKING FOR?</h1>
+
+                    <p class="tiny-text">
+                        WELCOME TO THE PLANET
+                    </p>
+
+                    <h1>
+                        WHAT ARE YOU LOOKING FOR?
+                    </h1>
+
                 </div>
+
 
                 <div class="menu-buttons">
 
@@ -96,24 +137,30 @@
                         ABOUT ME
                     </button>
 
+
                     <button onclick="showSection('body-sheets')">
                         <span>✦</span>
                         BODY SHEETS
-                        <button onclick="showSection('art')">
-    <span>✧</span>
-    ART
-</button>
                     </button>
+
+
+                    <button onclick="showSection('art')">
+                        <span>✧</span>
+                        ART
+                    </button>
+
 
                     <button onclick="showSection('tos')">
                         <span>♡</span>
                         TOS
                     </button>
 
+
                     <button onclick="showSection('payment')">
                         <span>★</span>
                         PAYMENT
                     </button>
+
 
                     <button onclick="showSection('extra')">
                         <span>✧</span>
@@ -122,31 +169,52 @@
 
                 </div>
 
+
                 <p class="menu-footer">
                     made with alien technology + way too much caffeine
                 </p>
 
             </div>
+
         </div>
 
     </main>
 
 
-    <!-- ABOUT -->
-    <section id="about" class="screen section-screen">
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section
+        id="about"
+        class="screen section-screen">
 
         <div class="computer-window">
 
             <div class="window-bar">
+
                 <span>✦ ABOUT PUPPI</span>
-                <button class="close-button" onclick="backToMenu()">×</button>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
             </div>
+
 
             <div class="section-content">
 
-                <p class="tiny-text">FILE: ABOUT_ME.EXE</p>
+                <p class="tiny-text">
+                    FILE: ABOUT_ME.EXE
+                </p>
 
-                <h1>ABOUT ME</h1>
+                <h1>
+                    ABOUT ME
+                </h1>
 
                 <p>
                     Hey! I'm PuppiPyro, a digital artist and professional
@@ -158,243 +226,397 @@
                     fun little things.
                 </p>
 
+
                 <div class="info-box">
                     MORE INFO COMING SOON...
                 </div>
 
-                <button class="back-button" onclick="backToMenu()">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
                     ← BACK
+
                 </button>
 
             </div>
+
         </div>
 
     </section>
 
 
-<section id="body-sheets" class="screen section-screen">
+    <!-- =========================
+         BODY SHEETS
+    ========================== -->
 
-    <div class="computer-window">
-
-        <div class="window-bar">
-            <span>✦ BODY SHEET DATABASE</span>
-
-            <button class="close-button" onclick="backToMenu()">×</button>
-        </div>
-
-        <div class="section-content">
-
-            <p class="tiny-text">DATABASE: BODY_SHEETS</p>
-
-            <h1>BODY SHEETS</h1>
-
-            <p class="section-intro">
-                Browse my available Gacha body sheets.
-                Click a sheet to inspect it!
-            </p>
-
-            <!-- The JavaScript will automatically fill this -->
-            <div id="body-sheet-gallery" class="body-sheet-gallery">
-
-                <div class="loading-message">
-                    <span>✦</span>
-                    SEARCHING THE ALIEN DATABASE...
-                </div>
-
-            </div>
-
-            <button class="back-button" onclick="backToMenu()">
-                ← BACK
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-<section id="art" class="screen section-screen">
-
-    <div class="computer-window">
-
-        <div class="window-bar">
-
-            <span>✧ ART ARCHIVE</span>
-
-            <button
-                class="close-button"
-                onclick="backToMenu()">
-                ×
-            </button>
-
-        </div>
-
-        <div class="section-content">
-
-            <p class="tiny-text">
-                DATABASE: ART_ARCHIVE
-            </p>
-
-            <h1>MY ART</h1>
-
-            <p class="section-intro">
-                Welcome to my little art archive!
-                Click an artwork to inspect it.
-            </p>
-
-            <div id="art-gallery" class="art-gallery">
-
-                <div class="loading-message">
-
-                    <span>✧</span>
-
-                    SEARCHING THE ART ARCHIVE...
-
-                </div>
-
-            </div>
-
-            <button
-                class="back-button"
-                onclick="backToMenu()">
-
-                ← BACK
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- TOS -->
-    <section id="tos" class="screen section-screen">
+    <section
+        id="body-sheets"
+        class="screen section-screen">
 
         <div class="computer-window">
 
             <div class="window-bar">
-                <span>✦ TERMS OF SERVICE</span>
-                <button class="close-button" onclick="backToMenu()">×</button>
+
+                <span>✦ BODY SHEET DATABASE</span>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
             </div>
+
 
             <div class="section-content">
 
-                <p class="tiny-text">FILE: TOS.TXT</p>
+                <p class="tiny-text">
+                    DATABASE: BODY_SHEETS
+                </p>
 
-                <h1>TERMS OF SERVICE</h1>
+                <h1>
+                    BODY SHEETS
+                </h1>
+
+
+                <p class="section-intro">
+                    Browse my available Gacha body sheets.
+                    Click a sheet to inspect it!
+                </p>
+
+
+                <div
+                    id="body-sheet-gallery"
+                    class="body-sheet-gallery">
+
+                    <div class="loading-message">
+
+                        <span>✦</span>
+
+                        SEARCHING THE ALIEN DATABASE...
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
+                    ← BACK
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ART
+    ========================== -->
+
+    <section
+        id="art"
+        class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+
+                <span>✧ ART ARCHIVE</span>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <p class="tiny-text">
+                    DATABASE: ART_ARCHIVE
+                </p>
+
+                <h1>
+                    MY ART
+                </h1>
+
+
+                <p class="section-intro">
+                    Welcome to my little art archive!
+                    Click an artwork to inspect it.
+                </p>
+
+
+                <div
+                    id="art-gallery"
+                    class="art-gallery">
+
+                    <div class="loading-message">
+
+                        <span>✧</span>
+
+                        SEARCHING THE ART ARCHIVE...
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
+                    ← BACK
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TOS
+    ========================== -->
+
+    <section
+        id="tos"
+        class="screen section-screen">
+
+        <div class="computer-window">
+
+            <div class="window-bar">
+
+                <span>✦ TERMS OF SERVICE</span>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <p class="tiny-text">
+                    FILE: TOS.TXT
+                </p>
+
+                <h1>
+                    TERMS OF SERVICE
+                </h1>
+
 
                 <div class="info-box">
                     TOS INFORMATION WILL GO HERE.
                 </div>
 
-                <button class="back-button" onclick="backToMenu()">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
                     ← BACK
+
                 </button>
 
             </div>
+
         </div>
 
     </section>
 
 
-    <!-- PAYMENT -->
-    <section id="payment" class="screen section-screen">
+    <!-- =========================
+         PAYMENT
+    ========================== -->
+
+    <section
+        id="payment"
+        class="screen section-screen">
 
         <div class="computer-window">
 
             <div class="window-bar">
+
                 <span>✦ PAYMENT</span>
-                <button class="close-button" onclick="backToMenu()">×</button>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
             </div>
+
 
             <div class="section-content">
 
-                <p class="tiny-text">FILE: PAYMENT.EXE</p>
+                <p class="tiny-text">
+                    FILE: PAYMENT.EXE
+                </p>
 
-                <h1>PAYMENT</h1>
+                <h1>
+                    PAYMENT
+                </h1>
+
 
                 <div class="info-box">
                     PAYMENT INFORMATION WILL GO HERE.
                 </div>
 
-                <button class="back-button" onclick="backToMenu()">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
                     ← BACK
+
                 </button>
 
             </div>
+
         </div>
 
     </section>
 
 
-    <!-- EXTRA INFO -->
-    <section id="extra" class="screen section-screen">
+    <!-- =========================
+         EXTRA INFO
+    ========================== -->
+
+    <section
+        id="extra"
+        class="screen section-screen">
 
         <div class="computer-window">
 
             <div class="window-bar">
+
                 <span>✦ EXTRA INFO</span>
-                <button class="close-button" onclick="backToMenu()">×</button>
+
+                <button
+                    class="close-button"
+                    onclick="backToMenu()">
+
+                    ×
+
+                </button>
+
             </div>
+
 
             <div class="section-content">
 
-                <p class="tiny-text">FILE: EXTRA_INFO.TXT</p>
+                <p class="tiny-text">
+                    FILE: EXTRA_INFO.TXT
+                </p>
 
-                <h1>EXTRA INFO</h1>
+                <h1>
+                    EXTRA INFO
+                </h1>
+
 
                 <div class="info-box">
                     EXTRA INFORMATION WILL GO HERE.
                 </div>
 
-                <button class="back-button" onclick="backToMenu()">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()">
+
                     ← BACK
+
                 </button>
 
             </div>
+
         </div>
 
     </section>
 
-<!-- IMAGE VIEWER -->
 
-<div id="image-viewer">
+    <!-- =========================
+         IMAGE VIEWER
+    ========================== -->
 
-    <div class="viewer-window">
+    <div id="image-viewer">
 
-        <div class="window-bar">
+        <div class="viewer-window">
 
-            <span>✦ IMAGE VIEWER</span>
+            <div class="window-bar">
 
-            <button
-                class="close-button"
-                onclick="closeImageViewer()">
-                ×
-            </button>
+                <span>
+                    ✦ IMAGE VIEWER
+                </span>
 
-        </div>
 
-        <div class="viewer-content">
+                <button
+                    class="close-button"
+                    onclick="closeImageViewer()">
 
-            <img
-                id="viewer-image"
-                src=""
-                alt="Artwork preview">
+                    ×
 
-            <h2 id="viewer-title"></h2>
+                </button>
 
-            <button
-                class="back-button"
-                onclick="closeImageViewer()">
-                ← CLOSE
-            </button>
+            </div>
+
+
+            <div class="viewer-content">
+
+                <img
+                    id="viewer-image"
+                    src=""
+                    alt="Artwork preview">
+
+
+                <h2 id="viewer-title"></h2>
+
+
+                <button
+                    class="back-button"
+                    onclick="closeImageViewer()">
+
+                    ← CLOSE
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -12,66 +12,23 @@ const GITHUB_USER = "randomtandomproductions-stack";
 const GITHUB_REPO = "puppipyro-website";
 const GITHUB_BRANCH = "main";
 
-const RAW_BASE =
-    `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
-
 const API_BASE =
     `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents`;
-
-
-/* =========================================================
-   SECRET EVENT SETTINGS
-========================================================= */
-
-/*
-   This event is intentionally controlled entirely from here.
-
-   Anyone who visits the website during the correct date/time
-   window can encounter it.
-
-   Change these values whenever you want a new secret event.
-
-   IMPORTANT:
-   Months are numbered normally here:
-   January = 1
-   February = 2
-   ...
-   October = 10
-   December = 12
-*/
-
-const SECRET_EVENT = {
-
-    enabled: true,
-
-    year: 2026,
-
-    month: 10,
-
-    day: 31,
-
-    startHour: 19,
-
-    startMinute: 0,
-
-    endHour: 20,
-
-    endMinute: 0,
-
-    code: "ALIEN15",
-
-    durationMinutes: 1
-
-};
 
 
 /* =========================================================
    PAGE NAVIGATION
 ========================================================= */
 
+/**
+ * Shows one screen and hides every other screen.
+ */
 function showSection(sectionId) {
 
-    document.querySelectorAll(".screen").forEach(screen => {
+    const screens =
+        document.querySelectorAll(".screen");
+
+    screens.forEach(screen => {
         screen.classList.remove("active");
     });
 
@@ -83,7 +40,7 @@ function showSection(sectionId) {
     if (!section) {
 
         console.warn(
-            `Section "${sectionId}" was not found.`
+            `PUPPIPYRO.EXE: Section "${sectionId}" was not found.`
         );
 
         return;
@@ -94,7 +51,7 @@ function showSection(sectionId) {
 
 
     /*
-       Load the appropriate content when the page opens.
+       Load dynamic content when necessary.
     */
 
     if (sectionId === "body-sheets") {
@@ -105,6 +62,16 @@ function showSection(sectionId) {
     if (sectionId === "art") {
         resetArtCategory();
     }
+
+
+    /*
+       Put the user at the top of the newly opened screen.
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -132,47 +99,87 @@ function backToMenu() {
 
 
 /* =========================================================
-   ART CATEGORY SYSTEM
+   ART CATEGORY DATABASE
 ========================================================= */
 
 const ART_CATEGORIES = {
 
     "character-art": {
+
         folder: "art/character-art",
+
         title: "CHARACTER ART",
+
         description:
             "Personal characters and finished character illustrations."
+
     },
+
 
     "gacha-art": {
+
         folder: "art/gacha-art",
+
         title: "GACHA ART",
+
         description:
             "Gacha-based artwork, designs, and creations."
+
     },
+
 
     "body-sheets": {
+
         folder: "body-sheets",
+
         title: "BODY SHEETS",
+
         description:
             "Gacha bodysheets and character bases."
+
     },
+
 
     "animation-edits": {
+
         folder: "art/animation-edits",
+
         title: "ANIMATION / EDITS",
+
         description:
             "Animations, speedpaints, edits, and other moving creations."
+
     },
 
+
     "other": {
+
         folder: "art/other",
+
         title: "OTHER",
+
         description:
             "Everything that doesn't fit neatly into another category."
+
     }
 
 };
+
+
+/*
+   Used to prevent an older GitHub request from replacing
+   a newer category selection.
+
+   Example:
+
+   User clicks Character Art
+   then immediately clicks Gacha Art.
+
+   If Character Art takes longer to load, its response
+   should NOT overwrite Gacha Art.
+*/
+
+let artRequestNumber = 0;
 
 
 /* =========================================================
@@ -188,7 +195,7 @@ async function showArtCategory(categoryId) {
     if (!category) {
 
         console.warn(
-            `Unknown art category: ${categoryId}`
+            `PUPPIPYRO.EXE: Unknown art category "${categoryId}".`
         );
 
         return;
@@ -198,54 +205,92 @@ async function showArtCategory(categoryId) {
     const categoryView =
         document.getElementById("art-category-view");
 
+
     const gallery =
         document.getElementById("art-gallery");
 
 
-    if (!categoryView || !gallery) return;
+    if (!categoryView || !gallery) {
+
+        console.warn(
+            "PUPPIPYRO.EXE: Art gallery elements are missing."
+        );
+
+        return;
+    }
+
+
+    /*
+       Create a unique request ID.
+    */
+
+    const requestId =
+        ++artRequestNumber;
 
 
     /*
        Highlight selected category.
     */
 
-    document.querySelectorAll(".category-button").forEach(button => {
-        button.classList.remove("selected");
-    });
+    document
+        .querySelectorAll(".category-button")
+        .forEach(button => {
+
+            button.classList.remove("selected");
+
+        });
 
 
     const clickedButton =
         [...document.querySelectorAll(".category-button")]
-            .find(button =>
-                button.getAttribute("onclick")?.includes(categoryId)
-            );
+            .find(button => {
+
+                const onclick =
+                    button.getAttribute("onclick");
+
+                return onclick &&
+                    onclick.includes(categoryId);
+
+            });
 
 
     if (clickedButton) {
+
         clickedButton.classList.add("selected");
+
     }
 
+
+    /*
+       Show category information.
+    */
 
     categoryView.innerHTML = `
 
         <div class="category-selected">
 
             <div class="system-label">
-                FILE DIRECTORY: ${category.folder.toUpperCase()}
+                FILE DIRECTORY: ${escapeHTML(
+                    category.folder.toUpperCase()
+                )}
             </div>
 
             <h2>
-                ${category.title}
+                ${escapeHTML(category.title)}
             </h2>
 
             <p>
-                ${category.description}
+                ${escapeHTML(category.description)}
             </p>
 
         </div>
 
     `;
 
+
+    /*
+       Show loading state.
+    */
 
     gallery.innerHTML = `
 
@@ -260,9 +305,68 @@ async function showArtCategory(categoryId) {
     `;
 
 
-    const files =
+    /*
+       Get files from GitHub.
+    */
+
+    const result =
         await getImagesFromFolder(category.folder);
 
+
+    /*
+       If another category was selected while this one
+       was loading, abandon this result.
+    */
+
+    if (requestId !== artRequestNumber) {
+        return;
+    }
+
+
+    /*
+       Display GitHub/API errors separately from an
+       actually empty folder.
+    */
+
+    if (result.error) {
+
+        gallery.innerHTML = `
+
+            <div class="empty-gallery">
+
+                <div class="empty-icon">
+                    ✦
+                </div>
+
+                <h2>
+                    ARCHIVE UNAVAILABLE
+                </h2>
+
+                <p>
+                    The alien database couldn't access
+                    this folder right now.
+                </p>
+
+            </div>
+
+        `;
+
+        console.error(
+            "PUPPIPYRO.EXE:",
+            result.error
+        );
+
+        return;
+    }
+
+
+    const files =
+        result.files;
+
+
+    /*
+       Empty folder.
+    */
 
     if (files.length === 0) {
 
@@ -292,6 +396,10 @@ async function showArtCategory(categoryId) {
     }
 
 
+    /*
+       Display gallery.
+    */
+
     gallery.innerHTML = "";
 
 
@@ -313,8 +421,16 @@ async function showArtCategory(categoryId) {
 
 function resetArtCategory() {
 
+    /*
+       Invalidate any currently loading category.
+    */
+
+    artRequestNumber++;
+
+
     const categoryView =
         document.getElementById("art-category-view");
+
 
     const gallery =
         document.getElementById("art-gallery");
@@ -347,13 +463,19 @@ function resetArtCategory() {
 
 
     if (gallery) {
+
         gallery.innerHTML = "";
+
     }
 
 
-    document.querySelectorAll(".category-button").forEach(button => {
-        button.classList.remove("selected");
-    });
+    document
+        .querySelectorAll(".category-button")
+        .forEach(button => {
+
+            button.classList.remove("selected");
+
+        });
 
 }
 
@@ -362,36 +484,110 @@ function resetArtCategory() {
    GITHUB IMAGE SYSTEM
 ========================================================= */
 
+/**
+ * Gets image files from a folder in the GitHub repository.
+ *
+ * Returns:
+ *
+ * {
+ *     files: [...]
+ * }
+ *
+ * or
+ *
+ * {
+ *     files: [],
+ *     error: ...
+ * }
+ */
 async function getImagesFromFolder(folder) {
+
+    const url =
+        `${API_BASE}/assets/${folder}`;
+
 
     try {
 
         const response =
-            await fetch(
-                `${API_BASE}/assets/${folder}`
-            );
+            await fetch(url, {
+                headers: {
+                    "Accept":
+                        "application/vnd.github+json"
+                }
+            });
+
+
+        /*
+           A missing folder is treated as an empty archive.
+           This is useful while you're still building folders.
+        */
+
+        if (response.status === 404) {
+
+            return {
+                files: []
+            };
+
+        }
 
 
         if (!response.ok) {
 
             throw new Error(
-                `GitHub returned status ${response.status}`
+                `GitHub returned HTTP ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        /*
+           GitHub returns an array for a folder.
+        */
+
+        if (!Array.isArray(data)) {
+
+            throw new Error(
+                "GitHub did not return a folder listing."
             );
 
         }
 
 
         const files =
-            await response.json();
+            data.filter(file => {
+
+                return (
+                    file.type === "file" &&
+                    /\.(png|jpe?g|webp|gif)$/i.test(file.name)
+                );
+
+            });
 
 
-        return files.filter(file =>
+        /*
+           Sort alphabetically so the gallery doesn't
+           randomly reorder itself.
+        */
 
-            file.type === "file" &&
-
-            /\.(png|jpe?g|webp|gif)$/i.test(file.name)
-
+        files.sort((a, b) =>
+            a.name.localeCompare(
+                b.name,
+                undefined,
+                {
+                    numeric: true,
+                    sensitivity: "base"
+                }
+            )
         );
+
+
+        return {
+            files
+        };
 
 
     } catch (error) {
@@ -402,7 +598,10 @@ async function getImagesFromFolder(folder) {
         );
 
 
-        return [];
+        return {
+            files: [],
+            error
+        };
 
     }
 
@@ -413,13 +612,27 @@ async function getImagesFromFolder(folder) {
    BODY SHEET GALLERY
 ========================================================= */
 
+let bodySheetRequestNumber = 0;
+
+
 async function loadBodySheets() {
 
     const gallery =
         document.getElementById("body-sheet-gallery");
 
 
-    if (!gallery) return;
+    if (!gallery) {
+
+        console.warn(
+            "PUPPIPYRO.EXE: Body-sheet gallery not found."
+        );
+
+        return;
+    }
+
+
+    const requestId =
+        ++bodySheetRequestNumber;
 
 
     gallery.innerHTML = `
@@ -435,8 +648,48 @@ async function loadBodySheets() {
     `;
 
 
-    const files =
+    const result =
         await getImagesFromFolder("body-sheets");
+
+
+    /*
+       Prevent old requests from overwriting newer ones.
+    */
+
+    if (requestId !== bodySheetRequestNumber) {
+        return;
+    }
+
+
+    if (result.error) {
+
+        gallery.innerHTML = `
+
+            <div class="empty-gallery">
+
+                <div class="empty-icon">
+                    ✦
+                </div>
+
+                <h2>
+                    ARCHIVE UNAVAILABLE
+                </h2>
+
+                <p>
+                    The alien database couldn't access
+                    the body-sheet folder right now.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const files =
+        result.files;
 
 
     if (files.length === 0) {
@@ -504,7 +757,17 @@ function createBodySheetCard(file, index) {
         "";
 
 
-    if (/^t1/i.test(file.name)) {
+    /*
+       Detect commission tier from filename.
+
+       Examples:
+
+       T1_red_demon.png
+       T2_green_girl.png
+       T3_deer.png
+    */
+
+    if (/^t1(?:[_\-\s]|$)/i.test(file.name)) {
 
         tier =
             "Tier 1 • Simple";
@@ -514,7 +777,7 @@ function createBodySheetCard(file, index) {
 
     }
 
-    else if (/^t2/i.test(file.name)) {
+    else if (/^t2(?:[_\-\s]|$)/i.test(file.name)) {
 
         tier =
             "Tier 2 • Stylized";
@@ -524,7 +787,7 @@ function createBodySheetCard(file, index) {
 
     }
 
-    else if (/^t3/i.test(file.name)) {
+    else if (/^t3(?:[_\-\s]|$)/i.test(file.name)) {
 
         tier =
             "Tier 3 • Realistic";
@@ -548,7 +811,7 @@ function createBodySheetCard(file, index) {
         >
 
             <img
-                src="${file.download_url}"
+                src="${escapeHTML(file.download_url)}"
                 alt="${escapeHTML(filename)}"
                 loading="lazy"
             >
@@ -559,7 +822,7 @@ function createBodySheetCard(file, index) {
         <div class="gallery-card-info">
 
             <p class="gallery-tier">
-                ${tier}
+                ${escapeHTML(tier)}
             </p>
 
 
@@ -570,7 +833,7 @@ function createBodySheetCard(file, index) {
 
             ${
                 price
-                    ? `<p class="gallery-price">${price}</p>`
+                    ? `<p class="gallery-price">${escapeHTML(price)}</p>`
                     : ""
             }
 
@@ -595,24 +858,38 @@ function createBodySheetCard(file, index) {
         card.querySelector(".view-button");
 
 
-    imageButton.addEventListener("click", () => {
+    if (imageButton) {
 
-        openImageViewer(
-            file.download_url,
-            filename
+        imageButton.addEventListener(
+            "click",
+            () => {
+
+                openImageViewer(
+                    file.download_url,
+                    filename
+                );
+
+            }
         );
 
-    });
+    }
 
 
-    viewButton.addEventListener("click", () => {
+    if (viewButton) {
 
-        openImageViewer(
-            file.download_url,
-            filename
+        viewButton.addEventListener(
+            "click",
+            () => {
+
+                openImageViewer(
+                    file.download_url,
+                    filename
+                );
+
+            }
         );
 
-    });
+    }
 
 
     return card;
@@ -647,7 +924,7 @@ function createArtCard(file, index) {
         >
 
             <img
-                src="${file.download_url}"
+                src="${escapeHTML(file.download_url)}"
                 alt="${escapeHTML(filename)}"
                 loading="lazy"
             >
@@ -666,14 +943,21 @@ function createArtCard(file, index) {
         card.querySelector(".art-image-button");
 
 
-    imageButton.addEventListener("click", () => {
+    if (imageButton) {
 
-        openImageViewer(
-            file.download_url,
-            filename
+        imageButton.addEventListener(
+            "click",
+            () => {
+
+                openImageViewer(
+                    file.download_url,
+                    filename
+                );
+
+            }
         );
 
-    });
+    }
 
 
     return card;
@@ -687,7 +971,7 @@ function createArtCard(file, index) {
 
 function cleanFilename(filename) {
 
-    return filename
+    return String(filename)
         .replace(/\.[^/.]+$/, "")
         .replace(/[-_]+/g, " ")
         .replace(/\s+/g, " ")
@@ -714,7 +998,14 @@ function openImageViewer(imageURL, title) {
         document.getElementById("viewer-title");
 
 
-    if (!viewer) return;
+    if (!viewer) {
+
+        console.warn(
+            "PUPPIPYRO.EXE: Image viewer not found."
+        );
+
+        return;
+    }
 
 
     if (viewerImage) {
@@ -723,7 +1014,7 @@ function openImageViewer(imageURL, title) {
             imageURL;
 
         viewerImage.alt =
-            title;
+            title || "PuppiPyro artwork";
 
     }
 
@@ -731,7 +1022,7 @@ function openImageViewer(imageURL, title) {
     if (viewerTitle) {
 
         viewerTitle.textContent =
-            title;
+            title || "";
 
     }
 
@@ -742,6 +1033,16 @@ function openImageViewer(imageURL, title) {
     viewer.setAttribute(
         "aria-hidden",
         "false"
+    );
+
+
+    /*
+       Prevent the page underneath from moving while
+       the image viewer is open.
+    */
+
+    document.body.classList.add(
+        "image-viewer-open"
     );
 
 }
@@ -769,17 +1070,16 @@ function closeImageViewer() {
     );
 
 
+    document.body.classList.remove(
+        "image-viewer-open"
+    );
+
+
     const viewerImage =
         document.getElementById("viewer-image");
 
 
     if (viewerImage) {
-
-        /*
-           Clear the image after closing.
-           This prevents large images from staying loaded
-           unnecessarily.
-        */
 
         setTimeout(() => {
 
@@ -787,7 +1087,7 @@ function closeImageViewer() {
                 !viewer.classList.contains("active")
             ) {
 
-                viewerImage.src = "";
+                viewerImage.removeAttribute("src");
 
             }
 
@@ -799,7 +1099,7 @@ function closeImageViewer() {
 
 
 /* =========================================================
-   IMAGE VIEWER CLICK OUTSIDE
+   IMAGE VIEWER — OUTSIDE CLICK
 ========================================================= */
 
 document.addEventListener(
@@ -813,9 +1113,7 @@ document.addEventListener(
         if (!viewer) return;
 
 
-        if (
-            event.target === viewer
-        ) {
+        if (event.target === viewer) {
 
             closeImageViewer();
 
@@ -833,7 +1131,9 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key !== "Escape") return;
+        if (event.key !== "Escape") {
+            return;
+        }
 
 
         const viewer =
@@ -849,359 +1149,12 @@ document.addEventListener(
 
         }
 
-
-        const secretPopup =
-            document.getElementById("secret-code-popup");
-
-
-        if (
-            secretPopup &&
-            secretPopup.classList.contains("active")
-        ) {
-
-            closeSecretCode();
-
-        }
-
     }
 );
 
 
 /* =========================================================
-   SECRET EVENT
-========================================================= */
-
-/*
-   The event checks the visitor's LOCAL computer time.
-
-   This means:
-   - No server is required.
-   - No login is required.
-   - Anyone visiting during the event window can see it.
-   - The event automatically disappears when the time window ends.
-*/
-
-function checkSecretEvent() {
-
-    if (!SECRET_EVENT.enabled) {
-        return;
-    }
-
-
-    const now =
-        new Date();
-
-
-    const correctDate =
-        now.getFullYear() === SECRET_EVENT.year &&
-        now.getMonth() + 1 === SECRET_EVENT.month &&
-        now.getDate() === SECRET_EVENT.day;
-
-
-    if (!correctDate) {
-        hideSecretEvent();
-        return;
-    }
-
-
-    const currentMinutes =
-        now.getHours() * 60 +
-        now.getMinutes();
-
-
-    const startMinutes =
-        SECRET_EVENT.startHour * 60 +
-        SECRET_EVENT.startMinute;
-
-
-    const endMinutes =
-        SECRET_EVENT.endHour * 60 +
-        SECRET_EVENT.endMinute;
-
-
-    const eventIsActive =
-        currentMinutes >= startMinutes &&
-        currentMinutes < endMinutes;
-
-
-    if (eventIsActive) {
-
-        showSecretEvent();
-
-    }
-
-    else {
-
-        hideSecretEvent();
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW SECRET EVENT
-========================================================= */
-
-function showSecretEvent() {
-
-    const event =
-        document.getElementById("secret-event");
-
-
-    if (!event) return;
-
-
-    if (
-        event.classList.contains("active")
-    ) {
-        return;
-    }
-
-
-    event.classList.add("active");
-
-
-    event.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    startSecretPyroAnimation();
-
-}
-
-
-/* =========================================================
-   HIDE SECRET EVENT
-========================================================= */
-
-function hideSecretEvent() {
-
-    const event =
-        document.getElementById("secret-event");
-
-
-    if (!event) return;
-
-
-    event.classList.remove("active");
-
-
-    event.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    stopSecretPyroAnimation();
-
-}
-
-
-/* =========================================================
-   SECRET PYRO ANIMATION
-========================================================= */
-
-let secretPyroTimer =
-    null;
-
-
-function startSecretPyroAnimation() {
-
-    const pyro =
-        document.getElementById("secret-pyro");
-
-
-    if (!pyro) return;
-
-
-    pyro.classList.add("running");
-
-
-    /*
-       Re-trigger the animation periodically.
-
-       CSS handles the actual movement.
-    */
-
-    if (secretPyroTimer) {
-        clearInterval(secretPyroTimer);
-    }
-
-
-    secretPyroTimer =
-        setInterval(() => {
-
-            const event =
-                document.getElementById("secret-event");
-
-
-            if (
-                !event ||
-                !event.classList.contains("active")
-            ) {
-                return;
-            }
-
-
-            pyro.classList.remove("running");
-
-
-            void pyro.offsetWidth;
-
-
-            pyro.classList.add("running");
-
-        }, 12000);
-
-}
-
-
-/* =========================================================
-   STOP SECRET PYRO ANIMATION
-========================================================= */
-
-function stopSecretPyroAnimation() {
-
-    const pyro =
-        document.getElementById("secret-pyro");
-
-
-    if (pyro) {
-        pyro.classList.remove("running");
-    }
-
-
-    if (secretPyroTimer) {
-
-        clearInterval(
-            secretPyroTimer
-        );
-
-        secretPyroTimer =
-            null;
-
-    }
-
-}
-
-
-/* =========================================================
-   SECRET PYRO CLICK
-========================================================= */
-
-function revealSecretCode() {
-
-    const popup =
-        document.getElementById("secret-code-popup");
-
-
-    const codeElement =
-        document.getElementById("secret-code");
-
-
-    if (!popup) return;
-
-
-    if (codeElement) {
-
-        codeElement.textContent =
-            SECRET_EVENT.code;
-
-    }
-
-
-    popup.classList.add("active");
-
-
-    popup.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-}
-
-
-/* =========================================================
-   CLOSE SECRET CODE
-========================================================= */
-
-function closeSecretCode() {
-
-    const popup =
-        document.getElementById("secret-code-popup");
-
-
-    if (!popup) return;
-
-
-    popup.classList.remove("active");
-
-
-    popup.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-/* =========================================================
-   SECRET POPUP CLICK OUTSIDE
-========================================================= */
-
-document.addEventListener(
-    "click",
-    function(event) {
-
-        const popup =
-            document.getElementById("secret-code-popup");
-
-
-        if (!popup) return;
-
-
-        if (
-            event.target === popup
-        ) {
-
-            closeSecretCode();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CONNECT SECRET PYRO BUTTON
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const secretPyro =
-            document.getElementById("secret-pyro");
-
-
-        if (secretPyro) {
-
-            secretPyro.addEventListener(
-                "click",
-                revealSecretCode
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   RANDOM SYSTEM MESSAGE HOOK
+   SYSTEM MESSAGES
 ========================================================= */
 
 const SYSTEM_MESSAGES = [
@@ -1240,17 +1193,10 @@ function getRandomSystemMessage() {
 
 
 /* =========================================================
-   FUTURE ERROR POPUP HOOK
+   ALIEN ERROR HOOK
 ========================================================= */
 
 function showAlienError(message) {
-
-    /*
-       This is intentionally simple for now.
-
-       Later, the website can have actual fake
-       computer error windows using this function.
-    */
 
     console.log(
         `ALIEN ERROR: ${message}`
@@ -1260,14 +1206,10 @@ function showAlienError(message) {
 
 
 /* =========================================================
-   FUTURE NOTIFICATION HOOK
+   ALIEN NOTIFICATION HOOK
 ========================================================= */
 
 function showAlienNotification(message) {
-
-    /*
-       Reserved for future fake system notifications.
-    */
 
     console.log(
         `ALIEN NOTIFICATION: ${message}`
@@ -1277,7 +1219,7 @@ function showAlienNotification(message) {
 
 
 /* =========================================================
-   FUTURE EASTER EGG HOOK
+   EASTER EGG HOOK
 ========================================================= */
 
 function triggerEasterEgg(name) {
@@ -1290,7 +1232,7 @@ function triggerEasterEgg(name) {
 
 
 /* =========================================================
-   HTML SAFETY HELPERS
+   HTML SAFETY
 ========================================================= */
 
 function escapeHTML(text) {
@@ -1300,7 +1242,7 @@ function escapeHTML(text) {
 
 
     element.textContent =
-        text;
+        String(text);
 
 
     return element.innerHTML;
@@ -1317,14 +1259,16 @@ document.addEventListener(
     function() {
 
         /*
-           Start on HOME.
+           Make sure the site always starts on HOME.
         */
 
-        document.querySelectorAll(".screen").forEach(screen => {
+        document
+            .querySelectorAll(".screen")
+            .forEach(screen => {
 
-            screen.classList.remove("active");
+                screen.classList.remove("active");
 
-        });
+            });
 
 
         const home =
@@ -1339,23 +1283,37 @@ document.addEventListener(
 
 
         /*
-           Start the secret event checker.
+           Make sure the image viewer starts closed.
         */
 
-        checkSecretEvent();
+        const viewer =
+            document.getElementById("image-viewer");
+
+
+        if (viewer) {
+
+            viewer.classList.remove("active");
+
+            viewer.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
 
 
         /*
-           Check again every 10 seconds.
-
-           This means someone can leave the page open
-           and the secret event can appear when the
-           correct time begins.
+           Make sure the body isn't locked when the
+           site initially loads.
         */
 
-        setInterval(
-            checkSecretEvent,
-            10000
+        document.body.classList.remove(
+            "image-viewer-open"
+        );
+
+
+        console.log(
+            "PUPPIPYRO.EXE // SYSTEM ONLINE"
         );
 
     }

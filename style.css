@@ -66,9 +66,21 @@ body {
     min-height: 100vh;
 
     background:
-        radial-gradient(circle at 10% 15%, rgba(247, 169, 196, 0.18), transparent 20%),
-        radial-gradient(circle at 90% 20%, rgba(185, 243, 208, 0.22), transparent 22%),
-        radial-gradient(circle at 50% 100%, rgba(203, 185, 242, 0.18), transparent 30%),
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(247, 169, 196, 0.18),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(185, 243, 208, 0.22),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(203, 185, 242, 0.18),
+            transparent 30%
+        ),
         var(--cream);
 
     color: var(--text);
@@ -107,15 +119,21 @@ img {
 .screen {
     display: none;
 
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
 
     padding: 28px 20px;
 }
 
 .screen.active {
     display: flex;
-    align-items: center;
+
+    /*
+     * IMPORTANT:
+     * Do not vertically center the entire window.
+     * Long pages need room to grow.
+     */
+    align-items: flex-start;
     justify-content: center;
 
     animation: screenIn 0.35s ease;
@@ -141,17 +159,29 @@ img {
 .computer-window {
     width: min(1100px, 100%);
 
-    max-height: calc(100vh - 56px);
+    /*
+     * IMPORTANT:
+     * No viewport max-height.
+     * The computer window must be allowed to grow
+     * with the content.
+     */
+    min-height: 0;
+    height: auto;
 
     display: flex;
     flex-direction: column;
+
+    margin: 0 auto;
 
     background: var(--cream);
 
     border: 3px solid var(--border);
     border-radius: 24px;
 
-    overflow: hidden;
+    /*
+     * Do NOT hide content vertically.
+     */
+    overflow: visible;
 
     box-shadow: var(--shadow);
 }
@@ -180,6 +210,8 @@ img {
         );
 
     border-bottom: 3px solid var(--border);
+
+    border-radius: 20px 20px 0 0;
 }
 
 .window-title {
@@ -194,11 +226,14 @@ img {
 .window-controls {
     display: flex;
     gap: 7px;
+
+    position: relative;
 }
 
 .window-controls::before,
 .window-controls::after {
     content: "";
+
     width: 12px;
     height: 12px;
 
@@ -208,10 +243,6 @@ img {
     border-radius: 50%;
 
     background: var(--cream);
-}
-
-.window-controls {
-    position: relative;
 }
 
 .window-controls::before {
@@ -228,26 +259,14 @@ img {
    --------------------------------------------------------- */
 
 .page-content {
+    width: 100%;
+
     padding: 35px;
 
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    scrollbar-width: thin;
-    scrollbar-color: var(--lavender-dark) transparent;
-}
-
-.page-content::-webkit-scrollbar {
-    width: 9px;
-}
-
-.page-content::-webkit-scrollbar-thumb {
-    background: var(--lavender-dark);
-    border-radius: 20px;
-}
-
-.page-content::-webkit-scrollbar-track {
-    background: transparent;
+    /*
+     * Let the browser handle page scrolling naturally.
+     */
+    overflow: visible;
 }
 
 
@@ -256,11 +275,15 @@ img {
    --------------------------------------------------------- */
 
 .home-window {
-    min-height: min(700px, calc(100vh - 56px));
+    /*
+     * Keep the home screen nicely sized when there is room,
+     * but NEVER force it to be viewport height.
+     */
+    min-height: 620px;
 }
 
 .home-content {
-    flex: 1;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -396,7 +419,9 @@ img {
 
 .primary-button:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 0 rgba(111, 86, 143, 0.12);
+
+    box-shadow:
+        0 2px 0 rgba(111, 86, 143, 0.12);
 }
 
 .home-status {
@@ -527,6 +552,7 @@ img {
 
 .utility-buttons button:hover {
     background: var(--lavender);
+
     transform: translateY(-2px);
 }
 
@@ -614,6 +640,7 @@ img {
 
 .header-back:hover {
     background: var(--pink);
+
     transform: translateX(-3px);
 }
 
@@ -654,6 +681,7 @@ img {
 
 .category-button:hover {
     background: var(--mint);
+
     transform: translateY(-4px);
 }
 
@@ -817,6 +845,7 @@ img {
 
 .info-card p {
     color: var(--text-soft);
+
     line-height: 1.55;
 }
 
@@ -995,6 +1024,7 @@ img {
 
 .profile-card p {
     line-height: 1.55;
+
     color: var(--text-soft);
 }
 
@@ -1158,14 +1188,15 @@ img {
     display: flex;
     flex-direction: column;
 
-    overflow: hidden;
+    overflow: auto;
 
     border: 3px solid var(--border);
     border-radius: 22px;
 
     background: var(--cream);
 
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 .viewer-content {
@@ -1174,7 +1205,7 @@ img {
     justify-content: center;
 
     min-height: 250px;
-    max-height: calc(90vh - 60px);
+    max-height: 80vh;
 
     padding: 20px;
 
@@ -1210,6 +1241,7 @@ img {
 
 .secret-event {
     position: fixed;
+
     right: 18px;
     bottom: 18px;
 
@@ -1263,7 +1295,10 @@ img {
 }
 
 .secret-pyro.running {
-    animation: secretRun 0.55s infinite alternate ease-in-out;
+    animation:
+        secretRun 0.55s
+        infinite alternate
+        ease-in-out;
 }
 
 @keyframes secretRun {
@@ -1332,6 +1367,8 @@ img {
     background: rgba(77, 59, 103, 0.7);
 
     backdrop-filter: blur(5px);
+
+    color: var(--text);
 }
 
 .secret-code-popup.active {
@@ -1340,10 +1377,6 @@ img {
 
 .secret-code-popup > * {
     max-width: 500px;
-}
-
-.secret-code-popup {
-    color: var(--text);
 }
 
 .secret-code-popup::before {
@@ -1413,21 +1446,44 @@ a:hover {
 @media (max-width: 800px) {
 
     .screen {
+        min-height: 100vh;
+
         padding: 12px;
     }
 
     .screen.active {
         align-items: flex-start;
+
         padding-top: 12px;
     }
 
+    /*
+     * IMPORTANT:
+     * No max-height here.
+     */
     .computer-window {
-        max-height: calc(100vh - 24px);
+        width: 100%;
+
+        min-height: 0;
+        height: auto;
+
         border-radius: 18px;
+
+        overflow: visible;
+    }
+
+    .window-header {
+        border-radius: 14px 14px 0 0;
     }
 
     .page-content {
         padding: 22px 16px 30px;
+
+        overflow: visible;
+    }
+
+    .home-window {
+        min-height: 0;
     }
 
     .home-content {
@@ -1489,6 +1545,10 @@ a:hover {
    --------------------------------------------------------- */
 
 @media (max-width: 500px) {
+
+    .screen {
+        padding: 8px;
+    }
 
     .window-header {
         min-height: 45px;

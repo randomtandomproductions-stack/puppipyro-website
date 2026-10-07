@@ -8,38 +8,47 @@
    --------------------------------------------------------- */
 
 :root {
-    --cream: #fffaf2;
-    --cream-dark: #f5eadf;
+    /* Main PuppiPyro palette */
+    --cream: #FFF9F2;
+    --cream-dark: #F2E4D8;
 
-    --mint: #b9f3d0;
-    --mint-dark: #79cfa2;
+    --mint: #E4FFE3;
+    --mint-dark: #9BD59A;
+    --mint-light: #F1FFF0;
 
-    --pink: #f7a9c4;
-    --pink-dark: #df729b;
+    --pink: #E83AC2;
+    --pink-dark: #C52A9F;
+    --pink-light: #FEE0FE;
 
-    --lavender: #cbb9f2;
-    --lavender-dark: #967bc9;
+    --lavender: #DCCAF4;
+    --lavender-dark: #9B7AC7;
+    --lavender-light: #F4EEFF;
 
-    --peach: #ffd0b5;
-    --blue: #b9d9f5;
+    --peach: #FFD1B8;
+    --peach-dark: #E9A17E;
 
-    --purple: #6f568f;
-    --purple-dark: #4d3b67;
+    --blue: #C8E4F7;
+    --blue-dark: #88B6D8;
 
-    --text: #493d54;
-    --text-soft: #75677f;
+    /* Pyro hair / deep berry */
+    --purple: #733164;
+    --purple-dark: #503D4E;
 
-    --white: #ffffff;
+    /* Main text */
+    --text: #503D4E;
+    --text-soft: #765F70;
 
-    --border: #765b8f;
+    --white: #FFFFFF;
+
+    --border: #733164;
 
     --shadow:
-        0 8px 0 rgba(111, 86, 143, 0.12),
-        0 14px 30px rgba(111, 86, 143, 0.12);
+        0 8px 0 rgba(115, 49, 100, 0.12),
+        0 14px 30px rgba(115, 49, 100, 0.12);
 
     --small-shadow:
-        0 4px 0 rgba(111, 86, 143, 0.10),
-        0 8px 18px rgba(111, 86, 143, 0.10);
+        0 4px 0 rgba(115, 49, 100, 0.10),
+        0 8px 18px rgba(115, 49, 100, 0.10);
 
     --radius: 22px;
     --radius-small: 14px;
@@ -68,17 +77,17 @@ body {
     background:
         radial-gradient(
             circle at 10% 15%,
-            rgba(247, 169, 196, 0.18),
+            rgba(232, 58, 194, 0.13),
             transparent 20%
         ),
         radial-gradient(
             circle at 90% 20%,
-            rgba(185, 243, 208, 0.22),
+            rgba(228, 255, 227, 0.40),
             transparent 22%
         ),
         radial-gradient(
             circle at 50% 100%,
-            rgba(203, 185, 242, 0.18),
+            rgba(220, 202, 244, 0.20),
             transparent 30%
         ),
         var(--cream);
@@ -128,11 +137,6 @@ img {
 .screen.active {
     display: flex;
 
-    /*
-     * IMPORTANT:
-     * Do not vertically center the entire window.
-     * Long pages need room to grow.
-     */
     align-items: flex-start;
     justify-content: center;
 
@@ -159,12 +163,6 @@ img {
 .computer-window {
     width: min(1100px, 100%);
 
-    /*
-     * IMPORTANT:
-     * No viewport max-height.
-     * The computer window must be allowed to grow
-     * with the content.
-     */
     min-height: 0;
     height: auto;
 
@@ -178,9 +176,6 @@ img {
     border: 3px solid var(--border);
     border-radius: 24px;
 
-    /*
-     * Do NOT hide content vertically.
-     */
     overflow: visible;
 
     box-shadow: var(--shadow);
@@ -204,8 +199,8 @@ img {
         linear-gradient(
             90deg,
             var(--mint),
-            #d9f5d8,
-            var(--pink),
+            var(--mint-light),
+            var(--pink-light),
             var(--lavender)
         );
 
@@ -263,9 +258,6 @@ img {
 
     padding: 35px;
 
-    /*
-     * Let the browser handle page scrolling naturally.
-     */
     overflow: visible;
 }
 
@@ -275,10 +267,6 @@ img {
    --------------------------------------------------------- */
 
 .home-window {
-    /*
-     * Keep the home screen nicely sized when there is room,
-     * but NEVER force it to be viewport height.
-     */
     min-height: 620px;
 }
 
@@ -324,7 +312,7 @@ img {
 
     text-shadow:
         3px 3px 0 var(--pink),
-        6px 6px 0 rgba(111, 86, 143, 0.08);
+        6px 6px 0 rgba(115, 49, 100, 0.08);
 }
 
 .pyro-placeholder {
@@ -335,8 +323,8 @@ img {
     background:
         linear-gradient(
             135deg,
-            rgba(185, 243, 208, 0.55),
-            rgba(203, 185, 242, 0.45)
+            rgba(228, 255, 227, 0.75),
+            rgba(220, 202, 244, 0.45)
         );
 
     border: 2px dashed var(--lavender-dark);
@@ -392,7 +380,7 @@ img {
         linear-gradient(
             135deg,
             var(--mint),
-            var(--pink)
+            var(--pink-light)
         );
 
     color: var(--purple-dark);
@@ -413,15 +401,15 @@ img {
     transform: translateY(-4px) scale(1.03);
 
     box-shadow:
-        0 7px 0 rgba(111, 86, 143, 0.15),
-        0 13px 25px rgba(111, 86, 143, 0.15);
+        0 7px 0 rgba(115, 49, 100, 0.15),
+        0 13px 25px rgba(115, 49, 100, 0.15);
 }
 
 .primary-button:active {
     transform: translateY(2px);
 
     box-shadow:
-        0 2px 0 rgba(111, 86, 143, 0.12);
+        0 2px 0 rgba(115, 49, 100, 0.12);
 }
 
 .home-status {
@@ -501,27 +489,28 @@ img {
         box-shadow var(--transition);
 }
 
+/* Soft Pyro palette alternating buttons */
 .menu-button:nth-child(1),
 .menu-button:nth-child(4) {
-    background: #e9f9ed;
+    background: var(--mint-light);
 }
 
 .menu-button:nth-child(2),
 .menu-button:nth-child(5) {
-    background: #fff0f5;
+    background: var(--pink-light);
 }
 
 .menu-button:nth-child(3),
 .menu-button:nth-child(6) {
-    background: #f2edff;
+    background: var(--lavender-light);
 }
 
 .menu-button:hover {
     transform: translateY(-4px) rotate(-1deg);
 
     box-shadow:
-        0 7px 0 rgba(111, 86, 143, 0.12),
-        0 12px 22px rgba(111, 86, 143, 0.12);
+        0 7px 0 rgba(115, 49, 100, 0.12),
+        0 12px 22px rgba(115, 49, 100, 0.12);
 }
 
 .utility-buttons {
@@ -585,7 +574,7 @@ img {
 
     border-radius: 8px;
 
-    background: rgba(185, 243, 208, 0.25);
+    background: rgba(228, 255, 227, 0.55);
 }
 
 .menu-pyro {
@@ -639,7 +628,7 @@ img {
 }
 
 .header-back:hover {
-    background: var(--pink);
+    background: var(--pink-light);
 
     transform: translateX(-3px);
 }
@@ -693,7 +682,7 @@ img {
     border: 2px dashed var(--lavender-dark);
     border-radius: var(--radius-small);
 
-    background: rgba(203, 185, 242, 0.15);
+    background: rgba(220, 202, 244, 0.18);
 
     color: var(--text-soft);
 
@@ -730,8 +719,8 @@ img {
     transform: translateY(-5px) scale(1.015);
 
     box-shadow:
-        0 8px 0 rgba(111, 86, 143, 0.10),
-        0 14px 25px rgba(111, 86, 143, 0.13);
+        0 8px 0 rgba(115, 49, 100, 0.10),
+        0 14px 25px rgba(115, 49, 100, 0.13);
 }
 
 .gallery-item img {
@@ -743,8 +732,8 @@ img {
     background:
         radial-gradient(
             circle,
-            rgba(185, 243, 208, 0.3),
-            rgba(203, 185, 242, 0.15)
+            rgba(228, 255, 227, 0.45),
+            rgba(220, 202, 244, 0.18)
         );
 }
 
@@ -812,15 +801,15 @@ img {
 }
 
 .tier-card:nth-child(1) {
-    background: #effcf3;
+    background: var(--mint-light);
 }
 
 .tier-card:nth-child(2) {
-    background: #fff1f6;
+    background: var(--pink-light);
 }
 
 .tier-card:nth-child(3) {
-    background: #f3efff;
+    background: var(--lavender-light);
 }
 
 .info-card {
@@ -872,7 +861,7 @@ img {
 
     border-radius: 10px;
 
-    background: rgba(185, 243, 208, 0.25);
+    background: rgba(228, 255, 227, 0.40);
 }
 
 
@@ -929,9 +918,9 @@ img {
 
     border-radius: 12px;
 
-    background: rgba(203, 185, 242, 0.16);
+    background: rgba(220, 202, 244, 0.18);
 
-    border: 1px solid rgba(111, 86, 143, 0.15);
+    border: 1px solid rgba(115, 49, 100, 0.15);
 }
 
 .split-info {
@@ -978,7 +967,7 @@ img {
 
 .action-buttons a:hover,
 .action-buttons button:hover {
-    background: var(--pink);
+    background: var(--pink-light);
 
     transform: translateY(-3px);
 }
@@ -1160,7 +1149,7 @@ img {
 
     padding: 20px;
 
-    background: rgba(77, 59, 103, 0.72);
+    background: rgba(80, 61, 78, 0.72);
 
     backdrop-filter: blur(5px);
 }
@@ -1196,7 +1185,7 @@ img {
     background: var(--cream);
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.25);
+        0 20px 60px rgba(80, 61, 78, 0.25);
 }
 
 .viewer-content {
@@ -1227,7 +1216,7 @@ img {
     border: 2px solid var(--border);
     border-radius: 999px;
 
-    background: var(--pink);
+    background: var(--pink-light);
 
     color: var(--purple-dark);
 
@@ -1281,7 +1270,7 @@ img {
         linear-gradient(
             135deg,
             var(--mint),
-            var(--pink),
+            var(--pink-light),
             var(--lavender)
         );
 
@@ -1364,7 +1353,7 @@ img {
 
     padding: 20px;
 
-    background: rgba(77, 59, 103, 0.7);
+    background: rgba(80, 61, 78, 0.7);
 
     backdrop-filter: blur(5px);
 
@@ -1430,7 +1419,7 @@ a:hover {
     border: 2px dashed var(--lavender-dark);
     border-radius: var(--radius);
 
-    background: rgba(203, 185, 242, 0.13);
+    background: rgba(220, 202, 244, 0.16);
 
     color: var(--text-soft);
 
@@ -1457,10 +1446,6 @@ a:hover {
         padding-top: 12px;
     }
 
-    /*
-     * IMPORTANT:
-     * No max-height here.
-     */
     .computer-window {
         width: 100%;
 

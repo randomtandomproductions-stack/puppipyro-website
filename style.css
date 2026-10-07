@@ -1,56 +1,67 @@
 /* =========================================================
    PUPPIPYRO.EXE
-   Cute Alien Computer Portfolio
+   Cute Alien Website / Computer UI
    Full Stylesheet
    ========================================================= */
 
 
 /* =========================================================
-   1. ROOT / COLOR PALETTE
+   1. ROOT / PYRO COLOR PALETTE
    ========================================================= */
 
 :root {
-    /* Core Pyro colors */
-    --cream: #fff9f2;
-    --cream-dark: #f2e4d8;
+    /* Pyro's actual colors */
+    --skin: #E4FFE3;
+    --hair: #E4FFE3;
+    --hair-plum: #733164;
+    --hair-pink: #E83AC2;
 
-    --mint: #e4ffe3;
-    --mint-dark: #9bd59a;
-    --mint-light: #f1fff0;
+    --eye-pink: #FEE0FE;
+    --eye-dark: #503D4E;
+    --eye-white: #FFFFFF;
+
+    /* Website colors */
+    --cream: #FFF9F2;
+    --cream-dark: #F2E4D8;
+
+    --mint: #E4FFE3;
+    --mint-dark: #9BD59A;
+    --mint-light: #F1FFF0;
 
     --plum: #733164;
-    --plum-dark: #503d4e;
+    --plum-dark: #503D4E;
 
-    --pink: #e83ac2;
-    --pink-dark: #c52a9f;
-    --pink-light: #fee0fe;
+    --pink: #E83AC2;
+    --pink-dark: #C52A9F;
+    --pink-light: #FEE0FE;
 
-    /* Supporting colors */
-    --lavender: #dccaf4;
-    --lavender-dark: #9b7ac7;
-    --lavender-light: #f4eeff;
+    --lavender: #DCCAF4;
+    --lavender-dark: #9B7AC7;
+    --lavender-light: #F4EEFF;
 
-    --peach: #ffd1b8;
-    --peach-dark: #e9a17e;
+    --peach: #FFD1B8;
+    --peach-dark: #E9A17E;
 
-    --blue: #c8e4f7;
-    --blue-dark: #88b6d8;
+    --blue: #C8E4F7;
+    --blue-dark: #88B6D8;
 
-    /* Text */
-    --text: #503d4e;
-    --text-soft: #765f70;
-    --white: #ffffff;
+    --white: #FFFFFF;
 
-    /* UI */
+    --text: #503D4E;
+    --text-soft: #765F70;
+
     --border: #733164;
 
     --shadow:
-        0 8px 0 rgba(115, 49, 100, 0.13),
-        0 14px 30px rgba(115, 49, 100, 0.13);
+        0 6px 0 rgba(115, 49, 100, 0.15),
+        0 14px 28px rgba(115, 49, 100, 0.12);
 
     --small-shadow:
-        0 4px 0 rgba(115, 49, 100, 0.10),
-        0 8px 18px rgba(115, 49, 100, 0.10);
+        0 4px 0 rgba(115, 49, 100, 0.13),
+        0 8px 17px rgba(115, 49, 100, 0.09);
+
+    --tiny-shadow:
+        0 3px 0 rgba(115, 49, 100, 0.12);
 
     --radius: 22px;
     --radius-small: 14px;
@@ -76,12 +87,6 @@ body {
     margin: 0;
     min-height: 100vh;
 
-    background:
-        radial-gradient(circle at 10% 10%, rgba(232, 58, 194, 0.08), transparent 24%),
-        radial-gradient(circle at 90% 20%, rgba(228, 255, 227, 0.85), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(220, 202, 244, 0.35), transparent 35%),
-        var(--cream);
-
     color: var(--text);
 
     font-family:
@@ -89,6 +94,24 @@ body {
         "Segoe UI",
         Arial,
         sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(232, 58, 194, 0.09),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 91% 18%,
+            rgba(228, 255, 227, 0.95),
+            transparent 29%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(220, 202, 244, 0.42),
+            transparent 38%
+        ),
+        var(--cream);
 
     overflow-x: hidden;
 }
@@ -116,41 +139,47 @@ img {
 
 
 /* =========================================================
-   3. BACKGROUND DECORATIONS
+   3. BACKGROUND — CUTE INTERNET PAPER
    ========================================================= */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
 
     pointer-events: none;
 
     background-image:
-        radial-gradient(circle, rgba(115, 49, 100, 0.10) 1px, transparent 1px);
+        radial-gradient(
+            circle,
+            rgba(115, 49, 100, 0.09) 1px,
+            transparent 1px
+        );
 
-    background-size: 28px 28px;
+    background-size: 25px 25px;
 
-    opacity: 0.35;
+    opacity: 0.45;
 
     z-index: -3;
 }
 
 body::after {
-    content: "✦  ✧  ♡  ✦  ˚  ✧  ♡";
+    content: "✦   ♡   ☆   ✧   ♡   ✦   ˚   ☆";
 
     position: fixed;
 
-    top: 18px;
+    top: 12px;
     left: 0;
     right: 0;
 
     text-align: center;
 
-    color: rgba(232, 58, 194, 0.16);
+    color: rgba(232, 58, 194, 0.18);
 
-    font-size: 18px;
-    letter-spacing: 22px;
+    font-size: 16px;
+
+    letter-spacing: 13px;
 
     pointer-events: none;
 
@@ -171,7 +200,7 @@ body::after {
     align-items: flex-start;
     justify-content: center;
 
-    padding: 28px 18px 40px;
+    padding: 28px 18px 42px;
 }
 
 .screen.active {
@@ -208,24 +237,24 @@ body::after {
 
     margin: auto;
 
+    position: relative;
+
     background:
         linear-gradient(
             145deg,
-            rgba(255, 255, 255, 0.97),
+            rgba(255, 255, 255, 0.98),
             rgba(255, 249, 242, 0.98)
         );
 
     border: 3px solid var(--plum);
 
-    border-radius: 26px;
+    border-radius: 27px;
 
     box-shadow:
-        0 9px 0 rgba(115, 49, 100, 0.14),
-        0 22px 55px rgba(80, 61, 78, 0.15);
+        0 8px 0 rgba(115, 49, 100, 0.15),
+        0 22px 55px rgba(80, 61, 78, 0.14);
 
     overflow: visible;
-
-    position: relative;
 }
 
 .computer-window::before {
@@ -235,11 +264,13 @@ body::after {
 
     inset: 8px;
 
-    border: 1px solid rgba(115, 49, 100, 0.10);
+    border: 1px solid rgba(115, 49, 100, 0.13);
 
     border-radius: 18px;
 
     pointer-events: none;
+
+    z-index: 0;
 }
 
 
@@ -262,17 +293,20 @@ body::after {
         linear-gradient(
             90deg,
             var(--mint),
-            var(--pink-light),
+            var(--pink-light) 55%,
             var(--lavender-light)
         );
 
-    border-bottom: 2px solid rgba(115, 49, 100, 0.25);
+    border-bottom: 2px solid rgba(115, 49, 100, 0.22);
 
     border-radius: 23px 23px 0 0;
 
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
+
+    box-shadow:
+        0 3px 0 rgba(115, 49, 100, 0.07);
 }
 
 .window-title {
@@ -283,20 +317,34 @@ body::after {
 
     min-width: 0;
 
-    font-size: 14px;
+    color: var(--plum-dark);
+
+    font-size: 13px;
+
     font-weight: 900;
 
-    letter-spacing: 0.5px;
-
-    color: var(--plum-dark);
+    letter-spacing: 0.4px;
 }
 
 .window-title::before {
-    content: "●";
+    content: "✦";
 
     color: var(--pink);
 
-    font-size: 12px;
+    font-size: 14px;
+
+    animation: titleSparkle 2.5s ease-in-out infinite;
+}
+
+@keyframes titleSparkle {
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(12deg) scale(1.15);
+    }
 }
 
 .window-controls {
@@ -310,13 +358,13 @@ body::after {
     width: 14px;
     height: 14px;
 
+    padding: 0;
+
     border-radius: 50%;
 
-    border: 1px solid rgba(80, 61, 78, 0.28);
+    border: 1px solid rgba(80, 61, 78, 0.25);
 
     background: var(--white);
-
-    padding: 0;
 
     transition:
         transform var(--transition),
@@ -324,8 +372,9 @@ body::after {
 }
 
 .window-control:hover {
-    transform: scale(1.15);
-    filter: brightness(1.04);
+    transform: scale(1.2) rotate(8deg);
+
+    filter: brightness(1.05);
 }
 
 .window-control:nth-child(1) {
@@ -337,7 +386,7 @@ body::after {
 }
 
 .window-control:nth-child(3) {
-    background: var(--mint);
+    background: var(--mint-dark);
 }
 
 
@@ -346,12 +395,13 @@ body::after {
    ========================================================= */
 
 .page-content {
+    position: relative;
+
+    z-index: 1;
+
     padding: 28px;
 
     overflow: visible;
-
-    position: relative;
-    z-index: 1;
 }
 
 .page-content h1,
@@ -386,7 +436,40 @@ body::after {
 
 
 /* =========================================================
-   8. HOME
+   8. CUTE WEBSITE ACCENT STRIPS
+   ========================================================= */
+
+.page-content::before {
+    content: "♡  ✦  PUPPIPYRO.NET  ✦  ♡";
+
+    display: block;
+
+    width: fit-content;
+
+    margin: -8px auto 22px;
+
+    padding: 5px 13px;
+
+    border: 1px solid rgba(115, 49, 100, 0.18);
+
+    border-radius: 999px;
+
+    background: var(--pink-light);
+
+    color: var(--plum);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow: var(--tiny-shadow);
+}
+
+
+/* =========================================================
+   9. HOME
    ========================================================= */
 
 .home-window {
@@ -397,6 +480,7 @@ body::after {
     min-height: 560px;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -407,6 +491,36 @@ body::after {
     position: relative;
 
     padding: 48px 30px 42px;
+
+    overflow: hidden;
+}
+
+.home-content::before {
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -48%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(228, 255, 227, 0.85),
+            rgba(254, 224, 254, 0.42) 55%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+
+    z-index: -1;
 }
 
 .home-logo {
@@ -430,7 +544,7 @@ body::after {
 
     text-shadow:
         4px 4px 0 var(--pink-light),
-        7px 7px 0 rgba(115, 49, 100, 0.12);
+        7px 7px 0 rgba(232, 58, 194, 0.12);
 }
 
 .home-logo .tagline {
@@ -438,7 +552,9 @@ body::after {
 
     color: var(--text-soft);
 
-    font-size: 13px;
+    font-size: 12px;
+
+    font-weight: 800;
 
     letter-spacing: 2px;
 
@@ -450,11 +566,11 @@ body::after {
 
     margin: 22px auto 8px;
 
+    color: var(--plum-dark);
+
     font-size: clamp(18px, 3vw, 27px);
 
     font-weight: 900;
-
-    color: var(--plum-dark);
 }
 
 .home-description {
@@ -471,7 +587,7 @@ body::after {
 
 
 /* =========================================================
-   9. ENTER BUTTON
+   10. ENTER BUTTON — BIG CUTE WEBSITE BUTTON
    ========================================================= */
 
 .enter-button,
@@ -481,13 +597,15 @@ body::after {
     align-items: center;
     justify-content: center;
 
-    min-height: 52px;
+    position: relative;
 
-    padding: 13px 26px;
+    min-height: 55px;
+
+    padding: 13px 29px;
 
     border: 2px solid var(--plum);
 
-    border-radius: 999px;
+    border-radius: 18px;
 
     background:
         linear-gradient(
@@ -512,13 +630,36 @@ body::after {
         filter var(--transition);
 }
 
+.enter-button::before,
+.enter-button::after {
+    position: absolute;
+
+    color: var(--plum);
+
+    font-size: 14px;
+
+    opacity: 0.8;
+}
+
+.enter-button::before {
+    content: "✦";
+
+    left: 12px;
+}
+
+.enter-button::after {
+    content: "♡";
+
+    right: 12px;
+}
+
 .enter-button:hover,
 .primary-button:hover {
-    transform: translateY(-3px) scale(1.025);
+    transform: translateY(-4px) rotate(-1deg) scale(1.025);
 
     box-shadow:
-        0 7px 0 var(--plum),
-        0 15px 25px rgba(115, 49, 100, 0.16);
+        0 8px 0 var(--plum),
+        0 16px 25px rgba(115, 49, 100, 0.16);
 
     filter: brightness(1.04);
 }
@@ -534,7 +675,7 @@ body::after {
 
 
 /* =========================================================
-   10. HOME PYRO
+   11. HOME PYRO
    ========================================================= */
 
 .home-pyro {
@@ -574,7 +715,7 @@ body::after {
 
 
 /* =========================================================
-   11. DECORATIVE FLOATING ELEMENTS
+   12. DECORATIVE FLOATING ELEMENTS
    ========================================================= */
 
 .decor {
@@ -584,9 +725,7 @@ body::after {
 
     user-select: none;
 
-    z-index: 0;
-
-    color: var(--pink);
+    z-index: 2;
 
     animation: decorationFloat 4s ease-in-out infinite;
 }
@@ -610,28 +749,36 @@ body::after {
 .decor-1 {
     top: 13%;
     left: 7%;
-    font-size: 24px;
+
+    font-size: 25px;
+
     animation-delay: -1s;
 }
 
 .decor-2 {
     top: 28%;
     right: 10%;
-    font-size: 17px;
+
+    font-size: 18px;
+
     animation-delay: -2s;
 }
 
 .decor-3 {
     bottom: 17%;
     left: 13%;
-    font-size: 19px;
+
+    font-size: 20px;
+
     animation-delay: -3s;
 }
 
 .decor-4 {
     top: 12%;
     right: 24%;
-    font-size: 14px;
+
+    font-size: 15px;
+
     animation-delay: -0.5s;
 }
 
@@ -648,27 +795,48 @@ body::after {
 
 
 /* =========================================================
-   12. MAIN MENU
+   13. MAIN MENU — THE BIG FIX
    ========================================================= */
 
 .menu-window {
-    width: min(900px, 100%);
+    width: min(920px, 100%);
 }
 
 .menu-content {
-    padding: 30px;
+    padding: 28px 30px 32px;
 }
 
 .menu-heading {
+    position: relative;
+
     text-align: center;
 
-    margin-bottom: 26px;
+    margin-bottom: 25px;
+}
+
+.menu-heading::before {
+    content: "✦ ♡ ✦";
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--pink);
+
+    font-size: 15px;
+
+    letter-spacing: 8px;
 }
 
 .menu-heading h1 {
-    margin-bottom: 7px;
+    margin: 0 0 8px;
 
     color: var(--plum);
+
+    font-size: clamp(28px, 5vw, 42px);
+
+    text-shadow:
+        2px 2px 0 var(--pink-light);
 }
 
 .menu-heading p {
@@ -676,31 +844,43 @@ body::after {
 
     color: var(--text-soft);
 
-    font-size: 14px;
+    font-size: 13px;
 }
+
+
+/* ---------------------------------------------------------
+   MAIN MENU BUTTON GRID
+   --------------------------------------------------------- */
 
 .menu-grid {
     display: grid;
 
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 15px;
+    gap: 14px;
 
-    max-width: 720px;
+    max-width: 760px;
 
     margin: 0 auto;
 }
 
+
+/* ---------------------------------------------------------
+   MAIN MENU BUTTONS
+   --------------------------------------------------------- */
+
 .menu-button {
+    position: relative;
+
     width: 100%;
 
-    min-height: 72px;
+    min-height: 82px;
 
-    padding: 15px 18px;
+    padding: 16px 18px 16px 54px;
 
     border: 2px solid var(--plum);
 
-    border-radius: 18px;
+    border-radius: 19px;
 
     background: var(--white);
 
@@ -712,36 +892,156 @@ body::after {
 
     box-shadow: var(--small-shadow);
 
+    overflow: hidden;
+
     transition:
         transform var(--transition),
         background var(--transition),
         color var(--transition),
-        box-shadow var(--transition);
+        box-shadow var(--transition),
+        border-color var(--transition);
 }
 
+
+/* Cute little icon circle */
+.menu-button::before {
+    content: "✦";
+
+    position: absolute;
+
+    left: 15px;
+    top: 50%;
+
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(-50%) rotate(-8deg);
+
+    border: 2px solid var(--plum);
+
+    border-radius: 10px;
+
+    background: var(--mint);
+
+    color: var(--plum);
+
+    font-size: 13px;
+
+    box-shadow: 0 3px 0 rgba(115, 49, 100, 0.12);
+
+    transition:
+        transform var(--transition),
+        background var(--transition);
+}
+
+
+/* Little shine */
+.menu-button::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    right: -35px;
+    top: -35px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    pointer-events: none;
+}
+
+
+/* Different cute colors */
+.menu-button:nth-child(1)::before {
+    content: "⌂";
+    background: var(--mint);
+}
+
+.menu-button:nth-child(2)::before {
+    content: "✦";
+    background: var(--pink-light);
+}
+
+.menu-button:nth-child(3)::before {
+    content: "♡";
+    background: var(--lavender-light);
+}
+
+.menu-button:nth-child(4)::before {
+    content: "☆";
+    background: var(--peach);
+}
+
+.menu-button:nth-child(5)::before {
+    content: "☾";
+    background: var(--blue);
+}
+
+.menu-button:nth-child(6)::before {
+    content: "✧";
+    background: var(--mint);
+}
+
+.menu-button:nth-child(7)::before {
+    content: "♡";
+    background: var(--pink-light);
+}
+
+.menu-button:nth-child(8)::before {
+    content: "!";
+    background: var(--peach);
+}
+
+
+/* Hover */
 .menu-button:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px) rotate(-0.5deg);
 
     background:
         linear-gradient(
             135deg,
-            var(--mint),
+            var(--mint-light),
             var(--pink-light)
         );
 
+    border-color: var(--pink);
+
     box-shadow:
         0 7px 0 rgba(115, 49, 100, 0.15),
-        0 13px 25px rgba(115, 49, 100, 0.11);
+        0 14px 25px rgba(115, 49, 100, 0.12);
+}
+
+.menu-button:hover::before {
+    transform:
+        translateY(-50%)
+        rotate(8deg)
+        scale(1.12);
+
+    background: var(--pink);
+
+    color: var(--white);
 }
 
 .menu-button:active {
-    transform: translateY(1px);
+    transform: translateY(2px);
+
+    box-shadow:
+        0 2px 0 rgba(115, 49, 100, 0.15);
 }
 
 .menu-button .button-title {
     display: block;
 
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 
     color: var(--plum);
 
@@ -753,14 +1053,16 @@ body::after {
 
     color: var(--text-soft);
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 600;
+
+    line-height: 1.4;
 }
 
 
 /* =========================================================
-   13. SYSTEM STATUS
+   14. SYSTEM STATUS
    ========================================================= */
 
 .system-status {
@@ -770,7 +1072,7 @@ body::after {
 
     justify-content: center;
 
-    gap: 8px;
+    gap: 7px;
 
     margin: 25px auto 12px;
 
@@ -782,23 +1084,25 @@ body::after {
 
     align-items: center;
 
-    min-height: 28px;
+    min-height: 27px;
 
     padding: 5px 10px;
 
-    border-radius: 999px;
+    border: 1px solid rgba(115, 49, 100, 0.19);
 
-    border: 1px solid rgba(115, 49, 100, 0.20);
+    border-radius: 999px;
 
     background: var(--mint-light);
 
     color: var(--plum-dark);
 
-    font-size: 10px;
+    font-size: 9px;
 
-    font-weight: 800;
+    font-weight: 900;
 
-    letter-spacing: 0.4px;
+    letter-spacing: 0.35px;
+
+    box-shadow: 0 2px 0 rgba(115, 49, 100, 0.07);
 }
 
 .system-status span::before {
@@ -808,22 +1112,37 @@ body::after {
 
     color: var(--pink);
 
-    font-size: 8px;
+    font-size: 7px;
+
+    animation: statusBlink 2s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
 }
 
 .system-message {
-    margin: 18px 0 0;
+    margin: 17px 0 0;
 
     text-align: center;
 
     color: var(--text-soft);
 
-    font-size: 13px;
+    font-size: 12px;
+
+    font-weight: 700;
 }
 
 
 /* =========================================================
-   14. BACK / NAVIGATION BUTTONS
+   15. BACK BUTTON
    ========================================================= */
 
 .back-button {
@@ -840,28 +1159,39 @@ body::after {
 
     border: 2px solid var(--plum);
 
-    border-radius: 999px;
+    border-radius: 14px;
 
-    background: var(--mint-light);
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint),
+            var(--mint-light)
+        );
 
     color: var(--plum-dark);
 
     font-weight: 900;
 
+    box-shadow: var(--tiny-shadow);
+
     transition:
         transform var(--transition),
-        background var(--transition);
+        background var(--transition),
+        box-shadow var(--transition);
 }
 
 .back-button:hover {
-    transform: translateX(-3px);
+    transform: translateX(-4px) rotate(-1deg);
 
-    background: var(--mint);
+    background: var(--pink-light);
+
+    box-shadow:
+        0 5px 0 rgba(115, 49, 100, 0.13);
 }
 
 
 /* =========================================================
-   15. SECTION HEADERS
+   16. SECTION HEADERS
    ========================================================= */
 
 .section-header {
@@ -872,7 +1202,11 @@ body::after {
 
     gap: 18px;
 
-    margin-bottom: 24px;
+    margin-bottom: 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 2px dashed rgba(115, 49, 100, 0.18);
 }
 
 .section-header-text {
@@ -881,6 +1215,9 @@ body::after {
 
 .section-header h1 {
     margin-bottom: 8px;
+
+    text-shadow:
+        2px 2px 0 var(--pink-light);
 }
 
 .section-header p {
@@ -894,7 +1231,9 @@ body::after {
 
     margin-bottom: 8px;
 
-    padding: 5px 10px;
+    padding: 6px 11px;
+
+    border: 1px solid rgba(115, 49, 100, 0.12);
 
     border-radius: 999px;
 
@@ -902,7 +1241,7 @@ body::after {
 
     color: var(--plum);
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 900;
 
@@ -913,19 +1252,39 @@ body::after {
 
 
 /* =========================================================
-   16. CARDS
+   17. CARDS — CUTE WEBPAGE BOXES
    ========================================================= */
 
 .card {
+    position: relative;
+
     padding: 20px;
 
-    background: rgba(255, 255, 255, 0.82);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.95),
+            rgba(255, 249, 242, 0.92)
+        );
 
     border: 2px solid rgba(115, 49, 100, 0.22);
 
     border-radius: var(--radius);
 
     box-shadow: var(--small-shadow);
+}
+
+.card::before {
+    content: "♡";
+
+    position: absolute;
+
+    top: 11px;
+    right: 14px;
+
+    color: rgba(232, 58, 194, 0.28);
+
+    font-size: 15px;
 }
 
 .card + .card {
@@ -971,14 +1330,14 @@ body::after {
     background:
         linear-gradient(
             135deg,
-            #fff3eb,
+            #FFF3EB,
             var(--white)
         );
 }
 
 
 /* =========================================================
-   17. CONTENT GRID
+   18. CONTENT GRID
    ========================================================= */
 
 .content-grid {
@@ -995,7 +1354,7 @@ body::after {
 
 
 /* =========================================================
-   18. ART CATEGORY SELECTOR
+   19. ART CATEGORY SELECTOR
    ========================================================= */
 
 .art-categories {
@@ -1009,34 +1368,53 @@ body::after {
 }
 
 .art-category {
-    min-height: 62px;
+    position: relative;
 
-    padding: 10px;
+    min-height: 68px;
 
-    border: 2px solid rgba(115, 49, 100, 0.24);
+    padding: 10px 8px;
 
-    border-radius: 16px;
+    border: 2px solid rgba(115, 49, 100, 0.22);
+
+    border-radius: 17px;
 
     background: var(--white);
 
     color: var(--plum-dark);
 
+    font-size: 11px;
+
     font-weight: 900;
 
-    box-shadow: 0 3px 0 rgba(115, 49, 100, 0.08);
+    box-shadow: var(--tiny-shadow);
 
     transition:
         transform var(--transition),
         background var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.art-category::before {
+    content: "✦";
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--pink);
+
+    font-size: 13px;
 }
 
 .art-category:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) rotate(-1deg);
 
     background: var(--pink-light);
 
     border-color: var(--pink);
+
+    box-shadow: var(--small-shadow);
 }
 
 .art-category.active {
@@ -1050,22 +1428,21 @@ body::after {
     border-color: var(--plum);
 
     box-shadow:
-        0 4px 0 rgba(115, 49, 100, 0.13);
+        0 5px 0 rgba(115, 49, 100, 0.14);
+}
+
+.art-category.active::before {
+    content: "♡";
+
+    color: var(--plum);
 }
 
 
 /* =========================================================
-   19. ART GALLERY
+   20. ART GALLERY
    ========================================================= */
 
-.art-gallery {
-    display: grid;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 17px;
-}
-
+.art-gallery,
 .gallery {
     display: grid;
 
@@ -1081,9 +1458,9 @@ body::after {
 
     min-width: 0;
 
-    border: 2px solid rgba(115, 49, 100, 0.24);
+    border: 2px solid rgba(115, 49, 100, 0.22);
 
-    border-radius: 18px;
+    border-radius: 19px;
 
     background: var(--white);
 
@@ -1097,14 +1474,55 @@ body::after {
         border-color var(--transition);
 }
 
+.gallery-card::before {
+    content: "♡";
+
+    position: absolute;
+
+    top: 8px;
+    right: 9px;
+
+    z-index: 2;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    color: var(--pink);
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    transform: scale(0.8);
+
+    transition:
+        opacity var(--transition),
+        transform var(--transition);
+}
+
 .gallery-card:hover {
-    transform: translateY(-5px) scale(1.015);
+    transform: translateY(-5px) rotate(-0.5deg);
 
     border-color: var(--pink);
 
     box-shadow:
-        0 8px 0 rgba(115, 49, 100, 0.11),
+        0 8px 0 rgba(115, 49, 100, 0.12),
         0 17px 30px rgba(115, 49, 100, 0.14);
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+
+    transform: scale(1);
 }
 
 .gallery-card img {
@@ -1146,11 +1564,18 @@ body::after {
     text-align: center;
 
     border-top: 1px solid rgba(115, 49, 100, 0.12);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--mint-light),
+            var(--white)
+        );
 }
 
 
 /* =========================================================
-   20. EMPTY / LOADING GALLERY STATES
+   21. EMPTY / LOADING
    ========================================================= */
 
 .gallery-message {
@@ -1164,9 +1589,26 @@ body::after {
 
     border-radius: var(--radius);
 
-    background: var(--mint-light);
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint-light),
+            var(--pink-light)
+        );
 
     color: var(--text-soft);
+}
+
+.gallery-message::before {
+    content: "♡  ✦  ♡";
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--pink);
+
+    letter-spacing: 7px;
 }
 
 .loading {
@@ -1188,9 +1630,11 @@ body::after {
     width: 24px;
     height: 24px;
 
-    border: 3px solid rgba(115, 49, 100, 0.18);
+    border: 3px solid rgba(115, 49, 100, 0.16);
 
     border-top-color: var(--pink);
+
+    border-right-color: var(--mint-dark);
 
     border-radius: 50%;
 
@@ -1205,7 +1649,7 @@ body::after {
 
 
 /* =========================================================
-   21. BODY SHEET CARDS
+   22. BODY SHEET CARDS
    ========================================================= */
 
 .body-sheet-grid {
@@ -1217,26 +1661,43 @@ body::after {
 }
 
 .body-sheet-card {
-    padding: 18px;
+    position: relative;
 
-    border: 2px solid rgba(115, 49, 100, 0.23);
+    padding: 20px;
 
-    border-radius: 20px;
+    border: 2px solid rgba(115, 49, 100, 0.22);
+
+    border-radius: 21px;
 
     background: var(--white);
 
     box-shadow: var(--small-shadow);
+
+    overflow: hidden;
 
     transition:
         transform var(--transition),
         box-shadow var(--transition);
 }
 
+.body-sheet-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 13px;
+    top: 10px;
+
+    color: rgba(232, 58, 194, 0.35);
+
+    font-size: 18px;
+}
+
 .body-sheet-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px) rotate(-0.4deg);
 
     box-shadow:
-        0 8px 0 rgba(115, 49, 100, 0.10),
+        0 8px 0 rgba(115, 49, 100, 0.12),
         0 16px 28px rgba(115, 49, 100, 0.13);
 }
 
@@ -1289,7 +1750,7 @@ body::after {
 
 
 /* =========================================================
-   22. TIER BADGES
+   23. TIER BADGES
    ========================================================= */
 
 .tier-badge {
@@ -1299,7 +1760,9 @@ body::after {
 
     margin-bottom: 10px;
 
-    padding: 5px 10px;
+    padding: 6px 11px;
+
+    border: 1px solid var(--plum);
 
     border-radius: 999px;
 
@@ -1307,13 +1770,15 @@ body::after {
 
     color: var(--white);
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 900;
 
     letter-spacing: 0.8px;
 
     text-transform: uppercase;
+
+    box-shadow: 0 3px 0 rgba(115, 49, 100, 0.15);
 }
 
 .body-sheet-card ul,
@@ -1332,7 +1797,7 @@ body::after {
 
 
 /* =========================================================
-   23. EXTRA / INFO TABLES
+   24. INFO TABLES
    ========================================================= */
 
 .info-table {
@@ -1344,11 +1809,13 @@ body::after {
 
     overflow: hidden;
 
-    border: 2px solid rgba(115, 49, 100, 0.18);
+    border: 2px solid rgba(115, 49, 100, 0.19);
 
-    border-radius: 16px;
+    border-radius: 17px;
 
     background: var(--white);
+
+    box-shadow: var(--tiny-shadow);
 }
 
 .info-table th,
@@ -1374,13 +1841,17 @@ body::after {
     font-size: 13px;
 }
 
+.info-table tr:nth-child(even) td {
+    background: rgba(254, 224, 254, 0.22);
+}
+
 .info-table tr:last-child td {
     border-bottom: none;
 }
 
 
 /* =========================================================
-   24. LINKS
+   25. LINKS
    ========================================================= */
 
 .link-grid {
@@ -1398,13 +1869,13 @@ body::after {
 
     gap: 12px;
 
-    min-height: 65px;
+    min-height: 70px;
 
     padding: 13px 16px;
 
     border: 2px solid rgba(115, 49, 100, 0.20);
 
-    border-radius: 17px;
+    border-radius: 18px;
 
     background: var(--white);
 
@@ -1417,20 +1888,25 @@ body::after {
     transition:
         transform var(--transition),
         background var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 .link-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px) rotate(-0.4deg);
 
     background: var(--pink-light);
 
     border-color: var(--pink);
+
+    box-shadow:
+        0 6px 0 rgba(115, 49, 100, 0.13),
+        0 12px 22px rgba(115, 49, 100, 0.11);
 }
 
 .link-card-icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
 
@@ -1439,13 +1915,17 @@ body::after {
 
     flex-shrink: 0;
 
-    border-radius: 12px;
+    border: 2px solid var(--plum);
+
+    border-radius: 13px;
 
     background: var(--mint);
 
     color: var(--plum);
 
     font-weight: 900;
+
+    box-shadow: 0 3px 0 rgba(115, 49, 100, 0.10);
 }
 
 .link-card-text {
@@ -1472,7 +1952,7 @@ body::after {
 
 
 /* =========================================================
-   25. COMMISSION BUTTONS
+   26. COMMISSION BUTTONS
    ========================================================= */
 
 .commission-actions {
@@ -1493,13 +1973,13 @@ body::after {
     align-items: center;
     justify-content: center;
 
-    min-height: 48px;
+    min-height: 49px;
 
-    padding: 11px 20px;
+    padding: 11px 21px;
 
     border: 2px solid var(--plum);
 
-    border-radius: 999px;
+    border-radius: 15px;
 
     background: var(--mint);
 
@@ -1509,21 +1989,25 @@ body::after {
 
     text-decoration: none;
 
-    box-shadow: 0 4px 0 rgba(115, 49, 100, 0.14);
+    box-shadow: var(--tiny-shadow);
 
     transition:
         transform var(--transition),
-        background var(--transition);
+        background var(--transition),
+        box-shadow var(--transition);
 }
 
 .commission-button:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) rotate(-0.5deg);
 
     background: var(--pink-light);
+
+    box-shadow:
+        0 5px 0 rgba(115, 49, 100, 0.14);
 }
 
 .commission-button.kofi {
-    background: var(--pink);
+    background: var(--pink-light);
 }
 
 .commission-button.form {
@@ -1532,7 +2016,7 @@ body::after {
 
 
 /* =========================================================
-   26. FAQ
+   27. FAQ
    ========================================================= */
 
 .faq-list {
@@ -1548,9 +2032,11 @@ body::after {
 
     border: 2px solid rgba(115, 49, 100, 0.20);
 
-    border-radius: 16px;
+    border-radius: 17px;
 
     background: var(--white);
+
+    box-shadow: var(--tiny-shadow);
 }
 
 .faq-question {
@@ -1572,6 +2058,18 @@ body::after {
     font-weight: 900;
 
     text-align: left;
+
+    transition:
+        background var(--transition);
+}
+
+.faq-question:hover {
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink-light),
+            var(--white)
+        );
 }
 
 .faq-answer {
@@ -1584,7 +2082,7 @@ body::after {
 
 
 /* =========================================================
-   27. ABOUT SECTION
+   28. ABOUT
    ========================================================= */
 
 .about-layout {
@@ -1615,8 +2113,27 @@ body::after {
         radial-gradient(
             circle at 50% 30%,
             var(--mint),
+            var(--pink-light) 55%,
             var(--lavender-light)
         );
+
+    box-shadow: var(--small-shadow);
+
+    position: relative;
+}
+
+.about-image::before {
+    content: "♡ ✦ ♡";
+
+    position: absolute;
+
+    top: 10px;
+
+    color: rgba(115, 49, 100, 0.25);
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
 }
 
 .about-image img {
@@ -1632,7 +2149,7 @@ body::after {
 
 
 /* =========================================================
-   28. LISTS / TAGS
+   29. TAGS
    ========================================================= */
 
 .tag-list {
@@ -1650,31 +2167,36 @@ body::after {
 
     padding: 6px 10px;
 
+    border: 1px solid rgba(115, 49, 100, 0.13);
+
     border-radius: 999px;
 
     background: var(--pink-light);
-
-    border: 1px solid rgba(115, 49, 100, 0.13);
 
     color: var(--plum-dark);
 
     font-size: 11px;
 
     font-weight: 800;
+
+    box-shadow: 0 2px 0 rgba(115, 49, 100, 0.07);
 }
 
 .tag:nth-child(2n) {
     background: var(--mint);
-
 }
 
 .tag:nth-child(3n) {
     background: var(--lavender-light);
 }
 
+.tag:nth-child(4n) {
+    background: var(--peach);
+}
+
 
 /* =========================================================
-   29. IMAGE VIEWER / FULLSCREEN ART
+   30. IMAGE VIEWER
    ========================================================= */
 
 .image-viewer {
@@ -1764,7 +2286,7 @@ body::after {
 
 
 /* =========================================================
-   30. FAKE ERROR / NOTIFICATION POPUPS
+   31. POPUPS
    ========================================================= */
 
 .alien-popup,
@@ -1797,15 +2319,44 @@ body::after {
     animation: popupIn 0.25s ease;
 }
 
+.alien-popup::before,
+.system-popup::before,
+.error-popup::before,
+.notification-popup::before {
+    content: "✦  PUPPIPYRO.EXE";
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    padding-bottom: 7px;
+
+    border-bottom: 1px dashed rgba(115, 49, 100, 0.2);
+
+    color: var(--pink-dark);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
 @keyframes popupIn {
     from {
         opacity: 0;
-        transform: scale(0.94) translateY(10px);
+
+        transform:
+            scale(0.94)
+            translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
     }
 }
 
@@ -1831,7 +2382,7 @@ body::after {
 
 
 /* =========================================================
-   31. SECRET EVENT
+   32. SECRET EVENT
    ========================================================= */
 
 .secret-event {
@@ -1898,6 +2449,22 @@ body::after {
     box-shadow:
         0 15px 0 rgba(115, 49, 100, 0.18),
         0 25px 70px rgba(80, 61, 78, 0.30);
+}
+
+.secret-event-window::before {
+    content: "✦  SECRET SYSTEM EVENT  ✦";
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--pink-dark);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
 }
 
 .secret-event h2 {
@@ -1969,7 +2536,7 @@ body::after {
 
 
 /* =========================================================
-   32. FORMS
+   33. FORMS
    ========================================================= */
 
 input,
@@ -2017,7 +2584,7 @@ label {
 
 
 /* =========================================================
-   33. BUTTON GENERIC
+   34. BUTTON FOCUS
    ========================================================= */
 
 button {
@@ -2033,7 +2600,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   34. SELECTION
+   35. SELECTION
    ========================================================= */
 
 ::selection {
@@ -2044,7 +2611,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   35. SCROLLBARS
+   36. SCROLLBARS
    ========================================================= */
 
 * {
@@ -2077,7 +2644,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   36. UTILITY CLASSES
+   37. UTILITY CLASSES
    ========================================================= */
 
 .text-center {
@@ -2105,7 +2672,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   37. TABLET
+   38. TABLET
    ========================================================= */
 
 @media (max-width: 850px) {
@@ -2150,7 +2717,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   38. MOBILE
+   39. MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
@@ -2220,6 +2787,15 @@ a:focus-visible {
         overflow: visible;
     }
 
+    .page-content::before {
+        margin-top: -3px;
+
+        margin-bottom: 17px;
+
+        font-size: 8px;
+    }
+
+
     /* HOME */
 
     .home-window {
@@ -2279,18 +2855,29 @@ a:focus-visible {
     @keyframes pyroFloatMobile {
         0%,
         100% {
-            transform: translateX(50%) translateY(0) rotate(-1deg);
+            transform:
+                translateX(50%)
+                translateY(0)
+                rotate(-1deg);
         }
 
         50% {
-            transform: translateX(50%) translateY(-6px) rotate(1deg);
+            transform:
+                translateX(50%)
+                translateY(-6px)
+                rotate(1deg);
         }
     }
+
 
     /* MENU */
 
     .menu-content {
         padding: 20px 14px 25px;
+    }
+
+    .menu-heading::before {
+        font-size: 12px;
     }
 
     .menu-grid {
@@ -2300,8 +2887,11 @@ a:focus-visible {
     }
 
     .menu-button {
-        min-height: 64px;
+        min-height: 68px;
+
+        padding-left: 53px;
     }
+
 
     /* CONTENT */
 
@@ -2318,6 +2908,7 @@ a:focus-visible {
         font-size: 30px;
     }
 
+
     /* ART */
 
     .art-categories {
@@ -2327,9 +2918,9 @@ a:focus-visible {
     }
 
     .art-category {
-        min-height: 55px;
+        min-height: 58px;
 
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .art-gallery,
@@ -2339,11 +2930,13 @@ a:focus-visible {
         gap: 14px;
     }
 
+
     /* BODY SHEETS */
 
     .body-sheet-grid {
         grid-template-columns: 1fr;
     }
+
 
     /* LINKS */
 
@@ -2351,11 +2944,13 @@ a:focus-visible {
         grid-template-columns: 1fr;
     }
 
+
     /* ABOUT */
 
     .about-image {
         min-height: 220px;
     }
+
 
     /* BUTTONS */
 
@@ -2369,11 +2964,13 @@ a:focus-visible {
         width: 100%;
     }
 
+
     /* DECORATIONS */
 
     .decor:nth-of-type(n + 4) {
         display: none;
     }
+
 
     /* POPUPS */
 
@@ -2404,7 +3001,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   39. VERY SMALL PHONES
+   40. VERY SMALL PHONES
    ========================================================= */
 
 @media (max-width: 380px) {
@@ -2439,11 +3036,21 @@ a:focus-visible {
     .system-status span {
         font-size: 9px;
     }
+
+    .menu-button {
+        min-height: 64px;
+
+        padding-left: 50px;
+    }
+
+    .menu-button::before {
+        left: 13px;
+    }
 }
 
 
 /* =========================================================
-   40. REDUCED MOTION
+   41. REDUCED MOTION
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2454,6 +3061,7 @@ a:focus-visible {
         scroll-behavior: auto !important;
 
         animation-duration: 0.01ms !important;
+
         animation-iteration-count: 1 !important;
 
         transition-duration: 0.01ms !important;

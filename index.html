@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PuppiPyro.exe</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PuppiPyro — cute alien-powered art, Gacha bodysheets, character art, commissions, and other silly creations."
+    >
+
+    <title>PUPPIPYRO.EXE</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,76 +21,58 @@
 <body>
 
     <!-- =====================================================
-         FLOATING SPACE DECORATIONS
-    ====================================================== -->
-
-    <div class="space-decoration star star-1">✦</div>
-    <div class="space-decoration star star-2">✧</div>
-    <div class="space-decoration star star-3">✦</div>
-
-    <div class="space-decoration planet planet-1"></div>
-    <div class="space-decoration planet planet-2"></div>
-
-    <div class="space-decoration sparkle sparkle-1">✧</div>
-    <div class="space-decoration sparkle sparkle-2">✦</div>
-
-
-    <!-- =====================================================
          HOME SCREEN
     ====================================================== -->
 
     <main id="home-screen" class="screen active">
 
-        <div class="computer-window home-window">
+        <div class="computer-window">
 
-            <div class="window-bar">
-                <span>✦ PUPPIPYRO.EXE</span>
+            <div class="window-header">
+
+                <div class="window-title">
+                    ♡ PUPPIPYRO.EXE
+                </div>
 
                 <div class="window-controls">
-                    <button type="button">−</button>
-                    <button type="button">□</button>
-                    <button type="button">×</button>
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
                 </div>
+
             </div>
 
 
             <div class="home-content">
 
-                <p class="tiny-text">✦ SIGNAL RECEIVED ✦</p>
-
-                <h1 class="site-title">
-                    PUPPIPYRO
-                </h1>
-
-                <h2 class="home-heading">
-                    HI, HUMAN!
-                </h2>
-
-                <p class="home-description">
-                    Welcome to my little corner of the internet.<br>
-                    You've somehow landed on my planet.
-                </p>
-
-
-                <!-- Temporary Pyro placeholder -->
-                <div class="pyro-placeholder">
-
-                    <div class="pyro-face">
-                        <div class="pyro-eye left-eye"></div>
-                        <div class="pyro-eye right-eye"></div>
-                    </div>
-
-                    <p>PYRO.EXE</p>
-
+                <div class="site-title">
+                    PUPPIPYRO.EXE
                 </div>
 
+                <div class="site-tagline">
+                    alien art system // online
+                </div>
+
+                <div class="pyro-placeholder">
+                    <span>✦</span>
+                    <span>PYRO</span>
+                    <span>✦</span>
+                </div>
+
+                <h1 class="home-heading">
+                    Welcome to PuppiPyro's little corner of the internet!
+                </h1>
+
+                <p class="home-description">
+                    A cute little alien-powered art space full of Gacha art,
+                    bodysheets, characters, and other silly creations.
+                </p>
 
                 <button
-                    type="button"
                     class="enter-button"
                     onclick="enterSite()"
                 >
-                    ✦ ENTER ✦
+                    ENTER SYSTEM
                 </button>
 
             </div>
@@ -89,7 +80,6 @@
         </div>
 
     </main>
-
 
 
     <!-- =====================================================
@@ -100,101 +90,133 @@
 
         <div class="computer-window">
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>✦ PUPPIPYRO.EXE</span>
+                <div class="window-title">
+                    ♡ PUPPIPYRO.EXE
+                </div>
 
                 <div class="window-controls">
-                    <button type="button">−</button>
-                    <button type="button">□</button>
-                    <button type="button">×</button>
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
                 </div>
 
             </div>
 
 
-            <div class="section-content menu-content">
+            <div class="menu-content">
 
-                <p class="tiny-text">
-                    SYSTEM ONLINE
-                </p>
+                <div class="menu-heading">
+                    <span>✦</span>
+                    ALIEN OS
+                    <span>✦</span>
+                </div>
 
-                <h1>
-                    WELCOME, HUMAN!
-                </h1>
-
-                <p class="section-intro">
-                    Choose a destination from my little alien computer.
+                <p class="menu-subheading">
+                    SYSTEM ONLINE — SELECT DESTINATION
                 </p>
 
 
                 <div class="menu-grid">
 
                     <button
-                        type="button"
                         class="menu-button"
-                        onclick="showSection('about')"
+                        onclick="showSection('home-screen')"
                     >
-                        <span>♡</span>
-                        ABOUT ME
+                        <span class="menu-icon">⌂</span>
+                        HOME
                     </button>
 
 
                     <button
-                        type="button"
-                        class="menu-button"
-                        onclick="showSection('body-sheets')"
-                    >
-                        <span>✦</span>
-                        BODY SHEETS
-                    </button>
-
-
-                    <button
-                        type="button"
                         class="menu-button"
                         onclick="showSection('art')"
                     >
-                        <span>✧</span>
+                        <span class="menu-icon">✦</span>
                         ART
                     </button>
 
 
                     <button
-                        type="button"
                         class="menu-button"
+                        onclick="showSection('body-sheets')"
+                    >
+                        <span class="menu-icon">♡</span>
+                        BODY SHEETS
+                    </button>
+
+
+                    <button
+                        class="menu-button"
+                        onclick="showSection('commissions')"
+                    >
+                        <span class="menu-icon">✎</span>
+                        COMMISSIONS
+                    </button>
+
+
+                    <button
+                        class="menu-button"
+                        onclick="showSection('about')"
+                    >
+                        <span class="menu-icon">★</span>
+                        ABOUT
+                    </button>
+
+
+                    <button
+                        class="menu-button"
+                        onclick="showSection('links')"
+                    >
+                        <span class="menu-icon">↗</span>
+                        LINKS
+                    </button>
+
+                </div>
+
+
+                <div class="menu-utilities">
+
+                    <button
+                        class="utility-button"
                         onclick="showSection('tos')"
                     >
-                        <span>♡</span>
                         TOS
                     </button>
 
-
                     <button
-                        type="button"
-                        class="menu-button"
-                        onclick="showSection('payment')"
+                        class="utility-button"
+                        onclick="showSection('faq')"
                     >
-                        <span>✦</span>
-                        PAYMENT
+                        FAQ
                     </button>
 
-
                     <button
-                        type="button"
-                        class="menu-button"
-                        onclick="showSection('extra-info')"
+                        class="utility-button"
+                        onclick="showSection('contact')"
                     >
-                        <span>✧</span>
-                        EXTRA INFO
+                        CONTACT
                     </button>
 
                 </div>
 
 
-                <div class="menu-footer">
-                    <span>♡ PUPPIPYRO</span>
-                    <span>ALIEN CONNECTION: STABLE</span>
+                <div class="system-status">
+
+                    <div>● SYSTEM ONLINE</div>
+                    <div>PUPPIPYRO.EXE</div>
+                    <div>ALIEN OS v1.0</div>
+                    <div>ART DATABASE: ONLINE</div>
+                    <div>COMMISSIONS: OPEN</div>
+                    <div>SIGNAL: STABLE</div>
+                    <div>USER DETECTED</div>
+
+                </div>
+
+
+                <div class="menu-message">
+                    SYSTEM READY — what are we getting into today?
                 </div>
 
             </div>
@@ -202,215 +224,49 @@
         </div>
 
     </section>
-
-
-
-    <!-- =====================================================
-         ABOUT ME
-    ====================================================== -->
-
-    <section id="about" class="screen section-screen">
-
-        <div class="computer-window">
-
-            <div class="window-bar">
-
-                <span>♡ ABOUT PUPPIPYRO</span>
-
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <div class="section-content">
-
-                <p class="tiny-text">
-                    DATABASE: ABOUT_ME
-                </p>
-
-                <h1>
-                    ABOUT ME
-                </h1>
-
-
-                <div class="info-card">
-
-                    <div class="placeholder-art-box">
-                        <span>✦</span>
-                        <p>PYRO ART GOES HERE</p>
-                    </div>
-
-
-                    <div class="info-card-text">
-
-                        <h2>
-                            HI, I'M PYRO!
-                        </h2>
-
-                        <p>
-                            Welcome to my little corner of the internet!
-                            I'm an artist and creator who somehow managed
-                            to build an entire alien computer for my website.
-                        </p>
-
-                        <p>
-                            This is where I'll eventually tell you more
-                            about myself, my art, my characters, and the
-                            things I create.
-                        </p>
-
-                        <p class="placeholder-note">
-                            ✦ More information coming soon!
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        WHAT I MAKE
-                    </h2>
-
-                    <p>
-                        Gacha body sheets, artwork, character designs,
-                        and other creative projects.
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="back-button"
-                    onclick="backToMenu()"
-                >
-                    ← BACK
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         BODY SHEETS
-    ====================================================== -->
-
-    <section id="body-sheets" class="screen section-screen">
-
-        <div class="computer-window">
-
-            <div class="window-bar">
-
-                <span>✦ BODY SHEET DATABASE</span>
-
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <div class="section-content">
-
-                <p class="tiny-text">
-                    DATABASE: BODY_SHEETS
-                </p>
-
-                <h1>
-                    BODY SHEETS
-                </h1>
-
-                <p class="section-intro">
-                    Browse my available Gacha body sheets.
-                    Click a sheet to inspect it!
-                </p>
-
-
-                <div
-                    id="body-sheet-gallery"
-                    class="body-sheet-gallery"
-                >
-
-                    <div class="loading-message">
-
-                        <span>✦</span>
-
-                        SEARCHING THE ALIEN DATABASE...
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="back-button"
-                    onclick="backToMenu()"
-                >
-                    ← BACK
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
 
 
     <!-- =====================================================
          ART
     ====================================================== -->
 
-    <section id="art" class="screen section-screen">
+    <section id="art" class="screen">
 
         <div class="computer-window">
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>✧ ART ARCHIVE</span>
+                <div class="window-title">
+                    ♡ ART ARCHIVE
+                </div>
 
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
 
             </div>
 
 
-            <div class="section-content">
+            <div class="page-content">
 
-                <p class="tiny-text">
-                    DATABASE: ART_ARCHIVE
-                </p>
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ← BACK TO MENU
+                </button>
 
-                <h1>
-                    MY ART
-                </h1>
 
-                <p class="section-intro">
-                    Welcome to my little art archive!
-                    Click an artwork to inspect it.
+                <div class="page-heading">
+                    <span>✦</span>
+                    ART ARCHIVE
+                    <span>✦</span>
+                </div>
+
+                <p class="page-subheading">
+                    Welcome to my little collection of silly art.
                 </p>
 
 
@@ -418,25 +274,11 @@
                     id="art-gallery"
                     class="art-gallery"
                 >
-
                     <div class="loading-message">
-
-                        <span>✧</span>
-
+                        <span>✦</span>
                         SEARCHING THE ART ARCHIVE...
-
                     </div>
-
                 </div>
-
-
-                <button
-                    type="button"
-                    class="back-button"
-                    onclick="backToMenu()"
-                >
-                    ← BACK
-                </button>
 
             </div>
 
@@ -444,403 +286,944 @@
 
     </section>
 
+
+    <!-- =====================================================
+         BODY SHEETS
+    ====================================================== -->
+
+    <section id="body-sheets" class="screen">
+
+        <div class="computer-window">
+
+            <div class="window-header">
+
+                <div class="window-title">
+                    ♡ BODY SHEET DATABASE
+                </div>
+
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+
+            </div>
+
+
+            <div class="page-content">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ← BACK TO MENU
+                </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    BODY SHEETS
+                    <span>✦</span>
+                </div>
+
+                <p class="page-subheading">
+                    Gacha bodysheets made for characters, edits, and animation.
+                </p>
+
+
+                <div class="tier-preview">
+
+                    <div class="tier-box">
+                        <strong>TIER 1</strong>
+                        <span>Simple</span>
+                        <b>$10</b>
+                    </div>
+
+                    <div class="tier-box">
+                        <strong>TIER 2</strong>
+                        <span>Stylized</span>
+                        <b>$20</b>
+                    </div>
+
+                    <div class="tier-box">
+                        <strong>TIER 3</strong>
+                        <span>Realistic</span>
+                        <b>$30</b>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="body-sheet-gallery"
+                    class="body-sheet-gallery"
+                >
+                    <div class="loading-message">
+                        <span>✦</span>
+                        SEARCHING THE ALIEN DATABASE...
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMMISSIONS
+    ====================================================== -->
+
+    <section id="commissions" class="screen">
+
+        <div class="computer-window">
+
+            <div class="window-header">
+
+                <div class="window-title">
+                    ♡ COMMISSION SYSTEM
+                </div>
+
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+
+            </div>
+
+
+            <div class="page-content commission-page">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ← BACK TO MENU
+                </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    COMMISSIONS
+                    <span>✦</span>
+                </div>
+
+                <p class="page-subheading">
+                    Gacha bodysheets made with love, chaos, and way too many hands.
+                </p>
+
+
+                <!-- COMMISSION STATUS -->
+
+                <div class="commission-status">
+
+                    <span class="status-dot">●</span>
+
+                    <strong>COMMISSIONS ARE OPEN</strong>
+
+                    <span>
+                        3 ACTIVE SLOTS + 4 WAITLIST SLOTS
+                    </span>
+
+                </div>
+
+
+                <!-- TIERS -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ BODY SHEET TIERS
+                    </h2>
+
+
+                    <div class="commission-tier-grid">
+
+
+                        <article class="commission-tier">
+
+                            <div class="tier-number">
+                                TIER 1
+                            </div>
+
+                            <h3>
+                                Simple
+                            </h3>
+
+                            <div class="tier-price">
+                                $10
+                            </div>
+
+                            <ul>
+                                <li>Full body</li>
+                                <li>Eye sheet</li>
+                                <li>4 hands</li>
+                                <li>5 mouths</li>
+                                <li>GL / GC proportions</li>
+                                <li>No emotes included</li>
+                            </ul>
+
+                        </article>
+
+
+                        <article class="commission-tier">
+
+                            <div class="tier-number">
+                                TIER 2
+                            </div>
+
+                            <h3>
+                                Stylized
+                            </h3>
+
+                            <div class="tier-price">
+                                $20
+                            </div>
+
+                            <ul>
+                                <li>Full body</li>
+                                <li>Eye sheet</li>
+                                <li>8 hands</li>
+                                <li>10 mouths</li>
+                                <li>More stylized proportions</li>
+                                <li>Larger chest / hips / legs where appropriate</li>
+                            </ul>
+
+                        </article>
+
+
+                        <article class="commission-tier">
+
+                            <div class="tier-number">
+                                TIER 3
+                            </div>
+
+                            <h3>
+                                Realistic
+                            </h3>
+
+                            <div class="tier-price">
+                                $30
+                            </div>
+
+                            <ul>
+                                <li>Full body</li>
+                                <li>Eye sheet</li>
+                                <li>12 hands</li>
+                                <li>15 mouths</li>
+                                <li>More realistic proportions</li>
+                            </ul>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXTRAS -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ EXTRAS
+                    </h2>
+
+
+                    <div class="extras-grid">
+
+                        <div>
+                            Extra hand
+                            <strong>$0.50</strong>
+                        </div>
+
+                        <div>
+                            Extra mouth
+                            <strong>$0.75</strong>
+                        </div>
+
+                        <div>
+                            Extra emote
+                            <strong>$0.50</strong>
+                        </div>
+
+                        <div>
+                            Extra outfit
+                            <strong>$0.75</strong>
+                        </div>
+
+                        <div>
+                            Extra prop
+                            <strong>$0.50</strong>
+                        </div>
+
+                    </div>
+
+
+                    <p class="small-note">
+                        Up to 10 full outfits + 5 small outfits.
+                        Up to 8 props.
+                    </p>
+
+                </div>
+
+
+                <!-- PROCESS -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ HOW IT WORKS
+                    </h2>
+
+
+                    <div class="process-list">
+
+                        <div class="process-step">
+                            <span>01</span>
+                            <div>
+                                <strong>Submit the form</strong>
+                                <p>
+                                    Fill out the Google Commission Form with
+                                    your character information and references.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="process-step">
+                            <span>02</span>
+                            <div>
+                                <strong>Join the queue</strong>
+                                <p>
+                                    You'll be placed into the active queue
+                                    or waitlist based on availability.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="process-step">
+                            <span>03</span>
+                            <div>
+                                <strong>Payment</strong>
+                                <p>
+                                    Standard orders use the 25% / 25% / 50%
+                                    payment structure.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="process-step">
+                            <span>04</span>
+                            <div>
+                                <strong>Sketch</strong>
+                                <p>
+                                    Work begins once the required payment
+                                    has been received.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="process-step">
+                            <span>05</span>
+                            <div>
+                                <strong>Preview + revisions</strong>
+                                <p>
+                                    You'll receive watermarked previews
+                                    and can request revisions.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="process-step">
+                            <span>06</span>
+                            <div>
+                                <strong>Final files</strong>
+                                <p>
+                                    Once everything is approved and paid,
+                                    you'll receive your finished files
+                                    and PSD.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAYMENT -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ PAYMENT
+                    </h2>
+
+
+                    <div class="payment-box">
+
+                        <h3>
+                            Standard payment
+                        </h3>
+
+                        <p>
+                            <strong>25%</strong> after line art
+                            →
+                            <strong>25%</strong> after flat colors
+                            →
+                            <strong>50%</strong> after I show you a picture
+                            of the finished body sheet.
+                        </p>
+
+
+                        <h3>
+                            Payment plans
+                        </h3>
+
+                        <p>
+                            Payment plans are available if you need one.
+                            You can pay what you are able to each week
+                            until the full price is paid.
+                        </p>
+
+                        <p>
+                            The finished bodysheet and final files will not
+                            be delivered until the full price has been paid.
+                            If you need an extension, communicate with me
+                            before your payment deadline.
+                        </p>
+
+                        <p class="small-note">
+                            Payment-processing fees are included in the listed prices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TURNAROUND -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ TURNAROUND
+                    </h2>
+
+                    <p>
+                        Estimated turnaround is <strong>1–2 weeks</strong>.
+                        It may take longer depending on workload, health,
+                        character complexity, or unexpected delays.
+                    </p>
+
+                    <p>
+                        Rush commissions are not available.
+                    </p>
+
+                </div>
+
+
+                <!-- WILL / WON'T DRAW -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ WHAT I DRAW
+                    </h2>
+
+
+                    <div class="will-wont-grid">
+
+                        <div class="will-box">
+
+                            <h3>
+                                YES
+                            </h3>
+
+                            <ul>
+                                <li>Human characters</li>
+                                <li>Humanoids</li>
+                                <li>Male characters</li>
+                                <li>Female characters</li>
+                                <li>Two-legged furry characters</li>
+                                <li>Gacha characters</li>
+                                <li>Stylized designs</li>
+                                <li>Custom outfits</li>
+                                <li>Reasonably complex designs</li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="wont-box">
+
+                            <h3>
+                                NO
+                            </h3>
+
+                            <ul>
+                                <li>Mecha</li>
+                                <li>Heavy armor</li>
+                                <li>Extremely complex designs</li>
+                                <li>Four-legged characters</li>
+                                <li>Explicit NSFW</li>
+                                <li>Extreme gore</li>
+                                <li>Copied designs</li>
+                                <li>Severe eyestrain designs</li>
+                                <li>AI-generated references</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVISIONS -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ REVISIONS
+                    </h2>
+
+                    <p>
+                        Around <strong>10 revisions</strong> are included
+                        for free. Additional revisions after that are
+                        <strong>$0.50 each</strong>.
+                    </p>
+
+                </div>
+
+
+                <!-- COMMERCIAL USE -->
+
+                <div class="commission-section">
+
+                    <h2>
+                        ✦ COMMERCIAL USE
+                    </h2>
+
+                    <p>
+                        You may use your commissioned character and
+                        bodysheet in monetized content, including videos.
+                    </p>
+
+                    <p>
+                        You must credit PuppiPyro. You may not resell
+                        the commissioned artwork itself.
+                    </p>
+
+                </div>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="commission-actions">
+
+                    <a
+                        class="primary-action"
+                        href="https://forms.gle/oCRvWVjE7SprhQdX9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        OPEN COMMISSION FORM
+                    </a>
+
+
+                    <a
+                        class="secondary-action"
+                        href="https://ko-fi.com/puppipyro"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        PAY / SUPPORT ON KO-FI
+                    </a>
+
+                </div>
+
+
+                <div class="commission-footer-note">
+                    Please read the full TOS before submitting a commission.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section id="about" class="screen">
+
+        <div class="computer-window">
+
+            <div class="window-header">
+
+                <div class="window-title">
+                    ♡ ABOUT PYRO
+                </div>
+
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+
+            </div>
+
+
+            <div class="page-content">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ← BACK TO MENU
+                </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    ABOUT PYRO
+                    <span>✦</span>
+                </div>
+
+
+                <div class="placeholder-page">
+
+                    <h2>
+                        HI, I'M PYRO!
+                    </h2>
+
+                    <p>
+                        This page is getting filled with alien nonsense soon.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LINKS
+    ====================================================== -->
+
+    <section id="links" class="screen">
+
+        <div class="computer-window">
+
+            <div class="window-header">
+
+                <div class="window-title">
+                    ♡ SOCIAL SIGNALS
+                </div>
+
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
+
+            </div>
+
+
+            <div class="page-content">
+
+                <button
+                    class="back-button"
+                    onclick="backToMenu()"
+                >
+                    ← BACK TO MENU
+                </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    LINKS
+                    <span>✦</span>
+                </div>
+
+
+                <div class="links-grid">
+
+                    <a
+                        href="https://commissions-hub.carrd.co/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        COMMISSION HUB
+                    </a>
+
+                    <a
+                        href="https://ko-fi.com/puppipyro"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        KO-FI
+                    </a>
+
+                    <a
+                        href="https://forms.gle/oCRvWVjE7SprhQdX9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        COMMISSION FORM
+                    </a>
+
+                    <div class="link-placeholder">
+                        TIKTOK — COMING SOON
+                    </div>
+
+                    <div class="link-placeholder">
+                        YOUTUBE — COMING SOON
+                    </div>
+
+                    <div class="link-placeholder">
+                        DISCORD — COMING SOON
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
     <!-- =====================================================
          TOS
     ====================================================== -->
 
-    <section id="tos" class="screen section-screen">
+    <section id="tos" class="screen">
 
         <div class="computer-window">
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>♡ PUPPIPYRO TOS</span>
+                <div class="window-title">
+                    ♡ TERMS OF SERVICE
+                </div>
 
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
 
             </div>
 
 
-            <div class="section-content">
-
-                <p class="tiny-text">
-                    DATABASE: TERMS_OF_SERVICE
-                </p>
-
-                <h1>
-                    TERMS OF SERVICE
-                </h1>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        BEFORE COMMISSIONING
-                    </h2>
-
-                    <p>
-                        Please read the terms carefully before submitting
-                        a commission request.
-                    </p>
-
-                    <p>
-                        By commissioning me, you agree to follow these
-                        terms.
-                    </p>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        I ACCEPT
-                    </h2>
-
-                    <ul>
-                        <li>Gacha character references</li>
-                        <li>Two-legged characters</li>
-                        <li>Humans and humanoids</li>
-                        <li>Furry characters</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        I DO NOT ACCEPT
-                    </h2>
-
-                    <ul>
-                        <li>Mecha</li>
-                        <li>Armor-heavy designs</li>
-                        <li>Extremely complex designs</li>
-                        <li>Extreme eyestrain designs</li>
-                        <li>Copied character designs</li>
-                        <li>Four-legged characters</li>
-                        <li>Explicit NSFW</li>
-                        <li>Extreme gore</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        COMMISSION RULES
-                    </h2>
-
-                    <ul>
-                        <li>Watermarked previews are provided before completion.</li>
-                        <li>PSD files are provided after the final payment.</li>
-                        <li>No refunds once work has begun.</li>
-                        <li>Rush orders are not available.</li>
-                        <li>Turnaround is generally 1–2 weeks, but may take longer.</li>
-                        <li>Credit is required when using commissioned work.</li>
-                    </ul>
-
-                </div>
-
-
-                <p class="placeholder-note">
-                    ✦ Full finalized TOS will be added here before launch.
-                </p>
-
+            <div class="page-content">
 
                 <button
-                    type="button"
                     class="back-button"
                     onclick="backToMenu()"
                 >
-                    ← BACK
+                    ← BACK TO MENU
                 </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    TOS
+                    <span>✦</span>
+                </div>
+
+
+                <div class="placeholder-page">
+
+                    <h2>
+                        TERMS OF SERVICE
+                    </h2>
+
+                    <p>
+                        Full TOS coming next.
+                    </p>
+
+                    <p>
+                        Please read the commission information before ordering.
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
     </section>
-
 
 
     <!-- =====================================================
-         PAYMENT
+         FAQ
     ====================================================== -->
 
-    <section id="payment" class="screen section-screen">
+    <section id="faq" class="screen">
 
         <div class="computer-window">
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>✦ PAYMENT TERMINAL</span>
+                <div class="window-title">
+                    ♡ FAQ DATABASE
+                </div>
 
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
 
             </div>
 
 
-            <div class="section-content">
-
-                <p class="tiny-text">
-                    DATABASE: PAYMENT
-                </p>
-
-                <h1>
-                    PAYMENT
-                </h1>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        PAYMENT METHODS
-                    </h2>
-
-                    <p>
-                        Current payment options:
-                    </p>
-
-                    <div class="payment-options">
-
-                        <div class="payment-option">
-                            <span>✦</span>
-                            KO-FI
-                        </div>
-
-                        <div class="payment-option">
-                            <span>♡</span>
-                            STRIPE
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        PAYMENT PLAN
-                    </h2>
-
-                    <p>
-                        Commission payments are currently split into
-                        three stages:
-                    </p>
-
-                    <ul>
-                        <li>25% upfront</li>
-                        <li>25% during the process</li>
-                        <li>50% before the final PSD is delivered</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        IMPORTANT
-                    </h2>
-
-                    <p>
-                        Please do not send payment until your commission
-                        has been accepted and you have been given payment
-                        instructions.
-                    </p>
-
-                </div>
-
-
-                <p class="placeholder-note">
-                    ✦ Payment links will be added here before launch.
-                </p>
-
+            <div class="page-content">
 
                 <button
-                    type="button"
                     class="back-button"
                     onclick="backToMenu()"
                 >
-                    ← BACK
+                    ← BACK TO MENU
                 </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    FAQ
+                    <span>✦</span>
+                </div>
+
+
+                <div class="placeholder-page">
+
+                    <h2>
+                        FREQUENTLY ASKED QUESTIONS
+                    </h2>
+
+                    <p>
+                        The alien database is still compiling answers.
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
     </section>
-
 
 
     <!-- =====================================================
-         EXTRA INFO
+         CONTACT
     ====================================================== -->
 
-    <section id="extra-info" class="screen section-screen">
+    <section id="contact" class="screen">
 
         <div class="computer-window">
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>✧ EXTRA INFORMATION</span>
+                <div class="window-title">
+                    ♡ CONTACT SYSTEM
+                </div>
 
-                <button
-                    type="button"
-                    class="close-button"
-                    onclick="backToMenu()"
-                >
-                    ×
-                </button>
+                <div class="window-controls">
+                    <span>−</span>
+                    <span>□</span>
+                    <span>×</span>
+                </div>
 
             </div>
 
 
-            <div class="section-content">
-
-                <p class="tiny-text">
-                    DATABASE: EXTRA_INFO
-                </p>
-
-                <h1>
-                    EXTRA INFO
-                </h1>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        COMMISSION PROCESS
-                    </h2>
-
-                    <ol>
-                        <li>Submit the commission form.</li>
-                        <li>Your request is reviewed.</li>
-                        <li>Your slot is confirmed.</li>
-                        <li>Payment is handled according to the payment plan.</li>
-                        <li>Work begins.</li>
-                        <li>Previews are provided.</li>
-                        <li>Final files are delivered after completion.</li>
-                    </ol>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        QUEUE
-                    </h2>
-
-                    <p>
-                        The commission queue is handled in order based
-                        on the total quantity of work requested.
-                    </p>
-
-                    <p>
-                        Current planned queue:
-                    </p>
-
-                    <ul>
-                        <li>3 active commission slots</li>
-                        <li>4 waitlist slots</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        TURNAROUND
-                    </h2>
-
-                    <p>
-                        Most commissions are expected to take around
-                        1–2 weeks, although complicated orders or
-                        circumstances may require additional time.
-                    </p>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        FAQ
-                    </h2>
-
-                    <p>
-                        A full FAQ will be added here as common
-                        commission questions come up.
-                    </p>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <h2>
-                        LINKS
-                    </h2>
-
-                    <p>
-                        Social media, commission forms, and other useful
-                        links will be added here.
-                    </p>
-
-                </div>
-
+            <div class="page-content">
 
                 <button
-                    type="button"
                     class="back-button"
                     onclick="backToMenu()"
                 >
-                    ← BACK
+                    ← BACK TO MENU
                 </button>
+
+
+                <div class="page-heading">
+                    <span>✦</span>
+                    CONTACT
+                    <span>✦</span>
+                </div>
+
+
+                <div class="contact-box">
+
+                    <h2>
+                        WANT TO TALK?
+                    </h2>
+
+                    <p>
+                        For commissions, please use the commission form.
+                    </p>
+
+                    <a
+                        class="primary-action"
+                        href="https://forms.gle/oCRvWVjE7SprhQdX9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        OPEN COMMISSION FORM
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
 
     </section>
-
 
 
     <!-- =====================================================
          IMAGE VIEWER
     ====================================================== -->
 
-    <div id="image-viewer">
+    <div
+        id="image-viewer"
+        class="image-viewer"
+        onclick="closeImageViewer()"
+    >
 
-        <div class="viewer-window">
+        <div
+            class="viewer-window"
+            onclick="event.stopPropagation()"
+        >
 
-            <div class="window-bar">
+            <div class="window-header">
 
-                <span>✦ IMAGE VIEWER</span>
+                <div
+                    id="viewer-title"
+                    class="window-title"
+                >
+                    IMAGE
+                </div>
 
                 <button
-                    type="button"
-                    class="close-button"
+                    class="viewer-close"
                     onclick="closeImageViewer()"
                 >
                     ×
@@ -854,19 +1237,8 @@
                 <img
                     id="viewer-image"
                     src=""
-                    alt="Artwork preview"
+                    alt=""
                 >
-
-                <h2 id="viewer-title"></h2>
-
-
-                <button
-                    type="button"
-                    class="back-button"
-                    onclick="closeImageViewer()"
-                >
-                    ← CLOSE
-                </button>
 
             </div>
 
@@ -874,11 +1246,6 @@
 
     </div>
 
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
 
     <script src="script.js"></script>
 

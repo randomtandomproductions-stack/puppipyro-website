@@ -1,50 +1,56 @@
 /* =========================================================
-   PUPPIPYRO.EXE — CUTE ALIEN COMPUTER UI
+   PUPPIPYRO.EXE
+   Main Website Stylesheet
    ========================================================= */
 
+/* ---------------------------------------------------------
+   1. COLOR / DESIGN VARIABLES
+   --------------------------------------------------------- */
+
 :root {
-    /* Main Pyro palette */
-    --mint: #E4FFE3;
-    --mint-dark: #9BD59A;
-    --mint-light: #F3FFF1;
+    --cream: #fffaf2;
+    --cream-dark: #f5eadf;
 
-    --plum: #733164;
-    --plum-dark: #503D4E;
+    --mint: #b9f3d0;
+    --mint-dark: #79cfa2;
 
-    --pink: #E83AC2;
-    --pink-dark: #C52A9F;
-    --pink-light: #FEE0FE;
+    --pink: #f7a9c4;
+    --pink-dark: #df729b;
 
-    --lavender: #DCCAF4;
-    --lavender-dark: #9B7AC7;
-    --lavender-light: #F4EEFF;
+    --lavender: #cbb9f2;
+    --lavender-dark: #967bc9;
 
-    --peach: #FFD1B8;
-    --peach-dark: #E9A17E;
+    --peach: #ffd0b5;
+    --blue: #b9d9f5;
 
-    --blue: #C8E4F7;
-    --blue-dark: #88B6D8;
+    --purple: #6f568f;
+    --purple-dark: #4d3b67;
 
-    --cream: #FFF9F2;
-    --cream-dark: #F2E4D8;
+    --text: #493d54;
+    --text-soft: #75677f;
 
-    --white: #FFFFFF;
+    --white: #ffffff;
 
-    --text: #503D4E;
-    --text-soft: #765F70;
+    --border: #765b8f;
 
-    --shadow: 6px 7px 0 rgba(80, 61, 78, 0.18);
-    --shadow-small: 3px 4px 0 rgba(80, 61, 78, 0.16);
+    --shadow:
+        0 8px 0 rgba(111, 86, 143, 0.12),
+        0 14px 30px rgba(111, 86, 143, 0.12);
 
-    --radius-large: 28px;
-    --radius-medium: 20px;
+    --small-shadow:
+        0 4px 0 rgba(111, 86, 143, 0.10),
+        0 8px 18px rgba(111, 86, 143, 0.10);
+
+    --radius: 22px;
     --radius-small: 14px;
+
+    --transition: 0.2s ease;
 }
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+/* ---------------------------------------------------------
+   2. RESET
+   --------------------------------------------------------- */
 
 * {
     box-sizing: border-box;
@@ -60,22 +66,22 @@ body {
     min-height: 100vh;
 
     background:
-        radial-gradient(circle at 12% 18%, rgba(232, 58, 194, 0.10) 0 3px, transparent 4px),
-        radial-gradient(circle at 82% 14%, rgba(115, 49, 100, 0.10) 0 3px, transparent 4px),
-        radial-gradient(circle at 70% 80%, rgba(155, 213, 154, 0.25) 0 5px, transparent 6px),
-        linear-gradient(
-            135deg,
-            #E4FFE3 0%,
-            #FFF9F2 38%,
-            #FEE0FE 70%,
-            #DCCAF4 100%
-        );
-
-    background-size:
-        90px 90px,
-        120px 120px,
-        160px 160px,
-        100% 100%;
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(247, 169, 196, 0.18),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(185, 243, 208, 0.22),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(203, 185, 242, 0.18),
+            transparent 30%
+        ),
+        var(--cream);
 
     color: var(--text);
 
@@ -88,57 +94,27 @@ body {
     overflow-x: hidden;
 }
 
-
-/* =========================================================
-   FLOATING DECORATIONS
-   ========================================================= */
-
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    z-index: -1;
-    pointer-events: none;
+button,
+a,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
-body::before {
-    width: 220px;
-    height: 220px;
-
-    left: -80px;
-    top: 18%;
-
-    border: 3px dashed rgba(115, 49, 100, 0.14);
-    border-radius: 50%;
-
-    box-shadow:
-        170px 380px 0 -75px rgba(232, 58, 194, 0.14),
-        700px -100px 0 -50px rgba(155, 213, 154, 0.20);
+button {
+    cursor: pointer;
 }
 
-body::after {
-    width: 9px;
-    height: 9px;
-
-    right: 12%;
-    top: 15%;
-
-    background: var(--pink);
-    border-radius: 50%;
-
-    box-shadow:
-        35px 30px 0 var(--plum),
-        -55px 75px 0 var(--lavender-dark),
-        85px 120px 0 var(--mint-dark),
-        -120px 180px 0 var(--peach-dark);
-
-    opacity: 0.7;
+img {
+    max-width: 100%;
+    display: block;
 }
 
 
-/* =========================================================
-   SCREEN SYSTEM
-   ========================================================= */
+/* ---------------------------------------------------------
+   3. SCREEN SYSTEM
+   --------------------------------------------------------- */
 
 .screen {
     display: none;
@@ -146,1457 +122,1144 @@ body::after {
     width: 100%;
     min-height: 100vh;
 
-    padding: 38px 20px 60px;
-
-    align-items: flex-start;
-    justify-content: center;
+    padding: 28px 20px;
 }
 
 .screen.active {
     display: flex;
+
+    /*
+     * IMPORTANT:
+     * Do not vertically center the entire window.
+     * Long pages need room to grow.
+     */
+    align-items: flex-start;
+    justify-content: center;
+
+    animation: screenIn 0.35s ease;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
-/* =========================================================
-   COMPUTER WINDOW
-   ========================================================= */
+/* ---------------------------------------------------------
+   4. COMPUTER WINDOW
+   --------------------------------------------------------- */
 
 .computer-window {
-    position: relative;
+    width: min(1100px, 100%);
 
-    width: min(1120px, 100%);
-
+    /*
+     * IMPORTANT:
+     * No viewport max-height.
+     * The computer window must be allowed to grow
+     * with the content.
+     */
     min-height: 0;
     height: auto;
 
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+
     background: var(--cream);
 
-    border: 4px solid var(--plum);
-    border-radius: 30px;
+    border: 3px solid var(--border);
+    border-radius: 24px;
 
-    box-shadow:
-        9px 10px 0 rgba(80, 61, 78, 0.18),
-        0 0 0 7px rgba(255, 255, 255, 0.55);
-
+    /*
+     * Do NOT hide content vertically.
+     */
     overflow: visible;
 
-    isolation: isolate;
-}
-
-.computer-window::before {
-    content: "";
-
-    position: absolute;
-    inset: 9px;
-
-    border: 2px dashed rgba(115, 49, 100, 0.20);
-    border-radius: 22px;
-
-    pointer-events: none;
-    z-index: -1;
+    box-shadow: var(--shadow);
 }
 
 
-/* =========================================================
-   TITLE BAR
-   ========================================================= */
+/* ---------------------------------------------------------
+   5. WINDOW HEADER
+   --------------------------------------------------------- */
 
-.title-bar {
-    position: relative;
-
-    min-height: 62px;
+.window-header {
+    min-height: 52px;
 
     display: flex;
     align-items: center;
-    gap: 14px;
+    justify-content: space-between;
 
-    padding: 11px 17px;
+    padding: 10px 15px;
 
     background:
         linear-gradient(
             90deg,
-            var(--mint) 0%,
-            var(--pink-light) 48%,
-            var(--lavender-light) 100%
+            var(--mint),
+            #d9f5d8,
+            var(--pink),
+            var(--lavender)
         );
 
-    border-bottom: 4px solid var(--plum);
+    border-bottom: 3px solid var(--border);
 
-    border-radius: 25px 25px 0 0;
+    border-radius: 20px 20px 0 0;
 }
 
-.title-bar::after {
-    content: "✦  ALIEN OS v1.0  ✦";
+.window-title {
+    color: var(--purple-dark);
 
-    margin-left: auto;
-
-    padding: 6px 11px;
-
-    border: 2px solid var(--plum);
-    border-radius: 999px;
-
-    background: rgba(255,255,255,0.65);
-
-    font-size: 10px;
+    font-size: 0.9rem;
     font-weight: 900;
-    letter-spacing: 1px;
 
-    color: var(--plum);
-
-    box-shadow: var(--shadow-small);
+    letter-spacing: 0.08em;
 }
 
 .window-controls {
     display: flex;
     gap: 7px;
-    flex-shrink: 0;
+
+    position: relative;
 }
 
-.window-control {
-    width: 16px;
-    height: 16px;
+.window-controls::before,
+.window-controls::after {
+    content: "";
 
-    border: 2px solid var(--plum);
+    width: 12px;
+    height: 12px;
+
+    display: block;
+
+    border: 2px solid var(--purple);
     border-radius: 50%;
 
-    box-shadow: 1px 2px 0 rgba(80, 61, 78, 0.15);
+    background: var(--cream);
 }
 
-.window-control:nth-child(1) {
+.window-controls::before {
     background: var(--pink);
 }
 
-.window-control:nth-child(2) {
-    background: var(--peach);
-}
-
-.window-control:nth-child(3) {
-    background: var(--mint-dark);
-}
-
-.window-title {
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: var(--plum);
+.window-controls::after {
+    background: var(--mint);
 }
 
 
-/* =========================================================
-   SYSTEM STATUS
-   ========================================================= */
-
-.system-status {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    padding: 12px 17px;
-
-    background: var(--white);
-
-    border-bottom: 2px dashed rgba(115, 49, 100, 0.22);
-}
-
-.system-status > * {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-
-    padding: 6px 10px;
-
-    border: 2px solid var(--plum);
-    border-radius: 999px;
-
-    background: var(--mint-light);
-
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.6px;
-
-    color: var(--plum);
-
-    box-shadow: 2px 3px 0 rgba(80, 61, 78, 0.12);
-}
-
-.system-status > *::before {
-    content: "●";
-    color: var(--pink);
-}
-
-
-/* =========================================================
-   PAGE CONTENT
-   ========================================================= */
+/* ---------------------------------------------------------
+   6. GENERAL PAGE CONTENT
+   --------------------------------------------------------- */
 
 .page-content {
-    position: relative;
+    width: 100%;
 
-    padding: 30px;
+    padding: 35px;
 
+    /*
+     * Let the browser handle page scrolling naturally.
+     */
     overflow: visible;
 }
 
 
-/* =========================================================
-   HOME
-   ========================================================= */
+/* ---------------------------------------------------------
+   7. HOME
+   --------------------------------------------------------- */
 
 .home-window {
+    /*
+     * Keep the home screen nicely sized when there is room,
+     * but NEVER force it to be viewport height.
+     */
     min-height: 620px;
+}
+
+.home-content {
+    width: 100%;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
+    padding: 40px 25px 45px;
+
     position: relative;
 }
 
-.home-window::before {
-    content: "✦";
-    position: absolute;
+.system-label {
+    display: inline-block;
 
-    top: 20px;
-    left: 8%;
-
-    font-size: 32px;
-    color: var(--pink);
-
-    transform: rotate(-15deg);
-}
-
-.home-window::after {
-    content: "♡";
-    position: absolute;
-
-    right: 9%;
-    bottom: 30px;
-
-    font-size: 38px;
-    color: var(--lavender-dark);
-
-    transform: rotate(12deg);
-}
-
-.home-window h1 {
-    margin: 0;
-
-    font-size: clamp(42px, 8vw, 84px);
-    line-height: 0.95;
-
-    font-weight: 1000;
-    letter-spacing: 3px;
-
-    color: var(--plum);
-
-    text-shadow:
-        4px 4px 0 var(--pink-light),
-        7px 7px 0 rgba(232, 58, 194, 0.20);
-}
-
-.home-window h2 {
-    margin: 10px 0 4px;
-
-    font-size: 14px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    margin-bottom: 10px;
 
     color: var(--pink-dark);
-}
 
-.home-window p {
-    max-width: 650px;
-
-    margin: 12px auto 24px;
-
-    line-height: 1.7;
-    font-size: 15px;
-
-    color: var(--text-soft);
-}
-
-
-/* =========================================================
-   HOME MASCOT AREA
-   ========================================================= */
-
-.pyro-display {
-    position: relative;
-
-    width: min(560px, 100%);
-
-    margin: 10px auto 22px;
-
-    padding: 22px;
-
-    border: 3px solid var(--plum);
-    border-radius: 35px;
-
-    background:
-        radial-gradient(circle at 20% 20%, rgba(232, 58, 194, 0.16) 0 7px, transparent 8px),
-        radial-gradient(circle at 80% 30%, rgba(155, 213, 154, 0.25) 0 9px, transparent 10px),
-        linear-gradient(135deg, var(--mint), var(--pink-light));
-
-    box-shadow:
-        7px 8px 0 rgba(80, 61, 78, 0.16),
-        inset 0 0 0 3px rgba(255,255,255,0.7);
-}
-
-.pyro-display::before {
-    content: "USER DETECTED ♡";
-
-    position: absolute;
-    top: -14px;
-    left: 22px;
-
-    padding: 5px 10px;
-
-    background: var(--plum);
-    color: white;
-
-    border-radius: 999px;
-
-    font-size: 9px;
+    font-size: 0.75rem;
     font-weight: 900;
-    letter-spacing: 1px;
+
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
 }
 
-.pyro-display img {
-    display: block;
+.home-content h1 {
+    margin: 0;
 
-    max-width: 100%;
-    max-height: 360px;
+    color: var(--purple-dark);
 
-    margin: auto;
+    font-size: clamp(2.4rem, 7vw, 5.2rem);
+    font-weight: 1000;
 
-    object-fit: contain;
+    letter-spacing: 0.08em;
+
+    text-shadow:
+        3px 3px 0 var(--pink),
+        6px 6px 0 rgba(111, 86, 143, 0.08);
 }
 
-
-/* =========================================================
-   PRIMARY BUTTON
-   ========================================================= */
-
-.enter-button,
-.primary-button,
-.cta-button {
-    position: relative;
-
-    display: inline-flex;
+.pyro-placeholder {
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-
-    padding: 14px 25px;
-
-    border: 3px solid var(--plum);
-    border-radius: 18px;
-
-    background: var(--pink);
-
-    color: white;
-
-    font: inherit;
-    font-weight: 1000;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    box-shadow: 5px 6px 0 var(--plum);
-
-    transition:
-        transform 0.16s ease,
-        box-shadow 0.16s ease,
-        background 0.16s ease;
-}
-
-.enter-button::after,
-.primary-button::after,
-.cta-button::after {
-    content: "✦";
-}
-
-.enter-button:hover,
-.primary-button:hover,
-.cta-button:hover {
-    background: var(--pink-dark);
-
-    transform:
-        translate(-2px, -2px)
-        rotate(-1deg);
-
-    box-shadow: 7px 8px 0 var(--plum);
-}
-
-.enter-button:active,
-.primary-button:active,
-.cta-button:active {
-    transform: translate(4px, 5px);
-    box-shadow: 1px 1px 0 var(--plum);
-}
-
-
-/* =========================================================
-   MAIN MENU
-   ========================================================= */
-
-.menu-header {
-    position: relative;
-
-    margin-bottom: 25px;
-
-    padding: 22px 24px;
 
     background:
         linear-gradient(
             135deg,
-            var(--mint) 0%,
-            var(--white) 50%,
-            var(--pink-light) 100%
+            rgba(185, 243, 208, 0.55),
+            rgba(203, 185, 242, 0.45)
         );
 
-    border: 3px solid var(--plum);
-    border-radius: 25px;
+    border: 2px dashed var(--lavender-dark);
 
-    box-shadow: var(--shadow);
+    color: var(--purple);
+
+    font-weight: 800;
+
+    text-align: center;
 }
 
-.menu-header::before {
-    content: "✦ ✧ ✦";
+.home-pyro {
+    width: min(310px, 75vw);
+    height: 310px;
 
-    position: absolute;
-    right: 20px;
-    top: 13px;
+    margin: 22px auto;
 
-    color: var(--pink);
-
-    letter-spacing: 5px;
+    border-radius: 30px;
 }
 
-.menu-header h1,
-.menu-header h2 {
+.home-text {
+    max-width: 650px;
+}
+
+.home-text p {
+    margin: 8px 0;
+
+    line-height: 1.6;
+}
+
+.home-text p:first-child {
+    color: var(--purple-dark);
+
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.home-text p:last-child {
+    color: var(--text-soft);
+
+    font-size: 0.98rem;
+}
+
+.primary-button {
+    margin-top: 24px;
+
+    padding: 15px 30px;
+
+    border: 3px solid var(--border);
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint),
+            var(--pink)
+        );
+
+    color: var(--purple-dark);
+
+    font-size: 0.95rem;
+    font-weight: 1000;
+
+    letter-spacing: 0.08em;
+
+    box-shadow: var(--small-shadow);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.primary-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 7px 0 rgba(111, 86, 143, 0.15),
+        0 13px 25px rgba(111, 86, 143, 0.15);
+}
+
+.primary-button:active {
+    transform: translateY(2px);
+
+    box-shadow:
+        0 2px 0 rgba(111, 86, 143, 0.12);
+}
+
+.home-status {
+    margin-top: 18px;
+
+    color: var(--mint-dark);
+
+    font-size: 0.78rem;
+    font-weight: 900;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   8. MAIN MENU
+   --------------------------------------------------------- */
+
+.menu-page {
+    text-align: center;
+}
+
+.menu-heading {
+    margin-bottom: 25px;
+}
+
+.menu-heading h1 {
+    margin: 4px 0 8px;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(2rem, 5vw, 3.4rem);
+
+    letter-spacing: 0.06em;
+}
+
+.menu-heading p {
     margin: 0;
-}
-
-.menu-header h1 {
-    color: var(--plum);
-    font-size: clamp(26px, 5vw, 42px);
-    letter-spacing: 2px;
-}
-
-.menu-header p {
-    margin: 7px 0 0;
 
     color: var(--text-soft);
-    font-size: 13px;
-}
 
+    line-height: 1.5;
+}
 
 .menu-grid {
     display: grid;
 
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 17px;
+    gap: 14px;
 
-    margin-bottom: 24px;
+    max-width: 760px;
+
+    margin: 0 auto 18px;
 }
-
-
-/* =========================================================
-   CUTE MENU CARDS
-   ========================================================= */
 
 .menu-button {
-    position: relative;
+    min-height: 72px;
 
-    min-height: 135px;
+    padding: 15px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
 
-    padding: 24px 55px 22px 25px;
+    background: var(--white);
 
-    border: 3px solid var(--plum);
-    border-radius: 24px;
+    color: var(--purple-dark);
 
-    color: var(--text);
-
-    text-align: left;
-
-    cursor: pointer;
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
-
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        filter 0.18s ease;
-}
-
-.menu-button::before {
-    content: "";
-
-    position: absolute;
-
-    width: 70px;
-    height: 70px;
-
-    right: -20px;
-    top: -20px;
-
-    border: 3px dashed rgba(115,49,100,0.25);
-    border-radius: 50%;
-}
-
-.menu-button::after {
-    content: "↗";
-
-    position: absolute;
-
-    right: 20px;
-    bottom: 18px;
-
-    width: 31px;
-    height: 31px;
-
-    display: grid;
-    place-items: center;
-
-    border: 2px solid var(--plum);
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.72);
-
-    font-size: 16px;
     font-weight: 1000;
+    letter-spacing: 0.04em;
+
+    box-shadow: var(--small-shadow);
 
     transition:
-        transform 0.18s ease,
-        background 0.18s ease;
+        transform var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
+}
+
+.menu-button:nth-child(1),
+.menu-button:nth-child(4) {
+    background: #e9f9ed;
+}
+
+.menu-button:nth-child(2),
+.menu-button:nth-child(5) {
+    background: #fff0f5;
+}
+
+.menu-button:nth-child(3),
+.menu-button:nth-child(6) {
+    background: #f2edff;
 }
 
 .menu-button:hover {
-    transform:
-        translate(-3px, -4px)
-        rotate(-0.7deg);
+    transform: translateY(-4px) rotate(-1deg);
 
-    box-shadow: 9px 11px 0 rgba(80,61,78,0.20);
-
-    filter: saturate(1.06);
+    box-shadow:
+        0 7px 0 rgba(111, 86, 143, 0.12),
+        0 12px 22px rgba(111, 86, 143, 0.12);
 }
 
-.menu-button:hover::after {
-    transform: rotate(12deg) scale(1.1);
+.utility-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 12px 0 20px;
+}
+
+.utility-buttons button {
+    padding: 8px 14px;
+
+    border: 2px solid var(--lavender-dark);
+    border-radius: 999px;
+
     background: var(--white);
+
+    color: var(--purple);
+
+    font-size: 0.78rem;
+    font-weight: 900;
+
+    transition: var(--transition);
 }
 
+.utility-buttons button:hover {
+    background: var(--lavender);
 
-/* Different cute colors */
-
-.menu-button:nth-child(1) {
-    background: var(--mint);
+    transform: translateY(-2px);
 }
 
-.menu-button:nth-child(2) {
-    background: var(--pink-light);
-}
+.system-panel {
+    display: grid;
 
-.menu-button:nth-child(3) {
-    background: var(--lavender-light);
-}
+    grid-template-columns: repeat(2, 1fr);
 
-.menu-button:nth-child(4) {
-    background: var(--peach);
-}
+    gap: 7px;
 
-.menu-button:nth-child(5) {
-    background: var(--blue);
-}
+    max-width: 760px;
 
-.menu-button:nth-child(6) {
-    background: var(--mint-light);
-}
+    margin: 20px auto 0;
 
+    padding: 14px;
 
-/* Little icon circles */
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
 
-.menu-button:nth-child(1)::after {
-    content: "⌂";
-}
+    background: rgba(255, 255, 255, 0.65);
 
-.menu-button:nth-child(2)::after {
-    content: "✦";
-}
-
-.menu-button:nth-child(3)::after {
-    content: "♡";
-}
-
-.menu-button:nth-child(4)::after {
-    content: "✎";
-}
-
-.menu-button:nth-child(5)::after {
-    content: "●";
-}
-
-.menu-button:nth-child(6)::after {
-    content: "↗";
-}
-
-
-.button-title {
-    position: relative;
-
-    margin-bottom: 7px;
-
-    font-size: 20px;
-    font-weight: 1000;
-
-    letter-spacing: 1px;
-
-    color: var(--plum);
-}
-
-.button-title::before {
-    content: "✦";
-
-    margin-right: 8px;
-
-    color: var(--pink);
-}
-
-.button-description {
-    position: relative;
-
-    max-width: 280px;
-
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 0.72rem;
+    font-weight: 900;
 
     color: var(--text-soft);
 }
 
+.system-panel div {
+    padding: 7px;
 
-/* =========================================================
-   PAGE SECTIONS
-   ========================================================= */
+    border-radius: 8px;
 
-.section {
-    animation: sectionPop 0.3s ease both;
+    background: rgba(185, 243, 208, 0.25);
 }
 
-@keyframes sectionPop {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.98);
-    }
+.menu-pyro {
+    width: 150px;
+    height: 150px;
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    margin: 25px auto 0;
+
+    border-radius: 50%;
 }
 
-.section-header {
-    position: relative;
 
-    margin-bottom: 24px;
+/* ---------------------------------------------------------
+   9. INTERNAL PAGE HEADERS
+   --------------------------------------------------------- */
 
-    padding: 22px;
+.page-heading {
+    margin-bottom: 25px;
 
-    background: var(--white);
-
-    border: 3px solid var(--plum);
-    border-radius: 24px;
-
-    box-shadow: var(--shadow);
+    text-align: center;
 }
 
-.section-header::after {
-    content: "✦ ✦ ✦";
+.page-heading h1 {
+    margin: 4px 0 8px;
 
-    position: absolute;
-    right: 18px;
-    top: 14px;
+    color: var(--purple-dark);
 
-    color: var(--pink);
-    letter-spacing: 5px;
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
 }
 
-.section-header h1,
-.section-header h2 {
+.page-heading p {
     margin: 0;
 
-    color: var(--plum);
-}
-
-.section-header p {
-    margin: 8px 0 0;
-
     color: var(--text-soft);
-    line-height: 1.6;
+}
+
+.header-back {
+    padding: 8px 14px;
+
+    border: 2px solid var(--border);
+    border-radius: 999px;
+
+    background: var(--cream);
+
+    color: var(--purple-dark);
+
+    font-size: 0.78rem;
+    font-weight: 900;
+
+    transition: var(--transition);
+}
+
+.header-back:hover {
+    background: var(--pink);
+
+    transform: translateX(-3px);
 }
 
 
-/* =========================================================
-   GENERIC CARDS
-   ========================================================= */
+/* ---------------------------------------------------------
+   10. ART CATEGORY BUTTONS
+   --------------------------------------------------------- */
 
-.card,
-.info-card,
-.about-card,
-.faq-card,
-.commission-card {
-    padding: 22px;
-
-    background: var(--white);
-
-    border: 3px solid var(--plum);
-    border-radius: 22px;
-
-    box-shadow: var(--shadow-small);
-}
-
-.card h3,
-.info-card h3,
-.about-card h3,
-.faq-card h3,
-.commission-card h3 {
-    margin-top: 0;
-
-    color: var(--plum);
-}
-
-.card + .card,
-.info-card + .info-card,
-.about-card + .about-card,
-.faq-card + .faq-card,
-.commission-card + .commission-card {
-    margin-top: 15px;
-}
-
-
-/* =========================================================
-   ART / GALLERY
-   ========================================================= */
-
-.art-category-grid,
 .category-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 
-    gap: 15px;
-
-    margin-bottom: 22px;
-}
-
-.art-category-button,
-.category-button {
-    min-height: 105px;
-
-    padding: 18px;
-
-    border: 3px solid var(--plum);
-    border-radius: 20px;
-
-    background: var(--mint);
-
-    color: var(--plum);
-
-    font: inherit;
-    font-weight: 900;
-
-    cursor: pointer;
-
-    box-shadow: var(--shadow-small);
-
-    transition:
-        transform 0.17s ease,
-        box-shadow 0.17s ease;
-}
-
-.art-category-button:nth-child(2),
-.category-button:nth-child(2) {
-    background: var(--pink-light);
-}
-
-.art-category-button:nth-child(3),
-.category-button:nth-child(3) {
-    background: var(--lavender-light);
-}
-
-.art-category-button:nth-child(4),
-.category-button:nth-child(4) {
-    background: var(--peach);
-}
-
-.art-category-button:nth-child(5),
-.category-button:nth-child(5) {
-    background: var(--blue);
-}
-
-.art-category-button:hover,
-.category-button:hover {
-    transform: translate(-2px, -3px) rotate(-1deg);
-    box-shadow: 6px 7px 0 rgba(80,61,78,0.18);
-}
-
-.gallery,
-.art-gallery,
-.body-sheet-gallery {
-    display: grid;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-}
-
-.gallery-card,
-.art-card,
-.body-sheet-card {
-    position: relative;
-
-    overflow: hidden;
-
-    background: var(--white);
-
-    border: 3px solid var(--plum);
-    border-radius: 20px;
-
-    box-shadow: var(--shadow-small);
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.gallery-card:hover,
-.art-card:hover,
-.body-sheet-card:hover {
-    transform: translateY(-6px) rotate(-0.5deg);
-
-    box-shadow: 7px 9px 0 rgba(80,61,78,0.20);
-}
-
-.gallery-card img,
-.art-card img,
-.body-sheet-card img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    object-fit: cover;
-}
-
-.gallery-card-title,
-.art-card-title,
-.body-sheet-card-title {
-    padding: 11px 13px;
-
-    background: var(--mint-light);
-
-    border-top: 2px dashed var(--plum);
-
-    color: var(--plum);
-
-    font-weight: 900;
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   COMMISSION / PRICE CARDS
-   ========================================================= */
-
-.tier-grid,
-.price-grid,
-.commission-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-}
-
-.tier-card,
-.price-card {
-    position: relative;
-
-    padding: 23px 19px;
-
-    border: 3px solid var(--plum);
-    border-radius: 23px;
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
-}
-
-.tier-card:nth-child(1),
-.price-card:nth-child(1) {
-    background: var(--mint);
-}
-
-.tier-card:nth-child(2),
-.price-card:nth-child(2) {
-    background: var(--pink-light);
-}
-
-.tier-card:nth-child(3),
-.price-card:nth-child(3) {
-    background: var(--lavender-light);
-}
-
-.tier-card::before,
-.price-card::before {
-    content: "✦";
-
-    position: absolute;
-
-    top: 12px;
-    right: 15px;
-
-    color: var(--pink);
-
-    font-size: 22px;
-}
-
-.tier-card h3,
-.price-card h3 {
-    margin-top: 0;
-
-    color: var(--plum);
-}
-
-
-/* =========================================================
-   TAGS / BADGES
-   ========================================================= */
-
-.badge,
-.tag,
-.price-badge {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 6px 10px;
-
-    border: 2px solid var(--plum);
-    border-radius: 999px;
-
-    background: var(--white);
-
-    color: var(--plum);
-
-    font-size: 10px;
-    font-weight: 1000;
-    letter-spacing: 0.5px;
-
-    box-shadow: 2px 3px 0 rgba(80,61,78,0.10);
-}
-
-.badge::before,
-.tag::before {
-    content: "♡";
-    margin-right: 5px;
-    color: var(--pink);
-}
-
-
-/* =========================================================
-   LINKS
-   ========================================================= */
-
-a {
-    color: var(--pink-dark);
-    font-weight: 800;
-
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
-}
-
-a:hover {
-    color: var(--plum);
-}
-
-
-/* =========================================================
-   SOCIAL / LINK CARDS
-   ========================================================= */
-
-.social-grid,
-.links-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 15px;
-}
-
-.social-card,
-.link-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 17px 20px;
-
-    background: var(--white);
-
-    border: 3px solid var(--plum);
-    border-radius: 18px;
-
-    color: var(--plum);
-
-    text-decoration: none;
-
-    box-shadow: var(--shadow-small);
-
-    transition:
-        transform 0.17s ease,
-        background 0.17s ease;
-}
-
-.social-card:hover,
-.link-card:hover {
-    background: var(--mint);
-    transform: translate(-2px, -3px) rotate(-0.5deg);
-}
-
-
-/* =========================================================
-   BACK BUTTON
-   ========================================================= */
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    gap: 10px;
 
     margin-bottom: 20px;
+}
 
-    padding: 10px 15px;
+.category-button {
+    min-height: 70px;
 
-    border: 3px solid var(--plum);
-    border-radius: 15px;
+    padding: 10px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
 
     background: var(--white);
 
-    color: var(--plum);
+    color: var(--purple-dark);
 
-    font: inherit;
+    font-size: 0.8rem;
     font-weight: 900;
+
+    transition: var(--transition);
+
+    box-shadow: var(--small-shadow);
+}
+
+.category-button:hover {
+    background: var(--mint);
+
+    transform: translateY(-4px);
+}
+
+.category-view {
+    margin-bottom: 20px;
+
+    padding: 16px;
+
+    border: 2px dashed var(--lavender-dark);
+    border-radius: var(--radius-small);
+
+    background: rgba(203, 185, 242, 0.15);
+
+    color: var(--text-soft);
+
+    text-align: center;
+    font-weight: 800;
+}
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.gallery-item {
+    overflow: hidden;
+
+    border: 2px solid var(--border);
+    border-radius: 18px;
+
+    background: var(--white);
+
+    box-shadow: var(--small-shadow);
 
     cursor: pointer;
 
-    box-shadow: var(--shadow-small);
-
     transition:
-        transform 0.15s ease,
-        background 0.15s ease;
+        transform var(--transition),
+        box-shadow var(--transition);
 }
 
-.back-button::before {
-    content: "←";
+.gallery-item:hover {
+    transform: translateY(-5px) scale(1.015);
+
+    box-shadow:
+        0 8px 0 rgba(111, 86, 143, 0.10),
+        0 14px 25px rgba(111, 86, 143, 0.13);
 }
 
-.back-button:hover {
-    background: var(--pink-light);
+.gallery-item img {
+    width: 100%;
+    height: 260px;
 
-    transform:
-        translate(-2px, -2px)
-        rotate(-1deg);
+    object-fit: contain;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(185, 243, 208, 0.3),
+            rgba(203, 185, 242, 0.15)
+        );
+}
+
+.gallery-item-title {
+    padding: 10px;
+
+    color: var(--purple-dark);
+
+    font-size: 0.82rem;
+    font-weight: 900;
+
+    text-align: center;
 }
 
 
-/* =========================================================
-   FOOTER / SYSTEM MESSAGE
-   ========================================================= */
+/* ---------------------------------------------------------
+   11. BODY SHEET TIERS
+   --------------------------------------------------------- */
 
-.system-message {
-    position: relative;
+.tier-grid {
+    display: grid;
 
-    margin-top: 25px;
-    padding: 14px 18px;
+    grid-template-columns: repeat(3, 1fr);
 
-    border: 3px solid var(--plum);
-    border-radius: 18px;
+    gap: 15px;
 
-    background: var(--plum);
+    margin-bottom: 20px;
+}
 
-    color: white;
+.tier-card {
+    padding: 20px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    box-shadow: var(--small-shadow);
+
+    transition: var(--transition);
+}
+
+.tier-card:hover {
+    transform: translateY(-5px);
+}
+
+.tier-card h2 {
+    margin: 0 0 6px;
+
+    color: var(--purple-dark);
+}
+
+.tier-card h3 {
+    margin: 0 0 15px;
+
+    color: var(--pink-dark);
+}
+
+.tier-card p {
+    margin: 7px 0;
+
+    color: var(--text-soft);
+
+    line-height: 1.45;
+}
+
+.tier-card:nth-child(1) {
+    background: #effcf3;
+}
+
+.tier-card:nth-child(2) {
+    background: #fff1f6;
+}
+
+.tier-card:nth-child(3) {
+    background: #f3efff;
+}
+
+.info-card {
+    margin-bottom: 16px;
+
+    padding: 20px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
+
+    background: rgba(255, 255, 255, 0.72);
+
+    box-shadow: var(--small-shadow);
+}
+
+.info-card h2,
+.info-card h3 {
+    margin-top: 0;
+
+    color: var(--purple-dark);
+}
+
+.info-card p {
+    color: var(--text-soft);
+
+    line-height: 1.55;
+}
+
+.info-card ul {
+    margin-bottom: 0;
+
+    padding-left: 20px;
+
+    color: var(--text-soft);
+
+    line-height: 1.6;
+}
+
+.extras-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.extras-grid > * {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: rgba(185, 243, 208, 0.25);
+}
+
+
+/* ---------------------------------------------------------
+   12. ACCEPTED / NOT ACCEPTED
+   --------------------------------------------------------- */
+
+.accepted-card {
+    border-left: 7px solid var(--mint-dark);
+}
+
+.not-accepted-card {
+    border-left: 7px solid var(--pink-dark);
+}
+
+
+/* ---------------------------------------------------------
+   13. COMMISSIONS
+   --------------------------------------------------------- */
+
+.queue-panel {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.queue-panel > * {
+    padding: 15px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
+
+    background: var(--white);
 
     text-align: center;
 
-    font-size: 12px;
     font-weight: 900;
-    letter-spacing: 0.5px;
 
-    box-shadow: var(--shadow-small);
+    box-shadow: var(--small-shadow);
 }
 
-.system-message::before {
-    content: "●";
+.process-steps {
+    display: grid;
 
-    margin-right: 7px;
-
-    color: var(--mint);
+    gap: 10px;
 }
 
+.process-steps > * {
+    padding: 13px;
 
-/* =========================================================
-   SECRET DISCOUNT EVENT
-   ========================================================= */
+    border-radius: 12px;
 
-/*
-   IMPORTANT:
-   The popup is completely hidden unless JavaScript adds .active.
-*/
+    background: rgba(203, 185, 242, 0.16);
 
-.secret-event {
-    display: none !important;
-
-    position: fixed;
-
-    z-index: 9999;
-
-    width: min(390px, calc(100vw - 28px));
-
-    right: 24px;
-    bottom: 24px;
-
-    padding: 0;
-
-    pointer-events: none;
+    border: 1px solid rgba(111, 86, 143, 0.15);
 }
 
-.secret-event.active {
-    display: block !important;
+.split-info {
+    display: grid;
 
-    pointer-events: auto;
+    grid-template-columns: repeat(2, 1fr);
 
-    animation: secretPopupIn 0.35s cubic-bezier(.2,.9,.3,1.2) both;
+    gap: 15px;
 }
 
-@keyframes secretPopupIn {
-    from {
-        opacity: 0;
-        transform: translateY(35px) rotate(3deg) scale(0.85);
-    }
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    to {
-        opacity: 1;
-        transform: translateY(0) rotate(-1deg) scale(1);
-    }
+    gap: 12px;
+
+    margin-top: 25px;
 }
 
-.secret-event-box {
-    position: relative;
+.action-buttons a,
+.action-buttons button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    padding: 22px 21px 19px;
+    min-height: 48px;
 
-    background:
-        radial-gradient(circle at 90% 15%, rgba(232,58,194,0.20) 0 7px, transparent 8px),
-        linear-gradient(
-            135deg,
-            var(--mint) 0%,
-            var(--white) 55%,
-            var(--pink-light) 100%
-        );
+    padding: 12px 20px;
 
-    border: 4px solid var(--plum);
-    border-radius: 24px;
-
-    box-shadow:
-        8px 9px 0 rgba(80,61,78,0.22),
-        0 0 0 5px rgba(255,255,255,0.7);
-}
-
-.secret-event-box::before {
-    content: "✦ SECRET TRANSMISSION ✦";
-
-    display: inline-block;
-
-    margin-bottom: 10px;
-
-    padding: 5px 9px;
-
+    border: 2px solid var(--border);
     border-radius: 999px;
 
-    background: var(--plum);
+    background: var(--mint);
 
-    color: white;
+    color: var(--purple-dark);
 
-    font-size: 9px;
+    text-decoration: none;
+
     font-weight: 1000;
-    letter-spacing: 1px;
+
+    transition: var(--transition);
 }
 
-.secret-event-box::after {
-    content: "♡  ◌  ✦  ◌  ♡";
+.action-buttons a:hover,
+.action-buttons button:hover {
+    background: var(--pink);
 
-    position: absolute;
-
-    right: 15px;
-    bottom: 10px;
-
-    color: rgba(115,49,100,0.28);
-
-    font-size: 14px;
+    transform: translateY(-3px);
 }
 
-.secret-event h2,
-.secret-event h3 {
-    margin: 0 35px 8px 0;
 
-    color: var(--plum);
+/* ---------------------------------------------------------
+   14. ABOUT
+   --------------------------------------------------------- */
 
-    font-size: 21px;
+.profile-layout {
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 25px;
+
+    align-items: start;
 }
 
-.secret-event p {
-    margin: 0 0 15px;
+.profile-pyro {
+    width: 100%;
+    min-height: 340px;
+
+    border-radius: 25px;
+}
+
+.profile-card {
+    padding: 25px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    box-shadow: var(--small-shadow);
+}
+
+.profile-card h2 {
+    margin-top: 0;
+
+    color: var(--purple-dark);
+}
+
+.profile-card p {
+    line-height: 1.55;
+
+    color: var(--text-soft);
+}
+
+
+/* ---------------------------------------------------------
+   15. ABOUT / INFORMATION CARDS
+   --------------------------------------------------------- */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.about-grid .info-card {
+    margin: 0;
+}
+
+
+/* ---------------------------------------------------------
+   16. LINKS
+   --------------------------------------------------------- */
+
+.links-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    max-width: 750px;
+
+    margin: 0 auto;
+}
+
+.links-grid a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 65px;
+
+    padding: 14px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
+
+    background: var(--white);
+
+    color: var(--purple-dark);
+
+    text-decoration: none;
+
+    font-weight: 1000;
+
+    box-shadow: var(--small-shadow);
+
+    transition: var(--transition);
+}
+
+.links-grid a:hover {
+    background: var(--mint);
+
+    transform: translateY(-4px) rotate(-1deg);
+}
+
+
+/* ---------------------------------------------------------
+   17. TOS / FAQ / CONTACT
+   --------------------------------------------------------- */
+
+.tos-section,
+.faq-section,
+.contact-section {
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+.tos-section h2,
+.faq-section h2,
+.contact-section h2 {
+    color: var(--purple-dark);
+}
+
+.tos-section h3,
+.faq-section h3 {
+    color: var(--pink-dark);
+}
+
+.faq-item {
+    margin-bottom: 12px;
+
+    padding: 15px;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-small);
+
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.faq-item h3 {
+    margin-top: 0;
+    margin-bottom: 7px;
+}
+
+.faq-item p {
+    margin-bottom: 0;
 
     color: var(--text-soft);
 
     line-height: 1.5;
-
-    font-size: 13px;
-}
-
-.secret-event button {
-    border: 3px solid var(--plum);
-    border-radius: 14px;
-
-    padding: 9px 14px;
-
-    background: var(--pink);
-
-    color: white;
-
-    font: inherit;
-    font-size: 11px;
-    font-weight: 1000;
-
-    cursor: pointer;
-
-    box-shadow: 3px 4px 0 var(--plum);
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-.secret-event button:hover {
-    transform: translate(-1px, -2px);
-    box-shadow: 5px 6px 0 var(--plum);
-}
-
-.secret-event button:active {
-    transform: translate(2px, 3px);
-    box-shadow: 1px 1px 0 var(--plum);
-}
-
-.secret-event-close {
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    width: 30px;
-    height: 30px;
-
-    padding: 0 !important;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 50% !important;
-
-    background: var(--white) !important;
-
-    color: var(--plum) !important;
-
-    font-size: 15px !important;
-}
-
-.secret-event-close::before {
-    content: "×";
-}
-
-.secret-event-close {
-    font-size: 0 !important;
 }
 
 
-/*
-   If JavaScript uses these states, they now properly vanish.
-*/
-
-.secret-event.hidden,
-.secret-event.closed,
-.secret-event.dismissed {
-    display: none !important;
-}
-
-
-/* =========================================================
-   SECRET PYRO
-   ========================================================= */
-
-.secret-pyro {
-    display: none;
-}
-
-.secret-pyro.running {
-    display: block;
-
-    animation:
-        secretPyroFloat 1.4s ease-in-out infinite,
-        secretPyroSpin 4s linear infinite;
-}
-
-@keyframes secretPyroFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes secretPyroSpin {
-    from {
-        rotate: -3deg;
-    }
-
-    50% {
-        rotate: 3deg;
-    }
-
-    to {
-        rotate: -3deg;
-    }
-}
-
-
-/* =========================================================
-   IMAGE VIEWER
-   ========================================================= */
+/* ---------------------------------------------------------
+   18. IMAGE VIEWER
+   --------------------------------------------------------- */
 
 .image-viewer {
     position: fixed;
-
     inset: 0;
 
-    z-index: 10000;
+    z-index: 1000;
 
     display: none;
-
     align-items: center;
     justify-content: center;
 
-    padding: 25px;
+    padding: 20px;
 
-    background: rgba(80,61,78,0.76);
+    background: rgba(77, 59, 103, 0.72);
 
-    backdrop-filter: blur(7px);
-
-    overflow: auto;
+    backdrop-filter: blur(5px);
 }
 
 .image-viewer.active {
     display: flex;
+
+    animation: fadeIn 0.2s ease;
 }
 
-.image-viewer img {
-    max-width: min(95vw, 1100px);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.image-viewer-window {
+    width: min(900px, 100%);
     max-height: 90vh;
 
-    object-fit: contain;
+    display: flex;
+    flex-direction: column;
 
-    border: 4px solid var(--plum);
+    overflow: auto;
+
+    border: 3px solid var(--border);
     border-radius: 22px;
 
-    background: var(--white);
+    background: var(--cream);
 
     box-shadow:
-        10px 12px 0 rgba(0,0,0,0.20),
-        0 0 0 6px rgba(255,255,255,0.65);
+        0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
-.image-viewer-close {
-    position: fixed;
+.viewer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    top: 18px;
-    right: 20px;
-
-    width: 45px;
-    height: 45px;
-
-    display: grid;
-    place-items: center;
-
-    border: 3px solid var(--plum);
-    border-radius: 50%;
-
-    background: var(--pink);
-
-    color: white;
-
-    font-size: 22px;
-    font-weight: 1000;
-
-    cursor: pointer;
-
-    box-shadow: 4px 5px 0 var(--plum);
-}
-
-
-/* =========================================================
-   ERROR / NOTIFICATION POPUPS
-   ========================================================= */
-
-.alien-popup,
-.error-popup,
-.notification-popup {
-    position: fixed;
-
-    z-index: 9998;
-
-    width: min(370px, calc(100vw - 30px));
+    min-height: 250px;
+    max-height: 80vh;
 
     padding: 20px;
 
-    background: var(--white);
-
-    border: 4px solid var(--plum);
-    border-radius: 22px;
-
-    box-shadow:
-        8px 9px 0 rgba(80,61,78,0.20);
-
-    animation: popupAppear 0.3s ease both;
+    overflow: auto;
 }
 
-@keyframes popupAppear {
+#viewer-image {
+    max-width: 100%;
+    max-height: 75vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+.viewer-close {
+    padding: 7px 12px;
+
+    border: 2px solid var(--border);
+    border-radius: 999px;
+
+    background: var(--pink);
+
+    color: var(--purple-dark);
+
+    font-weight: 1000;
+}
+
+
+/* ---------------------------------------------------------
+   19. SECRET EVENT
+   --------------------------------------------------------- */
+
+.secret-event {
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    z-index: 900;
+
+    display: none;
+}
+
+.secret-event.active {
+    display: block;
+
+    animation: secretAppear 0.5s ease;
+}
+
+@keyframes secretAppear {
     from {
         opacity: 0;
-        transform: scale(0.85) rotate(-2deg);
+        transform: scale(0.5) rotate(-10deg);
     }
 
     to {
@@ -1605,252 +1268,345 @@ a:hover {
     }
 }
 
+.secret-pyro {
+    position: relative;
 
-/* =========================================================
-   LISTS / TEXT
-   ========================================================= */
+    width: 150px;
+    height: 150px;
 
-ul,
-ol {
-    padding-left: 22px;
+    border: 3px solid var(--border);
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint),
+            var(--pink),
+            var(--lavender)
+        );
+
+    box-shadow: var(--shadow);
+
+    transition: transform 0.2s ease;
 }
 
-li {
-    margin-bottom: 7px;
+.secret-pyro:hover {
+    transform: scale(1.08) rotate(4deg);
 }
 
-strong {
-    color: var(--plum);
+.secret-pyro.running {
+    animation:
+        secretRun 0.55s
+        infinite alternate
+        ease-in-out;
 }
 
+@keyframes secretRun {
+    from {
+        transform: translateY(0) rotate(-4deg);
+    }
 
-/* =========================================================
-   FORM / INPUTS
-   ========================================================= */
-
-input,
-textarea,
-select {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 3px solid var(--plum);
-    border-radius: 14px;
-
-    background: var(--white);
-
-    color: var(--text);
-
-    font: inherit;
-
-    outline: none;
+    to {
+        transform: translateY(-10px) rotate(4deg);
+    }
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--pink);
-
-    box-shadow:
-        0 0 0 4px rgba(232,58,194,0.15);
-}
-
-
-/* =========================================================
-   DECORATIVE STAR CLASSES
-   ========================================================= */
-
-.star,
-.sparkle,
-.decor-star {
+.secret-click-text {
     position: absolute;
 
-    color: var(--pink);
+    bottom: -28px;
+    left: 50%;
 
-    pointer-events: none;
+    transform: translateX(-50%);
 
-    animation: gentleFloat 3s ease-in-out infinite;
+    white-space: nowrap;
+
+    color: var(--purple-dark);
+
+    font-size: 0.7rem;
+    font-weight: 1000;
+
+    letter-spacing: 0.08em;
 }
 
-@keyframes gentleFloat {
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
+.secret-pyro-placeholder {
+    width: 100%;
+    height: 100%;
 
-    50% {
-        transform: translateY(-7px) rotate(5deg);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: inherit;
+
+    color: var(--purple-dark);
+
+    font-size: 0.75rem;
+    font-weight: 900;
+
+    text-align: center;
 }
 
 
-/* =========================================================
-   HOVER / CLICK FEEDBACK
-   ========================================================= */
+/* ---------------------------------------------------------
+   20. SECRET CODE POPUP
+   --------------------------------------------------------- */
 
-button {
-    -webkit-tap-highlight-color: transparent;
+.secret-code-popup {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1100;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(77, 59, 103, 0.7);
+
+    backdrop-filter: blur(5px);
+
+    color: var(--text);
 }
 
-button:focus-visible,
-a:focus-visible {
-    outline: 4px solid var(--pink);
-    outline-offset: 3px;
+.secret-code-popup.active {
+    display: flex;
+}
+
+.secret-code-popup > * {
+    max-width: 500px;
+}
+
+.secret-code-popup::before {
+    content: "";
+
+    position: absolute;
+
+    width: min(500px, 90vw);
+    min-height: 250px;
+
+    border: 3px solid var(--border);
+    border-radius: 25px;
+
+    background: var(--cream);
+
+    box-shadow: var(--shadow);
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ---------------------------------------------------------
+   21. GENERAL LINKS
+   --------------------------------------------------------- */
+
+a {
+    color: var(--pink-dark);
+}
+
+a:hover {
+    color: var(--purple-dark);
+}
+
+
+/* ---------------------------------------------------------
+   22. TEXT SELECTION
+   --------------------------------------------------------- */
+
+::selection {
+    background: var(--pink);
+    color: var(--purple-dark);
+}
+
+
+/* ---------------------------------------------------------
+   23. EMPTY / LOADING STATES
+   --------------------------------------------------------- */
+
+.empty-gallery,
+.loading-message {
+    padding: 35px 20px;
+
+    border: 2px dashed var(--lavender-dark);
+    border-radius: var(--radius);
+
+    background: rgba(203, 185, 242, 0.13);
+
+    color: var(--text-soft);
+
+    text-align: center;
+    font-weight: 800;
+}
+
+
+/* ---------------------------------------------------------
+   24. MOBILE
+   --------------------------------------------------------- */
 
 @media (max-width: 800px) {
 
     .screen {
-        padding: 18px 10px 35px;
+        min-height: 100vh;
+
+        padding: 12px;
     }
 
+    .screen.active {
+        align-items: flex-start;
+
+        padding-top: 12px;
+    }
+
+    /*
+     * IMPORTANT:
+     * No max-height here.
+     */
     .computer-window {
         width: 100%;
 
-        border-width: 3px;
-        border-radius: 23px;
+        min-height: 0;
+        height: auto;
 
-        box-shadow:
-            5px 6px 0 rgba(80,61,78,0.17);
+        border-radius: 18px;
+
+        overflow: visible;
     }
 
-    .title-bar {
-        min-height: 55px;
-
-        padding: 9px 12px;
-    }
-
-    .title-bar::after {
-        display: none;
-    }
-
-    .window-title {
-        font-size: 12px;
-    }
-
-    .system-status {
-        padding: 9px 11px;
-        gap: 6px;
-    }
-
-    .system-status > * {
-        font-size: 8px;
-        padding: 5px 8px;
+    .window-header {
+        border-radius: 14px 14px 0 0;
     }
 
     .page-content {
-        padding: 18px 14px 25px;
+        padding: 22px 16px 30px;
+
+        overflow: visible;
     }
 
     .home-window {
         min-height: 0;
-        padding: 30px 7px 35px;
     }
 
-    .home-window h1 {
-        font-size: clamp(38px, 13vw, 65px);
+    .home-content {
+        padding: 30px 18px 35px;
     }
 
-    .pyro-display {
-        padding: 14px;
-        border-radius: 25px;
+    .home-pyro {
+        width: min(240px, 70vw);
+        height: 240px;
     }
 
     .menu-grid {
         grid-template-columns: 1fr;
-        gap: 13px;
     }
 
-    .menu-button {
-        min-height: 115px;
-    }
-
-    .art-category-grid,
     .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tier-grid {
         grid-template-columns: 1fr;
     }
 
-    .gallery,
-    .art-gallery,
-    .body-sheet-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .tier-grid,
-    .price-grid,
-    .commission-grid {
+    .profile-layout {
         grid-template-columns: 1fr;
     }
 
-    .social-grid,
+    .profile-pyro {
+        min-height: 250px;
+        max-width: 300px;
+
+        margin: 0 auto;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
     .links-grid {
         grid-template-columns: 1fr;
     }
 
-    .secret-event {
-        right: 14px;
-        bottom: 14px;
-
-        width: calc(100vw - 28px);
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL SCREENS
-   ========================================================= */
-
-@media (max-width: 470px) {
-
-    .gallery,
-    .art-gallery,
-    .body-sheet-gallery {
+    .split-info {
         grid-template-columns: 1fr;
     }
 
-    .home-window::before,
-    .home-window::after {
-        opacity: 0.45;
-    }
-
-    .menu-button {
-        min-height: 105px;
-        padding: 20px 48px 18px 20px;
-    }
-
-    .button-title {
-        font-size: 17px;
-    }
-
-    .button-description {
-        font-size: 11px;
-    }
-
-    .secret-event-box {
-        padding: 20px 17px 17px;
+    .extras-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* ---------------------------------------------------------
+   25. SMALL PHONES
+   --------------------------------------------------------- */
+
+@media (max-width: 500px) {
+
+    .screen {
+        padding: 8px;
+    }
+
+    .window-header {
+        min-height: 45px;
+    }
+
+    .window-title {
+        font-size: 0.72rem;
+    }
+
+    .home-content h1 {
+        font-size: 2.25rem;
+    }
+
+    .home-pyro {
+        width: 190px;
+        height: 190px;
+    }
+
+    .system-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .queue-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .secret-event {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .secret-pyro {
+        width: 105px;
+        height: 105px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   26. REDUCED MOTION
+   --------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

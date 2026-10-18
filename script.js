@@ -612,126 +612,252 @@ async function getImagesFromFolder(folder) {
    BODY SHEET GALLERY
 ========================================================= */
 
+/*
+   BODY SHEET TIER CONTENT
+   Edit the descriptions and included lists here whenever you need to
+   update the information shown in the What's Included tab.
+*/
+
+const BODY_SHEET_TIERS = {
+    "1": {
+        name: "SIMPLE",
+        price: "$10",
+        description: "A straightforward, affordable base for people who want a classic Gacha-style body sheet that's easy to customize.",
+        included: [
+            "Full-body base",
+            "Eye sheet",
+            "4 hand options",
+            "5 mouth options",
+            "GL/GC-style proportions",
+            "No emotes included"
+        ],
+        extrasNote: "Extra hands, mouths, and emotes can be added for $0.10 each."
+    },
+    "2": {
+        name: "STYLIZED",
+        price: "$20",
+        description: "A more customizable, stylized option with additional expression choices and GL2-inspired shading. Proportions can be adjusted to suit the character.",
+        included: [
+            "Full-body base",
+            "Eye sheet",
+            "8 hand options",
+            "10 mouth options",
+            "4 emotes",
+            "GL2-inspired shading",
+            "Stylized proportions, with chest, hips, legs, and waist adjusted where appropriate"
+        ],
+        extrasNote: "The base includes 8 hands, 10 mouths, and 4 emotes. Additional options cost $0.10 each."
+    },
+    "3": {
+        name: "REALISTIC",
+        price: "$30",
+        description: "The most detailed option, with a more realistically rendered style and the largest included selection of hands, mouths, and emotes.",
+        included: [
+            "Full-body base",
+            "Eye sheet",
+            "12 hand options",
+            "15 mouth options",
+            "6 emotes",
+            "More realistic proportions",
+            "More detailed rendering"
+        ],
+        extrasNote: "The base includes 12 hands, 15 mouths, and 6 emotes. Additional options cost $0.10 each."
+    }
+};
+
 let bodySheetRequestNumber = 0;
+let bodySheetFiles = [];
+let selectedBodySheetFilter = "all";
+let selectedBodyTier = "1";
+
+
+function getBodySheetTier(filename) {
+    const match = String(filename).match(/^t(?:ier)?[-_\s]*([123])(?:[-_\s.]|$)/i);
+    return match ? match[1] : "";
+}
+
+
+function showBodySheetTab(tabName) {
+    const validTabs = ["examples", "included", "extras"];
+    if (!validTabs.includes(tabName)) return;
+
+    document.querySelectorAll(".body-sheet-tab").forEach(button => {
+        const isSelected = button.getAttribute("onclick")?.includes(`'${tabName}'`);
+        button.classList.toggle("selected", Boolean(isSelected));
+        button.setAttribute("aria-selected", isSelected ? "true" : "false");
+    });
+
+    validTabs.forEach(tab => {
+        const panel = document.getElementById(`body-tab-${tab}`);
+        if (!panel) return;
+        const isActive = tab === tabName;
+        panel.hidden = !isActive;
+        panel.classList.toggle("active", isActive);
+    });
+
+    if (tabName === "included") {
+        renderBodyTierDetails(selectedBodyTier);
+    }
+}
+
+
+function setBodySheetExampleFilter(tier) {
+    selectedBodySheetFilter = tier;
+
+    document.querySelectorAll(".body-filter-button").forEach(button => {
+        const isSelected = button.getAttribute("onclick")?.includes(`'${tier}'`);
+        button.classList.toggle("selected", Boolean(isSelected));
+    });
+
+    renderBodySheetExamples();
+}
+
+
+function selectBodyTier(tier) {
+    if (!BODY_SHEET_TIERS[tier]) return;
+    selectedBodyTier = tier;
+
+    document.querySelectorAll(".body-tier-choice").forEach(button => {
+        const isSelected = button.getAttribute("onclick")?.includes(`'${tier}'`);
+        button.classList.toggle("selected", Boolean(isSelected));
+        button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    });
+
+    renderBodyTierDetails(tier);
+}
+
+
+function renderBodySheetExamples() {
+    const gallery = document.getElementById("body-sheet-gallery");
+    if (!gallery) return;
+
+    if (bodySheetFiles.length === 0) {
+        gallery.innerHTML = `
+            <div class="empty-gallery">
+                <div class="empty-icon">✦</div>
+                <h2>NO BODY SHEETS YET</h2>
+                <p>
+                    Upload your images to <strong>assets/body-sheets/</strong>
+                    and they'll appear here automatically.
+                </p>
+            </div>
+        `;
+        return;
+    }
+
+    const files = selectedBodySheetFilter === "all"
+        ? bodySheetFiles
+        : bodySheetFiles.filter(file => getBodySheetTier(file.name) === selectedBodySheetFilter);
+
+    if (files.length === 0) {
+        gallery.innerHTML = `
+            <div class="empty-gallery">
+                <div class="empty-icon">✦</div>
+                <h2>NO EXAMPLES LABELED FOR THIS TIER</h2>
+                <p>
+                    Add an image whose filename starts with
+                    <strong>T${escapeHTML(selectedBodySheetFilter)}_</strong>
+                    to show it in this tier's filtered gallery.
+                    You can still see all uploaded examples by choosing ALL EXAMPLES.
+                </p>
+            </div>
+        `;
+        return;
+    }
+
+    gallery.innerHTML = "";
+    files.forEach((file, index) => {
+        gallery.appendChild(createBodySheetCard(file, index));
+    });
+}
+
+
+function renderBodyTierDetails(tierNumber) {
+    const detail = document.getElementById("body-tier-detail");
+    const tier = BODY_SHEET_TIERS[tierNumber];
+    if (!detail || !tier) return;
+
+    const matchingFile = bodySheetFiles.find(file => getBodySheetTier(file.name) === tierNumber);
+    const filename = matchingFile ? cleanFilename(matchingFile.name) : "";
+
+    const previewMarkup = matchingFile
+        ? `
+            <button class="body-tier-preview-button" type="button"
+                aria-label="Enlarge ${escapeHTML(filename)}">
+                <img src="${escapeHTML(matchingFile.download_url)}"
+                    alt="${escapeHTML(filename)}" loading="lazy">
+            </button>
+            <p class="body-tier-preview-caption">${escapeHTML(filename)} · Click to enlarge</p>
+        `
+        : `
+            <div class="body-tier-preview-button body-tier-preview-empty">
+                <div>
+                    <strong>✦ TIER ${escapeHTML(tierNumber)} EXAMPLE</strong>
+                    <p>Upload a matching image with a filename starting with
+                    <strong>T${escapeHTML(tierNumber)}_</strong> to display it here.</p>
+                </div>
+            </div>
+            <p class="body-tier-preview-caption">Your own tier example will appear here.</p>
+        `;
+
+    detail.innerHTML = `
+        <div class="body-tier-preview">
+            ${previewMarkup}
+        </div>
+        <div class="body-tier-information">
+            <div class="system-label">BODY SHEET TIER ${escapeHTML(tierNumber)}</div>
+            <h2>${escapeHTML(tier.name)}</h2>
+            <p class="body-tier-price">${escapeHTML(tier.price)}</p>
+            <p class="body-tier-description">${escapeHTML(tier.description)}</p>
+            <h3>Included in the base price</h3>
+            <ul class="body-included-list">
+                ${tier.included.map(item => `<li>${escapeHTML(item)}</li>`).join("")}
+            </ul>
+            <div class="body-extra-note">${escapeHTML(tier.extrasNote)}</div>
+        </div>
+    `;
+
+    if (matchingFile) {
+        const previewButton = detail.querySelector(".body-tier-preview-button");
+        previewButton?.addEventListener("click", () => {
+            openImageViewer(matchingFile.download_url, filename);
+        });
+    }
+}
 
 
 async function loadBodySheets() {
-
-    const gallery =
-        document.getElementById("body-sheet-gallery");
-
-
+    const gallery = document.getElementById("body-sheet-gallery");
     if (!gallery) {
-
-        console.warn(
-            "PUPPIPYRO.EXE: Body-sheet gallery not found."
-        );
-
+        console.warn("PUPPIPYRO.EXE: Body-sheet gallery not found.");
         return;
     }
 
-
-    const requestId =
-        ++bodySheetRequestNumber;
-
-
+    const requestId = ++bodySheetRequestNumber;
     gallery.innerHTML = `
-
         <div class="loading-message">
-
             <span>✦</span>
-
             SEARCHING THE ALIEN DATABASE...
-
         </div>
-
     `;
 
-
-    const result =
-        await getImagesFromFolder("body-sheets");
-
-
-    /*
-       Prevent old requests from overwriting newer ones.
-    */
-
-    if (requestId !== bodySheetRequestNumber) {
-        return;
-    }
-
+    const result = await getImagesFromFolder("body-sheets");
+    if (requestId !== bodySheetRequestNumber) return;
 
     if (result.error) {
-
         gallery.innerHTML = `
-
             <div class="empty-gallery">
-
-                <div class="empty-icon">
-                    ✦
-                </div>
-
-                <h2>
-                    ARCHIVE UNAVAILABLE
-                </h2>
-
-                <p>
-                    The alien database couldn't access
-                    the body-sheet folder right now.
-                </p>
-
+                <div class="empty-icon">✦</div>
+                <h2>ARCHIVE UNAVAILABLE</h2>
+                <p>The alien database couldn't access the body-sheet folder right now.</p>
             </div>
-
         `;
-
         return;
     }
 
-
-    const files =
-        result.files;
-
-
-    if (files.length === 0) {
-
-        gallery.innerHTML = `
-
-            <div class="empty-gallery">
-
-                <div class="empty-icon">
-                    ✦
-                </div>
-
-                <h2>
-                    NO BODY SHEETS YET
-                </h2>
-
-                <p>
-                    The alien database is currently empty.
-                    Upload a body sheet to the body-sheets
-                    folder and it'll appear here automatically.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    gallery.innerHTML = "";
-
-
-    files.forEach((file, index) => {
-
-        const card =
-            createBodySheetCard(file, index);
-
-        gallery.appendChild(card);
-
-    });
-
+    bodySheetFiles = result.files;
+    renderBodySheetExamples();
+    renderBodyTierDetails(selectedBodyTier);
 }
 
 
@@ -749,57 +875,26 @@ function createBodySheetCard(file, index) {
         cleanFilename(file.name);
 
 
-    let tier =
-        "Body Sheet";
+    let tier = "Body Sheet";
+    let price = "";
+    const tierNumber = getBodySheetTier(file.name);
 
-
-    let price =
-        "";
-
-
-    /*
-       Detect commission tier from filename.
-
-       Examples:
-
-       T1_red_demon.png
-       T2_green_girl.png
-       T3_deer.png
-    */
-
-    if (/^t1(?:[_\-\s]|$)/i.test(file.name)) {
-
-        tier =
-            "Tier 1 • Simple";
-
-        price =
-            "$10";
-
-    }
-
-    else if (/^t2(?:[_\-\s]|$)/i.test(file.name)) {
-
-        tier =
-            "Tier 2 • Stylized";
-
-        price =
-            "$20";
-
-    }
-
-    else if (/^t3(?:[_\-\s]|$)/i.test(file.name)) {
-
-        tier =
-            "Tier 3 • Realistic";
-
-        price =
-            "$30";
-
+    if (tierNumber === "1") {
+        tier = "Tier 1 • Simple";
+        price = "$10";
+    } else if (tierNumber === "2") {
+        tier = "Tier 2 • Stylized";
+        price = "$20";
+    } else if (tierNumber === "3") {
+        tier = "Tier 3 • Realistic";
+        price = "$30";
     }
 
 
     card.className =
         "gallery-card";
+
+    card.dataset.tier = getBodySheetTier(file.name) || "other";
 
 
     card.innerHTML = `

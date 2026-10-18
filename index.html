@@ -421,242 +421,165 @@
     id="body-sheets"
     class="screen"
 >
-
     <div class="computer-window">
-
         <div class="window-header">
-
-            <div class="window-title">
-                BODY_SHEET_DATABASE
-            </div>
-
-            <button
-                class="header-back"
-                onclick="backToMenu()"
-            >
-                ← MENU
-            </button>
-
+            <div class="window-title">BODY_SHEET_DATABASE</div>
+            <button class="header-back" onclick="backToMenu()">← MENU</button>
         </div>
 
-
-        <div class="page-content">
-
+        <div class="page-content body-sheet-page">
             <div class="page-heading">
+                <div class="system-label">BODY SHEET DATABASE: ONLINE</div>
+                <h1>BODY SHEETS</h1>
+                <p>
+                    Custom Gacha bodysheets made for characters, editing,
+                    tweening, and general alien nonsense.
+                </p>
+            </div>
 
-                <div class="system-label">
-                    BODY SHEET DATABASE: ONLINE
+            <div class="body-sheet-intro info-card">
+                <h2>WELCOME TO THE BODY SHEET STUDIO ♡</h2>
+                <p>
+                    Choose the tier that fits the look and amount of customization
+                    you want. Each tier builds on a different level of detail and
+                    included options, so you can choose what works for your character
+                    and your budget.
+                </p>
+                <p>
+                    The base price covers only the items listed in that tier.
+                    Extra hands, mouths, emotes, outfits, clothing pieces, and props
+                    are charged separately when they go beyond what's included.
+                </p>
+                <p>
+                    Both front-facing and side-facing bodysheets are available.
+                    One base equals one direction. A front and side version of the
+                    same character can count as one character slot when ordered together.
+                </p>
+            </div>
+
+            <div class="body-sheet-tabs" role="tablist" aria-label="Body sheet sections">
+                <button class="body-sheet-tab selected" type="button" role="tab"
+                    aria-selected="true" onclick="showBodySheetTab('examples')">
+                    ✦ EXAMPLES
+                </button>
+                <button class="body-sheet-tab" type="button" role="tab"
+                    aria-selected="false" onclick="showBodySheetTab('included')">
+                    ♡ WHAT'S INCLUDED
+                </button>
+                <button class="body-sheet-tab" type="button" role="tab"
+                    aria-selected="false" onclick="showBodySheetTab('extras')">
+                    ✧ EXTRAS
+                </button>
+            </div>
+
+            <section id="body-tab-examples" class="body-sheet-panel active" role="tabpanel">
+                <div class="body-panel-heading">
+                    <h2>BODY SHEET EXAMPLES</h2>
+                    <p>Pick a tier to filter the gallery, or browse every example.</p>
                 </div>
-
-                <h1>
-                    BODY SHEETS
-                </h1>
-
-                <p>
-                    Gacha bodysheets made for characters,
-                    editing, tweening, and general alien nonsense.
-                </p>
-
-            </div>
-
-
-            <div class="tier-grid">
-
-                <article class="tier-card">
-
-                    <div class="tier-number">
-                        TIER 1
-                    </div>
-
-                    <h2>
-                        SIMPLE
-                    </h2>
-
-                    <div class="tier-price">
-                        $10
-                    </div>
-
-                    <ul>
-                        <li>Full body</li>
-                        <li>Eye sheet</li>
-                        <li>4 hands</li>
-                        <li>5 mouths</li>
-                        <li>GL/GC-style proportions</li>
-                        <li>No emotes included</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="tier-card featured-tier">
-
-                    <div class="tier-number">
-                        TIER 2
-                    </div>
-
-                    <h2>
-                        STYLIZED
-                    </h2>
-
-                    <div class="tier-price">
-                        $20
-                    </div>
-
-                    <ul>
-                        <li>Full body</li>
-                        <li>Eye sheet</li>
-                        <li>8 hands</li>
-                        <li>10 mouths</li>
-                        <li>More stylized proportions</li>
-                        <li>Larger chest/hips/legs where appropriate</li>
-                        <li>Smaller waist where appropriate</li>
-                    </ul>
-
-                </article>
-
-
-                <article class="tier-card">
-
-                    <div class="tier-number">
-                        TIER 3
-                    </div>
-
-                    <h2>
-                        REALISTIC
-                    </h2>
-
-                    <div class="tier-price">
-                        $30
-                    </div>
-
-                    <ul>
-                        <li>Full body</li>
-                        <li>Eye sheet</li>
-                        <li>12 hands</li>
-                        <li>15 mouths</li>
-                        <li>More realistic proportions</li>
-                    </ul>
-
-                </article>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h2>
-                    FRONT / SIDE
-                </h2>
-
-                <p>
-                    Both front-facing and side-facing bodysheets
-                    are available. One base equals one direction.
-                </p>
-
-                <p>
-                    A front and side version of the same character
-                    can count as one character slot when ordered together.
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h2>
-                    EXTRAS
-                </h2>
-
-                <div class="extras-grid">
-
-                    <div>
-                        <strong>Extra hand</strong>
-                        <span>$0.10</span>
-                    </div>
-
-                    <div>
-                        <strong>Extra mouth</strong>
-                        <span>$0.10</span>
-                    </div>
-
-                    <div>
-                        <strong>Extra emote</strong>
-                        <span>$0.10</span>
-                    </div>
-
-                    <div>
-                        <strong>Extra full outfit</strong>
-                        <span>$1.00</span>
-                    </div>
-
-                    <div>
-                        <strong>Single clothing piece</strong>
-                        <span>$0.20</span>
-                    </div>
-
-                    <div>
-                        <strong>Small prop</strong>
-                        <span>$0.50</span>
-                    </div>
-
-                    <div>
-                        <strong>Big prop</strong>
-                        <span>$1.00</span>
-                    </div>
-
+                <div class="body-tier-filter" role="group" aria-label="Filter body sheet examples">
+                    <button class="body-filter-button selected" type="button"
+                        onclick="setBodySheetExampleFilter('all')">ALL EXAMPLES</button>
+                    <button class="body-filter-button" type="button"
+                        onclick="setBodySheetExampleFilter('1')">TIER 1</button>
+                    <button class="body-filter-button" type="button"
+                        onclick="setBodySheetExampleFilter('2')">TIER 2</button>
+                    <button class="body-filter-button" type="button"
+                        onclick="setBodySheetExampleFilter('3')">TIER 3</button>
                 </div>
-
-                <p>
-                    Maximum 10 full outfits, 5 single clothing pieces,
-                    and 8 props.
+                <p class="body-sheet-filename-tip">
+                    Tip: start example filenames with <strong>T1_</strong>,
+                    <strong>T2_</strong>, or <strong>T3_</strong> to sort them into
+                    the matching tier automatically.
                 </p>
+                <div id="body-sheet-gallery" class="gallery-grid"></div>
+            </section>
 
+            <section id="body-tab-included" class="body-sheet-panel" role="tabpanel" hidden>
+                <div class="body-panel-heading">
+                    <h2>WHAT'S INCLUDED IN EACH TIER?</h2>
+                    <p>
+                        Each tier has a different base price because the amount of
+                        detail, rendering, and included customization options changes.
+                    </p>
+                </div>
+                <div class="body-tier-selector" role="group" aria-label="Choose a body sheet tier">
+                    <button class="body-tier-choice selected" type="button"
+                        onclick="selectBodyTier('1')">
+                        <span>TIER 1</span><strong>SIMPLE</strong><b>$10</b>
+                    </button>
+                    <button class="body-tier-choice" type="button"
+                        onclick="selectBodyTier('2')">
+                        <span>TIER 2</span><strong>STYLIZED</strong><b>$20</b>
+                    </button>
+                    <button class="body-tier-choice" type="button"
+                        onclick="selectBodyTier('3')">
+                        <span>TIER 3</span><strong>REALISTIC</strong><b>$30</b>
+                    </button>
+                </div>
+                <div id="body-tier-detail" class="body-tier-detail">
+                    <div class="empty-gallery">
+                        <div class="empty-icon">✦</div>
+                        <h2>SELECT A TIER</h2>
+                        <p>Choose a tier above to see its example and included options.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="body-tab-extras" class="body-sheet-panel" role="tabpanel" hidden>
+                <div class="body-panel-heading">
+                    <h2>EXTRA CUSTOMIZATION</h2>
+                    <p>
+                        Want more options than your base tier includes? Add them to your
+                        order for the prices below.
+                    </p>
+                </div>
+                <div class="extras-grid body-extras-grid">
+                    <div><strong>Extra hand option</strong><span>$0.10 each</span></div>
+                    <div><strong>Extra mouth option</strong><span>$0.10 each</span></div>
+                    <div><strong>Extra emote</strong><span>$0.10 each</span></div>
+                    <div><strong>Extra full outfit</strong><span>$1.00 each</span></div>
+                    <div><strong>Single clothing piece</strong><span>$0.20 each</span></div>
+                    <div><strong>Small prop</strong><span>$0.50 each</span></div>
+                    <div><strong>Big prop</strong><span>$1.00 each</span></div>
+                </div>
+                <div class="body-extra-limits info-card">
+                    <h3>ORDER LIMITS</h3>
+                    <p>
+                        Standard maximums per order: <strong>10 full outfits</strong>,
+                        <strong>5 single clothing pieces</strong>, and
+                        <strong>8 props</strong>. These are the current listed limits;
+                        contact me before ordering if you need more than the standard
+                        maximums so we can discuss a larger custom order and its price.
+                    </p>
+                    <p>
+                        Extras are not included in the base price unless they are
+                        specifically listed in your chosen tier. Anything beyond the
+                        included amount costs extra.
+                    </p>
+                </div>
+            </section>
+
+            <div class="split-info body-sheet-acceptance">
+                <div class="info-card">
+                    <h2>♡ ACCEPTED</h2>
+                    <p>
+                        Human, humanoid, male, female, two-legged furry, Gacha,
+                        stylized, custom outfits, and reasonably complex designs.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h2>✕ NOT ACCEPTED</h2>
+                    <p>
+                        Mecha, heavy armor, extremely complex designs, four-legged
+                        characters, explicit NSFW, extreme gore, copied designs,
+                        severe eyestrain designs, or AI references.
+                    </p>
+                </div>
             </div>
-
-
-            <div class="info-card">
-
-                <h2>
-                    ACCEPTED
-                </h2>
-
-                <p>
-                    Human, humanoid, male, female, two-legged furry,
-                    Gacha, stylized, custom outfits, and reasonably
-                    complex designs.
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <h2>
-                    NOT ACCEPTED
-                </h2>
-
-                <p>
-                    Mecha, heavy armor, extremely complex designs,
-                    four-legged characters, explicit NSFW, extreme gore,
-                    copied designs, severe eyestrain designs, or AI references.
-                </p>
-
-            </div>
-
-
-            <div
-                id="body-sheet-gallery"
-                class="gallery-grid"
-            >
-            </div>
-
         </div>
-
     </div>
-
 </section>
-
-
 
 <!-- =========================================================
      COMMISSIONS

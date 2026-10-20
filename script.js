@@ -59,6 +59,11 @@ function showSection(sectionId) {
     }
 
 
+    if (sectionId === "art-commissions") {
+        loadArtCommissionGallery();
+    }
+
+
     if (sectionId === "art") {
         resetArtCategory();
     }
@@ -609,6 +614,62 @@ async function getImagesFromFolder(folder) {
 
 
 /* =========================================================
+   ART COMMISSION EXAMPLE GALLERY
+========================================================= */
+
+let artCommissionRequestNumber = 0;
+
+async function loadArtCommissionGallery() {
+    const gallery = document.getElementById("art-commission-gallery");
+    if (!gallery) return;
+
+    const requestId = ++artCommissionRequestNumber;
+    gallery.innerHTML = `
+        <div class="empty-gallery">
+            <div class="empty-icon">✦</div>
+            <h2>LOADING ART ARCHIVE...</h2>
+            <p>Looking for commission examples.</p>
+        </div>
+    `;
+
+    const result = await getImagesFromFolder("art-commissions");
+    if (requestId !== artCommissionRequestNumber) return;
+
+    if (result.error) {
+        gallery.innerHTML = `
+            <div class="empty-gallery">
+                <div class="empty-icon">✦</div>
+                <h2>ARCHIVE UNAVAILABLE</h2>
+                <p>The commission gallery couldn't access the artwork folder right now.</p>
+            </div>
+        `;
+        return;
+    }
+
+    // The process comparison belongs at the top of the page, not in the examples gallery.
+    const files = result.files.filter(file =>
+        !/^commission-process\.(png|jpe?g|webp|gif)$/i.test(file.name)
+    );
+
+    if (files.length === 0) {
+        gallery.innerHTML = `
+            <div class="empty-gallery">
+                <div class="empty-icon">♡</div>
+                <h2>NO ART EXAMPLES YET</h2>
+                <p>Upload your commission examples to <strong>assets/art-commissions/</strong>. Give each image the title you want displayed — no prefix required.</p>
+            </div>
+        `;
+        return;
+    }
+
+    gallery.innerHTML = "";
+    files.forEach((file, index) => {
+        gallery.appendChild(createArtCard(file, index));
+    });
+}
+
+
+/* =========================================================
    BODY SHEET GALLERY
 ========================================================= */
 
@@ -621,7 +682,7 @@ async function getImagesFromFolder(folder) {
 const BODY_SHEET_TIERS = {
     "1": {
         name: "SIMPLE",
-        price: "$5",
+        price: "$10",
         description: "A straightforward, affordable base for people who want a classic Gacha-style body sheet that's easy to customize.",
         included: [
             "Full-body base",
@@ -635,7 +696,7 @@ const BODY_SHEET_TIERS = {
     },
     "2": {
         name: "STYLIZED",
-        price: "$10",
+        price: "$20",
         description: "A more customizable, stylized option with additional expression choices and GL2-inspired shading. Proportions can be adjusted to suit the character.",
         included: [
             "Full-body base",
@@ -650,7 +711,7 @@ const BODY_SHEET_TIERS = {
     },
     "3": {
         name: "REALISTIC",
-        price: "$15",
+        price: "$30",
         description: "The most detailed option, with a more realistically rendered style and the largest included selection of hands, mouths, and emotes.",
         included: [
             "Full-body base",
@@ -881,13 +942,13 @@ function createBodySheetCard(file, index) {
 
     if (tierNumber === "1") {
         tier = "Tier 1 • Simple";
-        price = "$5";
+        price = "$10";
     } else if (tierNumber === "2") {
         tier = "Tier 2 • Stylized";
-        price = "$10";
+        price = "$20";
     } else if (tierNumber === "3") {
         tier = "Tier 3 • Realistic";
-        price = "$15";
+        price = "$30";
     }
 
 

@@ -198,10 +198,19 @@
 
                 <button
                     class="menu-button"
+                    onclick="showSection('art-commissions')"
+                >
+                    <span>✧</span>
+                    ART COMMISSIONS
+                </button>
+
+
+                <button
+                    class="menu-button"
                     onclick="showSection('commissions')"
                 >
-                    <span>✎</span>
-                    COMMISSIONS
+                    <span>♡</span>
+                    BODY SHEET COMMISSIONS
                 </button>
 
 
@@ -487,7 +496,10 @@
                     <button class="body-filter-button" type="button"
                         onclick="setBodySheetExampleFilter('3')">TIER 3</button>
                 </div>
-              
+                <p class="body-sheet-filename-tip">
+                    Tip: start example filenames with <strong>T1_</strong>,
+                    <strong>T2_</strong>, or <strong>T3_</strong> to sort them into
+                    the matching tier automatically.
                 </p>
                 <div id="body-sheet-gallery" class="gallery-grid"></div>
             </section>
@@ -503,15 +515,15 @@
                 <div class="body-tier-selector" role="group" aria-label="Choose a body sheet tier">
                     <button class="body-tier-choice selected" type="button"
                         onclick="selectBodyTier('1')">
-                        <span>TIER 1</span><strong>SIMPLE</strong><b>$5</b>
+                        <span>TIER 1</span><strong>SIMPLE</strong><b>$10</b>
                     </button>
                     <button class="body-tier-choice" type="button"
                         onclick="selectBodyTier('2')">
-                        <span>TIER 2</span><strong>STYLIZED</strong><b>$10</b>
+                        <span>TIER 2</span><strong>STYLIZED</strong><b>$20</b>
                     </button>
                     <button class="body-tier-choice" type="button"
                         onclick="selectBodyTier('3')">
-                        <span>TIER 3</span><strong>REALISTIC</strong><b>$15</b>
+                        <span>TIER 3</span><strong>REALISTIC</strong><b>$30</b>
                     </button>
                 </div>
                 <div id="body-tier-detail" class="body-tier-detail">
@@ -592,7 +604,7 @@
         <div class="window-header">
 
             <div class="window-title">
-                COMMISSION_SYSTEM
+                BODY_SHEET_COMMISSION_SYSTEM
             </div>
 
             <button
@@ -614,7 +626,7 @@
                 </div>
 
                 <h1>
-                    COMMISSIONS
+                    BODY SHEET COMMISSIONS
                 </h1>
 
                 <p>
@@ -664,7 +676,7 @@
                     <li>
                         <strong>Submit</strong>
                         <p>
-                           Submit a request through my Kofi.
+                            Fill out the Google Commission Form.
                         </p>
                     </li>
 
@@ -881,7 +893,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    OPEN A COMMISSION SLOT
+                    OPEN COMMISSION FORM
                 </a>
 
                 <button
@@ -899,6 +911,115 @@
 
 </section>
 
+
+
+<!-- =========================================================
+     ART COMMISSIONS
+========================================================= -->
+
+<section id="art-commissions" class="screen">
+    <div class="computer-window">
+        <div class="window-header">
+            <div class="window-title">ART_COMMISSION_DESK.exe</div>
+            <button class="header-back" onclick="backToMenu()">← MENU</button>
+        </div>
+
+        <div class="page-content art-commission-page">
+            <!-- Keep the process reference as the very first content on this page. -->
+            <div class="commission-reference-panel">
+                <div class="system-label">✦ THE ART PROCESS ✦</div>
+                <div class="commission-reference-frame">
+                    <img
+                        id="commission-process-image"
+                        src="assets/art-commissions/commission-process.png"
+                        alt="Art commission examples showing line art, flat color, and rendering"
+                        loading="lazy"
+                        onerror="this.closest('.commission-reference-frame').classList.add('image-not-uploaded'); this.style.display='none';"
+                    >
+                    <div class="commission-reference-placeholder">
+                        <span>✦ ART PROCESS REFERENCE ✦</span>
+                        <p>Upload your line art / flat color / rendering comparison as <strong>commission-process.png</strong> inside <strong>assets/art-commissions/</strong>.</p>
+                    </div>
+                </div>
+                <p class="commission-reference-caption">From clean line art to a fully rendered finish — choose the level of detail that fits your vision!</p>
+            </div>
+
+            <div class="page-heading art-commission-heading">
+                <div class="system-label">COMMISSIONS: OPEN</div>
+                <h1>ART COMMISSIONS</h1>
+                <p>Let's make something cute, colorful, and very you. ♡</p>
+            </div>
+
+            <div class="art-commission-price-grid">
+                <article class="art-price-card price-lineart">
+                    <div class="art-price-icon">✎</div>
+                    <h2>Line Art</h2>
+                    <p class="art-price">$8</p>
+                    <p>Clean, finished linework with no color.</p>
+                </article>
+                <article class="art-price-card price-flat">
+                    <div class="art-price-icon">♡</div>
+                    <h2>Flat Color</h2>
+                    <p class="art-price">$16</p>
+                    <p>Line art with your character's base colors.</p>
+                </article>
+                <article class="art-price-card price-shading">
+                    <div class="art-price-icon">✧</div>
+                    <h2>Simple Shading</h2>
+                    <p class="art-price">$18</p>
+                    <p>Flat colors with simple shadows and depth.</p>
+                </article>
+                <article class="art-price-card price-render">
+                    <div class="art-price-icon">★</div>
+                    <h2>Full Render</h2>
+                    <p class="art-price">$24</p>
+                    <p>A more polished, fully rendered finish.</p>
+                </article>
+            </div>
+
+            <div class="info-card art-commission-extras">
+                <h2>✦ ADD-ONS & EXTRAS ✦</h2>
+                <div class="art-extra-row">
+                    <div><strong>Extra characters</strong><p>Each additional character costs 50% of the original commission's base price.</p></div>
+                    <strong class="art-extra-price">+$4–$12 each</strong>
+                </div>
+                <div class="art-extra-row">
+                    <div><strong>Simple background</strong><p>Basic shapes, colors, or other uncomplicated background details.</p></div>
+                    <strong class="art-extra-price">+$1 each</strong>
+                </div>
+                <div class="art-background-note"><strong>Background policy:</strong> Simple backgrounds only! Complicated backgrounds aren't offered, so we can keep the focus on your character. ♡</div>
+                <p class="art-extra-example"><strong>Example:</strong> Flat color ($16) + two extra characters ($8 each) = <strong>$32</strong>. Add a simple background and the total is <strong>$33</strong>.</p>
+            </div>
+
+            <div class="info-card art-commission-details">
+                <h2>BEFORE YOU ORDER</h2>
+                <ul>
+                    <li>Prices shown are the base price for one character.</li>
+                    <li>Extra-character fees are calculated from the original art style price for every additional character.</li>
+                    <li>Simple backgrounds cost $1 each; complicated backgrounds are not available.</li>
+                    <li>Please read the Terms of Service before submitting a request.</li>
+                </ul>
+                <div class="action-buttons">
+                    <a class="primary-button link-button" href="https://forms.gle/JFd23trrwe5mxXyUA" target="_blank" rel="noopener noreferrer">OPEN COMMISSION FORM</a>
+                    <button class="secondary-button" type="button" onclick="showSection('tos')">READ THE TOS</button>
+                </div>
+            </div>
+
+            <!-- Artwork examples deliberately live at the very bottom. -->
+            <div class="art-commission-gallery-section">
+                <div class="page-heading">
+                    <div class="system-label">PORTFOLIO DATABASE</div>
+                    <h2>ART EXAMPLES</h2>
+                    <p>A few little peeks at what I can create. Click any piece to view it larger!</p>
+                </div>
+                <div id="art-commission-gallery" class="gallery-grid art-commission-gallery" aria-live="polite">
+                    <div class="empty-gallery"><div class="empty-icon">✦</div><h2>LOADING ART ARCHIVE...</h2><p>Looking for commission examples.</p></div>
+                </div>
+                <p class="art-gallery-filename-tip">Name each image file whatever you'd like — its filename becomes the artwork title automatically. No special prefixes needed!</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!-- =========================================================

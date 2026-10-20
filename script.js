@@ -621,7 +621,7 @@ async function getImagesFromFolder(folder) {
 const BODY_SHEET_TIERS = {
     "1": {
         name: "SIMPLE",
-        price: "$10",
+        price: "$5",
         description: "A straightforward, affordable base for people who want a classic Gacha-style body sheet that's easy to customize.",
         included: [
             "Full-body base",
@@ -635,7 +635,7 @@ const BODY_SHEET_TIERS = {
     },
     "2": {
         name: "STYLIZED",
-        price: "$20",
+        price: "$10",
         description: "A more customizable, stylized option with additional expression choices and GL2-inspired shading. Proportions can be adjusted to suit the character.",
         included: [
             "Full-body base",
@@ -650,7 +650,7 @@ const BODY_SHEET_TIERS = {
     },
     "3": {
         name: "REALISTIC",
-        price: "$30",
+        price: "$15",
         description: "The most detailed option, with a more realistically rendered style and the largest included selection of hands, mouths, and emotes.",
         included: [
             "Full-body base",
@@ -881,13 +881,13 @@ function createBodySheetCard(file, index) {
 
     if (tierNumber === "1") {
         tier = "Tier 1 • Simple";
-        price = "$10";
+        price = "$5";
     } else if (tierNumber === "2") {
         tier = "Tier 2 • Stylized";
-        price = "$20";
+        price = "$10";
     } else if (tierNumber === "3") {
         tier = "Tier 3 • Realistic";
-        price = "$30";
+        price = "$15";
     }
 
 

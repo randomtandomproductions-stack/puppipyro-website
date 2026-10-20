@@ -1962,3 +1962,100 @@ a:hover {
         min-height: 200px;
     }
 }
+
+
+/* ---------------------------------------------------------
+   ART COMMISSIONS — PRICING, PROCESS REFERENCE, AND GALLERY
+   --------------------------------------------------------- */
+.art-commission-page { gap: 18px; }
+.commission-reference-panel {
+    margin: 0 0 20px;
+    padding: 18px;
+    border: 2px solid var(--border);
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(228,255,227,.82), rgba(254,224,254,.72), rgba(220,202,244,.58));
+    box-shadow: var(--small-shadow);
+    text-align: center;
+}
+.commission-reference-panel .system-label { margin-bottom: 12px; }
+.commission-reference-frame {
+    position: relative;
+    min-height: 110px;
+    overflow: hidden;
+    border: 2px dashed var(--lavender-dark);
+    border-radius: 16px;
+    background: rgba(255,255,255,.76);
+}
+.commission-reference-frame img {
+    display: block;
+    width: 100%;
+    max-height: 560px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.commission-reference-placeholder {
+    display: none;
+    padding: 26px 18px;
+    color: var(--purple-dark);
+}
+.commission-reference-frame.image-not-uploaded .commission-reference-placeholder { display: block; }
+.commission-reference-placeholder span { font-weight: 1000; letter-spacing: .05em; }
+.commission-reference-placeholder p { margin: 10px auto 0; max-width: 650px; color: var(--text-soft); line-height: 1.5; }
+.commission-reference-caption { margin: 12px 0 0; color: var(--text-soft); line-height: 1.5; }
+.art-commission-heading { margin-top: 8px; }
+.art-commission-price-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+    margin-bottom: 8px;
+}
+.art-price-card {
+    padding: 19px 15px;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: var(--small-shadow);
+    text-align: center;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.art-price-card:hover { transform: translateY(-4px); box-shadow: 0 8px 0 rgba(115,49,100,.10), 0 14px 25px rgba(115,49,100,.12); }
+.art-price-card.price-lineart { background: linear-gradient(150deg, var(--lavender-light), var(--white)); }
+.art-price-card.price-flat { background: linear-gradient(150deg, var(--pink-light), var(--white)); }
+.art-price-card.price-shading { background: linear-gradient(150deg, var(--mint-light), var(--white)); }
+.art-price-card.price-render { background: linear-gradient(150deg, #FFF0E6, var(--white)); }
+.art-price-icon { font-size: 1.7rem; color: var(--pink-dark); }
+.art-price-card h2 { margin: 7px 0 2px; color: var(--purple-dark); font-size: 1rem; }
+.art-price { margin: 4px 0 8px; color: var(--pink-dark); font-size: 2rem; font-weight: 1000; }
+.art-price-card p:last-child { margin: 0; color: var(--text-soft); font-size: .88rem; line-height: 1.45; }
+.art-commission-extras h2, .art-commission-details h2 { margin-top: 0; }
+.art-extra-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(115,49,100,.18); }
+.art-extra-row:last-of-type { border-bottom: 0; }
+.art-extra-row p { margin: 4px 0 0; }
+.art-extra-price { flex-shrink: 0; color: var(--pink-dark); font-size: 1.05rem; }
+.art-background-note, .art-extra-example { margin: 14px 0 0; padding: 13px 15px; border-radius: 13px; background: var(--lavender-light); color: var(--text-soft); line-height: 1.5; }
+.art-extra-example { background: var(--mint-light); }
+.art-commission-details .action-buttons { margin-top: 20px; }
+.art-commission-gallery-section { margin-top: 22px; padding-top: 22px; border-top: 2px dashed var(--lavender-dark); }
+.art-commission-gallery-section .page-heading { margin-bottom: 18px; }
+.art-commission-gallery .art-card {
+    overflow: hidden;
+    border: 2px solid var(--border);
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: var(--small-shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.art-commission-gallery .art-card:hover { transform: translateY(-4px); box-shadow: 0 8px 0 rgba(115,49,100,.10), 0 14px 25px rgba(115,49,100,.12); }
+.art-commission-gallery .art-image-button { display: block; width: 100%; padding: 0; border: 0; background: radial-gradient(circle, rgba(228,255,227,.45), rgba(220,202,244,.18)); cursor: zoom-in; }
+.art-commission-gallery .art-image-button img { display: block; width: 100%; height: 280px; object-fit: contain; }
+.art-commission-gallery .art-card h2 { margin: 0; padding: 12px 10px; color: var(--purple-dark); font-size: .95rem; text-align: center; overflow-wrap: anywhere; }
+.art-gallery-filename-tip { margin: 15px 0 0; color: var(--text-soft); font-size: .82rem; text-align: center; line-height: 1.5; }
+@media (max-width: 950px) { .art-commission-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) {
+    .art-commission-price-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+    .art-price-card { padding: 14px 10px; }
+    .art-price-card h2 { font-size: .9rem; }
+    .art-price { font-size: 1.7rem; }
+    .art-extra-row { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .art-commission-gallery .art-image-button img { height: 200px; }
+}

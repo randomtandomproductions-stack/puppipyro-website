@@ -614,6 +614,92 @@ async function getImagesFromFolder(folder) {
 
 
 /* =========================================================
+   PYRO IMAGE LOADER
+========================================================= */
+
+/*
+   Automatically fills the named Pyro placeholders using images
+   uploaded to assets/pyro/ in this GitHub repository.
+
+   Supported filename stems:
+   - home-main      -> home screen
+   - menu           -> main menu
+   - about-profile  -> About page (optional, if added later)
+   - contact        -> Contact page (optional, if added later)
+
+   The file extension can be PNG, JPG, JPEG, WebP, or GIF.
+*/
+
+const PYRO_IMAGE_SLOTS = {
+    "home-main": {
+        alt: "Pyro, the PuppiPyro mascot"
+    },
+    "menu": {
+        alt: "Pyro on the PuppiPyro main menu"
+    },
+    "about-profile": {
+        alt: "Pyro profile illustration"
+    },
+    "contact": {
+        alt: "Pyro contact illustration"
+    }
+};
+
+async function loadPyroImages() {
+    const placeholders = [
+        ...document.querySelectorAll("[data-pyro-slot]")
+    ];
+
+    if (placeholders.length === 0) return;
+
+    const result = await getImagesFromFolder("pyro");
+
+    if (result.error) {
+        console.warn("PUPPIPYRO.EXE: Could not load Pyro images.", result.error);
+        return;
+    }
+
+    const filesByName = new Map();
+
+    result.files.forEach(file => {
+        const stem = file.name.replace(/\.[^/.]+$/, "").toLowerCase();
+        filesByName.set(stem, file);
+    });
+
+    placeholders.forEach(placeholder => {
+        const slotName = placeholder.dataset.pyroSlot;
+        const slotSettings = PYRO_IMAGE_SLOTS[slotName];
+        if (!slotSettings) return;
+
+        const file = filesByName.get(slotName.toLowerCase());
+        if (!file) {
+            // Keep the original placeholder text if the image isn't uploaded yet.
+            return;
+        }
+
+        const image = document.createElement("img");
+        image.src = file.download_url;
+        image.alt = slotSettings.alt;
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        image.addEventListener("load", () => {
+            placeholder.classList.add("has-pyro-image");
+            const placeholderText = placeholder.querySelector("span");
+            if (placeholderText) placeholderText.hidden = true;
+        }, { once: true });
+
+        image.addEventListener("error", () => {
+            image.remove();
+            console.warn(`PUPPIPYRO.EXE: Could not display "${file.name}".`);
+        }, { once: true });
+
+        placeholder.appendChild(image);
+    });
+}
+
+
+/* =========================================================
    ART COMMISSION EXAMPLE GALLERY
 ========================================================= */
 
@@ -1466,6 +1552,13 @@ document.addEventListener(
         document.body.classList.remove(
             "image-viewer-open"
         );
+
+
+        /*
+           Load mascot images from assets/pyro/.
+           The loader leaves placeholder text in place if an image is missing.
+        */
+        loadPyroImages();
 
 
         console.log(
